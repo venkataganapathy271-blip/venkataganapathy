@@ -26,7 +26,6 @@ export default function Header() {
     { name: "Home", href: "#home", active: true },
     { name: "About", href: "#about" },
     { name: "Services", href: "#departments" },
-    { name: "Symptom Finder", href: "#symptom-checker" },
     { name: "Doctors", href: "#doctors" },
     { name: "Contact", href: "#contact" },
   ];
@@ -37,15 +36,15 @@ export default function Header() {
         isScrolled ? "pt-0 px-0" : "pt-2 px-2"
       }`}
     >
-      {/* Heavy Glassmorphism Header with tight px-2 horizontal padding */}
+      {/* Header with tight px-2 horizontal padding */}
       <div
         className={`mx-auto flex items-center justify-between transition-all duration-300 ${
           isScrolled
-            ? "w-full max-w-full h-16 bg-[#FAFAFE]/90 backdrop-blur-xl rounded-none px-2 shadow-sm border-b border-slate-200/80"
-            : "w-full bg-[#FAFAFE]/90 backdrop-blur-xl rounded-full px-2 py-2 shadow-sm border border-white/80"
+            ? "w-full max-w-full h-16 bg-[#FAFAFE] backdrop-blur-xl rounded-none px-2 border-b border-slate-200"
+            : "w-full bg-[#FAFAFE] backdrop-blur-xl rounded-full px-2 py-2 border border-slate-200"
         }`}
       >
-        {/* Logo (Aligned tight to left edge with px-2) */}
+        {/* Logo */}
         <a href="#home" className="flex items-center space-x-2 transition-all">
           <div className="w-7 h-7 rounded-full bg-[#A8D0A6] text-slate-900 flex items-center justify-center font-bold">
             <Activity className="w-3.5 h-3.5 text-slate-900" />
@@ -70,14 +69,14 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Right Sage Green Pill Button CTA (Aligned tight to right edge with px-2) */}
+        {/* Right Sage Green Pill Button CTA */}
         <div className="flex items-center space-x-2">
           <a
             href="#contact"
             className={
               isScrolled
-                ? "hidden sm:inline-flex items-center justify-center space-x-2 bg-[#A8D0A6] hover:bg-[#96c494] text-[#101827] font-black px-6 h-9 text-[10px] tracking-widest uppercase rounded-full transition-transform hover:scale-105 shadow-lg shadow-[#A8D0A6]/20"
-                : "hidden sm:inline-flex items-center space-x-2 px-4 py-1.5 bg-[#A8D0A6] hover:bg-[#96C494] text-slate-900 text-xs font-bold rounded-full transition-all"
+                ? "hidden sm:inline-flex items-center justify-center space-x-2 bg-[#A8D0A6] hover:bg-[#96c494] text-[#101827] font-black px-6 h-9 text-[10px] tracking-widest uppercase rounded-full transition-transform hover:scale-105 border border-[#A8D0A6]"
+                : "hidden sm:inline-flex items-center space-x-2 px-4 py-1.5 bg-[#A8D0A6] hover:bg-[#96C494] text-slate-900 text-xs font-bold rounded-full transition-all border border-[#A8D0A6]"
             }
           >
             <span>Book Appointment</span>
@@ -98,7 +97,7 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-2 bg-[#FAFAFE]/95 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-slate-200 space-y-2">
+        <div className="md:hidden mt-2 bg-[#FAFAFE] rounded-2xl p-4 border border-slate-200 space-y-2">
           {navLinks.map((link) => (
             <a
               key={link.name}

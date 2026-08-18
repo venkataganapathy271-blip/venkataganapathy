@@ -122,7 +122,7 @@ export default function HeroSection() {
               {/* Primary White Pill Button with Sage Green Accent */}
               <a
                 href="#contact"
-                className="inline-flex items-center space-x-3 px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-900 rounded-full font-bold text-xs border border-white transition-all group shadow-sm"
+                className="inline-flex items-center space-x-3 px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-900 rounded-full font-bold text-xs border border-slate-200 transition-all group"
               >
                 <span>Book Appointment</span>
                 <div className="w-5 h-5 rounded-full bg-[#A8D0A6] group-hover:bg-[#96C494] flex items-center justify-center">

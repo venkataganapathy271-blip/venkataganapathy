@@ -29,7 +29,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-10 sm:py-14 bg-[#FAFAFE]/90 backdrop-blur-xl">
+    <section id="about" className="py-10 sm:py-14 bg-[#FAFAFE]">
       <div className="max-w-7xl mx-auto px-2">
         
         {/* Main Grid: Responsive 1-col on Mobile, 12-col on Desktop */}
@@ -37,7 +37,7 @@ export default function AboutSection() {
           
           {/* Left Column: Tall Vertical Video Media Card (Mobile-Optimized Height) */}
           <div className="lg:col-span-4 relative flex flex-col">
-            <div className="relative w-full h-[340px] sm:h-[420px] lg:h-full lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-slate-950 flex flex-col justify-between p-4 sm:p-5">
+            <div className="relative w-full h-[340px] sm:h-[420px] lg:h-full lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 bg-slate-950 flex flex-col justify-between p-4 sm:p-5">
               
               {/* Live Background Video */}
               <video
@@ -49,7 +49,7 @@ export default function AboutSection() {
               >
                 <source src="/6023241-uhd_3840_2160_25fps.mp4" type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/40" />
+              <div className="absolute inset-0 bg-slate-950/40" />
 
               {/* Top Badges Overlay */}
               <div className="relative z-10 flex items-center justify-between">
@@ -91,7 +91,7 @@ export default function AboutSection() {
 
                 <a
                   href="#contact"
-                  className="inline-flex items-center space-x-2 px-3.5 py-1 bg-slate-900 text-white text-xs font-bold rounded-full hover:bg-slate-800 transition-all shadow-xs"
+                  className="inline-flex items-center space-x-2 px-3.5 py-1 bg-[#EBF5EA] text-slate-900 text-xs font-extrabold rounded-full hover:bg-[#d8edd6] transition-all border border-[#A8D0A6]"
                 >
                   <span>Our History</span>
                 </a>
@@ -110,11 +110,11 @@ export default function AboutSection() {
               </p>
             </div>
 
-            {/* Bottom 3 Bento Grid Cards (Stacked 1-Col on Mobile, 3-Col on Desktop) */}
+            {/* Bottom 3 Bento Grid Cards */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-4.5 items-stretch">
               
               {/* Card 1: 4-Pillars List Card */}
-              <div className="md:col-span-5 bg-white/90 backdrop-blur-md p-4 rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-2.5">
+              <div className="md:col-span-5 bg-[#FAFAFE] p-4 rounded-2xl sm:rounded-3xl border border-slate-200 flex flex-col justify-between space-y-2.5">
                 {pillars.map((pillar, idx) => (
                   <div key={idx} className="flex items-start space-x-3 p-1.5 rounded-xl hover:bg-[#EBF5EA]/60 transition-colors">
                     <div className="p-2 bg-[#EBF5EA] rounded-lg shrink-0 border border-[#A8D0A6]/60">
@@ -133,9 +133,9 @@ export default function AboutSection() {
               </div>
 
               {/* Card 2: Sage Green Accent Quote Card */}
-              <div className="md:col-span-4 bg-[#A8D0A6] p-4 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col justify-between space-y-5 shadow-sm relative overflow-hidden">
+              <div className="md:col-span-4 bg-[#A8D0A6] p-4 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col justify-between space-y-5 border border-[#A8D0A6] relative overflow-hidden">
                 <div className="flex justify-between items-start">
-                  <div className="w-8 h-8 rounded-full bg-white text-[#588356] flex items-center justify-center shadow-xs">
+                  <div className="w-8 h-8 rounded-full bg-white text-[#588356] flex items-center justify-center border border-white">
                     <Heart className="w-4 h-4 fill-[#588356]" />
                   </div>
                 </div>
@@ -162,7 +162,7 @@ export default function AboutSection() {
               </div>
 
               {/* Card 3: Secondary Video Media Card */}
-              <div className="md:col-span-3 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-900 min-h-[180px] sm:min-h-[190px] flex flex-col justify-between p-3.5">
+              <div className="md:col-span-3 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 min-h-[180px] sm:min-h-[190px] flex flex-col justify-between p-3.5">
                 <video
                   autoPlay
                   loop
@@ -183,7 +183,7 @@ export default function AboutSection() {
 
                 {/* Bottom Floating White Pill Badge */}
                 <div className="relative z-10">
-                  <div className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-extrabold shadow-sm text-center">
+                  <div className="px-3 py-1.5 rounded-full bg-white text-slate-900 text-[10px] font-extrabold text-center border border-white">
                     Non-Surgical Care
                   </div>
                 </div>

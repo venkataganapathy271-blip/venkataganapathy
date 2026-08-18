@@ -16,6 +16,7 @@ export interface Doctor {
   name: string;
   title: string;
   qualification: string;
+  regNo?: string;
   specialization: string;
   experienceYears: number;
   departmentId: string;
@@ -149,19 +150,66 @@ export const DEPARTMENTS: Department[] = [
 
 export const DOCTORS: Doctor[] = [
   {
-    id: "doc-maruti-rao",
-    name: "Dr. Maruti Rao Pulavarthi",
-    title: "Chief Physiotherapist & Founder",
+    id: "doc-maruthi-rao",
+    name: "Dr. Maruthi Rao Pulavarthi",
+    title: "Founder & Chief Clinical Director",
     qualification: "B.P.T, P.G. Diploma in Sports Rehab",
+    regNo: "Reg. No: APF0170",
     specialization: "Stroke Paralysis, Slipped Disc, Joint Replacements & Sports Injury Care",
     experienceYears: 10,
-    departmentId: "post-op-rehab",
+    departmentId: "physiotherapy",
     departmentName: "Physiotherapy & Rehabilitation",
-    bio: "Dr. Maruti Rao Pulavarthi (B.P.T, P.G. Diploma Sports Rehab) has been serving Hanuman Junction and surrounding areas for over 10 years with modern, evidence-based physiotherapy techniques for paralysis, back pain, joint stiffness, and post-surgical recovery.",
+    bio: "Dr. Maruthi Rao Pulavarthi (B.P.T, P.G. Diploma Sports Rehab, Reg. No: APF0170) is the Founder & Senior Clinical Director bringing over a decade of proven non-surgical recovery expertise to Hanuman Junction.",
     availableDays: "Monday - Sunday: 10:00 AM - 9:00 PM",
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
     rating: 4.95,
     patientsCount: 8500,
+  },
+  {
+    id: "doc-konka-jayaswai",
+    name: "Konka Jayaswai",
+    title: "Clinical Physiotherapist",
+    qualification: "B.P.T",
+    specialization: "General Physiotherapy & Movement Rehab",
+    experienceYears: 5,
+    departmentId: "physiotherapy",
+    departmentName: "Clinical Physiotherapy",
+    bio: "Clinical physiotherapist specializing in 1-on-1 joint mobilization, electrotherapy application, and post-surgical exercise protocols.",
+    availableDays: "Monday - Sunday: 10:00 AM - 9:00 PM",
+    image: "https://images.unsplash.com/photo-1594824813571-24a69c100d37?auto=format&fit=crop&q=80&w=600",
+    rating: 4.9,
+    patientsCount: 3200,
+  },
+  {
+    id: "doc-danny-christopher",
+    name: "Dr. D. Danny Christopher",
+    title: "Consultant Physiotherapist",
+    qualification: "B.P.T, B.Sc. Psych, PGDHHM, Dip. Gen.",
+    specialization: "Rehabilitation Psychology & General Wellness",
+    experienceYears: 8,
+    departmentId: "consultant",
+    departmentName: "Consultant Care",
+    bio: "Consultant physiotherapist bringing a multi-disciplinary approach in physical rehabilitation, psychological coping for chronic pain, and hospital health management.",
+    availableDays: "By Appointment",
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    rating: 4.9,
+    patientsCount: 4100,
+  },
+  {
+    id: "doc-galeesha-sk",
+    name: "Dr. Galeesha SK",
+    title: "Consultant Orthopedic Physiotherapist",
+    qualification: "M.P.T (Ortho)",
+    regNo: "Reg. No: 18P301008004",
+    specialization: "Orthopedic Manual Therapy & Spine Biomechanics",
+    experienceYears: 7,
+    departmentId: "consultant",
+    departmentName: "Orthopedic Rehabilitation",
+    bio: "Specialist Master of Physiotherapy in Orthopedics (M.P.T Ortho, Reg. No: 18P301008004), focusing on complex joint deformities, post-fracture stiffness, and manual spine adjustments.",
+    availableDays: "By Appointment",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600",
+    rating: 4.95,
+    patientsCount: 3900,
   },
 ];
 

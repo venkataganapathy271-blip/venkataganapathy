@@ -2,9 +2,8 @@ import Header from "@/components/layout/Header";
 import HeroSection from "@/components/hero/HeroSection";
 import StatsSection from "@/components/stats/StatsSection";
 import AboutSection from "@/components/about/AboutSection";
-import VideoShowcase from "@/components/video/VideoShowcase";
 import ServicesSection from "@/components/departments/ServicesSection";
-import SymptomChecker from "@/components/interactive/SymptomChecker";
+import ExcellenceSection from "@/components/features/ExcellenceSection";
 import DoctorsSection from "@/components/doctors/DoctorsSection";
 import FacilitiesSection from "@/components/facilities/FacilitiesSection";
 import TestimonialsSection from "@/components/testimonials/TestimonialsSection";
@@ -28,16 +27,10 @@ export default function Home() {
         {/* 3. Clinic Overview & Video Feature */}
         <AboutSection />
 
-        {/* 4. Live Therapy & Rehabilitation Video Gallery */}
-        <VideoShowcase />
-
         {/* 5. Specialized Departments & Treatments */}
         <ServicesSection />
 
-        {/* 6. Interactive Pain & Symptom Finder Widget */}
-        <SymptomChecker />
-
-        {/* 7. Featured Doctors & Specialists */}
+        {/* 7. Featured Doctors & Lead Specialist */}
         <DoctorsSection />
 
         {/* 8. Facilities & Equipment Showcase */}
