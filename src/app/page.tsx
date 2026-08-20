@@ -6,7 +6,9 @@ import ServicesSection from "@/components/departments/ServicesSection";
 import ExcellenceSection from "@/components/features/ExcellenceSection";
 import DoctorsSection from "@/components/doctors/DoctorsSection";
 import FacilitiesSection from "@/components/facilities/FacilitiesSection";
+import GallerySection from "@/components/gallery/GallerySection";
 import TestimonialsSection from "@/components/testimonials/TestimonialsSection";
+import FaqSection from "@/components/faq/FaqSection";
 import EnquirySection from "@/components/contact/EnquirySection";
 import Footer from "@/components/layout/Footer";
 
@@ -18,28 +20,37 @@ export default function Home() {
 
       {/* Main Landing Page Content */}
       <main className="flex-grow">
-        {/* 1. Hero Section with Live Background Video */}
+        {/* 1. SOW 3.1 Hero Section */}
         <HeroSection />
 
-        {/* 2. Key Achievements & Statistics Bar */}
+        {/* 2. SOW 3.1 Key Achievements & Statistics Bar */}
         <StatsSection />
 
-        {/* 3. Clinic Overview & Video Feature */}
+        {/* 3. SOW 3.2 Clinic Overview & Video Feature */}
         <AboutSection />
 
-        {/* 5. Specialized Departments & Treatments */}
+        {/* 4. SOW 3.3 & 3.5 Specialized Departments & Treatments */}
         <ServicesSection />
 
-        {/* 7. Featured Doctors & Lead Specialist */}
+        {/* 5. SOW 3.4 Featured Doctors & Founder Spotlight */}
         <DoctorsSection />
 
-        {/* 8. Facilities & Equipment Showcase */}
+        {/* 6. SOW 3.1 Why Choose Us / Clinical Excellence */}
+        <ExcellenceSection />
+
+        {/* 7. SOW 3.6 Facilities & Equipment Showcase */}
         <FacilitiesSection />
 
-        {/* 9. Verified Patient Recovery Testimonials */}
+        {/* 8. SOW 3.7 Hospital Gallery & Infrastructure Showcase */}
+        <GallerySection />
+
+        {/* 9. SOW 3.1 Patient Recovery Testimonials */}
         <TestimonialsSection />
 
-        {/* 10. Contact & Appointment Enquiry Form */}
+        {/* 10. SOW 3.9 Patient Information & FAQs */}
+        <FaqSection />
+
+        {/* 11. SOW 3.8 Contact & Appointment Enquiry Form */}
         <EnquirySection />
       </main>
 
@@ -48,3 +59,4 @@ export default function Home() {
     </div>
   );
 }
+

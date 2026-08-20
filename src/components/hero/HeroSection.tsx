@@ -6,6 +6,7 @@ import { HOSPITAL_INFO } from "@/data/hospitalData";
 
 interface HeroSlide {
   video: string;
+  poster: string;
   line1: string;
   line2: string;
 }
@@ -14,27 +15,36 @@ export default function HeroSection() {
   const slides: HeroSlide[] = [
     {
       video: "/5991800-uhd_3840_2160_25fps.mp4",
+      poster: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1920",
       line1: "Relieve Pain, Restore Mobility",
       line2: "Body Balance",
     },
     {
       video: "/6023232-uhd_3840_2160_25fps.mp4",
+      poster: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1920",
       line1: "Advanced Stroke & Paralysis Care",
       line2: "Motor Independence",
     },
     {
       video: "/6023241-uhd_3840_2160_25fps.mp4",
+      poster: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1920",
       line1: "Post-Knee & Joint Replacement",
       line2: "Mobility Restoration",
     },
     {
       video: "/6326960-hd_2048_1054_25fps.mp4",
+      poster: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1920",
       line1: "Sports Injury & Spine Decompression",
       line2: "Active Movement",
     },
   ];
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [loadedVideos, setLoadedVideos] = useState<Record<number, boolean>>({});
+
+  const handleVideoLoaded = (idx: number) => {
+    setLoadedVideos((prev) => ({ ...prev, [idx]: true }));
+  };
 
   // Auto-switch video background and headline text every 5 seconds with 1s smooth crossfade
   useEffect(() => {
@@ -68,24 +78,40 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="home" className="p-[4px] bg-[#FAFAFE] w-full h-screen max-h-screen">
-      <div className="relative w-full h-full bg-[#FAFAFE] flex flex-col justify-between overflow-hidden pt-20 pb-3 text-white rounded-lg">
+    <section id="home" className="w-full h-screen max-h-screen bg-[#FAFAFE] p-2">
+      <div className="relative w-full h-full bg-slate-900 flex flex-col justify-between overflow-hidden pt-20 pb-3 text-white rounded-xl sm:rounded-2xl shadow-sm">
         
         {/* Background Video Carousel with Smooth 1s Opacity Dissolve */}
         <div className="absolute inset-0 z-0 bg-[#FAFAFE]">
           {slides.map((slide, idx) => (
-            <video
+            <div 
               key={slide.video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out pointer-events-none ${
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                 currentSlideIndex === idx ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             >
-              <source src={slide.video} type="video/mp4" />
-            </video>
+              {/* Fallback Image (Loads instantly) */}
+              <img
+                src={slide.poster}
+                alt="Hospital Background"
+                className="absolute inset-0 w-full h-full object-cover z-0"
+              />
+
+              {/* Video (Fades in over the image only after it has loaded data) */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster={slide.poster}
+                onLoadedData={() => handleVideoLoaded(idx)}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out pointer-events-none z-10 ${
+                  loadedVideos[idx] ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <source src={slide.video} type="video/mp4" />
+              </video>
+            </div>
           ))}
         </div>
 
@@ -114,7 +140,7 @@ export default function HeroSection() {
         </div>
 
         {/* Bottom Overlaid Area */}
-        <div className="relative z-20 max-w-7xl mx-auto px-2 w-full shrink-0 pb-2">
+        <div className="relative z-20 max-w-7xl mx-auto px-2 w-full shrink-0 pb-2 md:pb-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
             
             {/* 1. Left: Action Buttons */}
@@ -172,7 +198,6 @@ export default function HeroSection() {
 
           </div>
         </div>
-
       </div>
     </section>
   );

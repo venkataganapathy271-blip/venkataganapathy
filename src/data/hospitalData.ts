@@ -62,7 +62,7 @@ export interface SymptomOption {
 }
 
 export const HOSPITAL_INFO = {
-  name: "Venkata Ganapathi",
+  name: "Venkata Ganapathy",
   subtitle: "Physiotherapy Clinic",
   tagline: "10+ Years of Modern Physiotherapy Excellence in Hanuman Junction",
   regNo: "Reg. No: 75/2015",

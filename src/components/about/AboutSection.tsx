@@ -111,50 +111,52 @@ export default function AboutSection() {
             </div>
 
             {/* Bottom 3 Bento Grid Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-4.5 items-stretch">
+            <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-4.5 items-stretch">
               
               {/* Card 1: 4-Pillars List Card */}
-              <div className="md:col-span-5 bg-[#FAFAFE] p-4 rounded-2xl sm:rounded-3xl border border-slate-200 flex flex-col justify-between space-y-2.5">
-                {pillars.map((pillar, idx) => (
-                  <div key={idx} className="flex items-start space-x-3 p-1.5 rounded-xl hover:bg-[#EBF5EA]/60 transition-colors">
-                    <div className="p-2 bg-[#EBF5EA] rounded-lg shrink-0 border border-[#A8D0A6]/60">
-                      {pillar.icon}
+              <div className="col-span-2 md:col-span-5 bg-[#FAFAFE] p-3.5 sm:p-4 rounded-2xl sm:rounded-3xl border border-slate-200 flex flex-col justify-center">
+                <div className="grid grid-cols-2 md:grid-cols-1 gap-x-3 gap-y-4">
+                  {pillars.map((pillar, idx) => (
+                    <div key={idx} className="flex flex-col sm:flex-row items-start space-y-2 sm:space-y-0 sm:space-x-3 p-1.5 sm:p-2 rounded-xl hover:bg-[#EBF5EA]/60 transition-colors">
+                      <div className="p-2 bg-[#EBF5EA] rounded-lg shrink-0 border border-[#A8D0A6]/60">
+                        {pillar.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-[11px] sm:text-xs font-bold text-slate-900 leading-snug">
+                          {pillar.title}
+                        </h4>
+                        <p className="text-[10px] text-slate-500 leading-tight pt-1 sm:pt-0.5">
+                          {pillar.desc}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-slate-900 leading-snug">
-                        {pillar.title}
-                      </h4>
-                      <p className="text-[10px] text-slate-500 leading-tight pt-0.5">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               {/* Card 2: Sage Green Accent Quote Card */}
-              <div className="md:col-span-4 bg-[#A8D0A6] p-4 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col justify-between space-y-5 border border-[#A8D0A6] relative overflow-hidden">
+              <div className="col-span-1 md:col-span-4 bg-[#A8D0A6] p-4 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col justify-between space-y-4 sm:space-y-5 border border-[#A8D0A6] relative overflow-hidden">
                 <div className="flex justify-between items-start">
-                  <div className="w-8 h-8 rounded-full bg-white text-[#588356] flex items-center justify-center border border-white">
-                    <Heart className="w-4 h-4 fill-[#588356]" />
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white text-[#588356] flex items-center justify-center border border-white shrink-0">
+                    <Heart className="w-3 h-3 sm:w-4 sm:h-4 fill-[#588356]" />
                   </div>
                 </div>
 
-                <p className="text-base sm:text-lg font-black text-slate-900 leading-snug">
+                <p className="text-[12px] sm:text-base md:text-lg font-black text-slate-900 leading-snug">
                   "Physiotherapy has restored mobility to 8,500+ patients without surgery."
                 </p>
 
-                <div className="flex items-center space-x-3 pt-1">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 pt-1">
                   <img
-                    className="w-8.5 h-8.5 rounded-full object-cover ring-2 ring-white shrink-0"
+                    className="w-7 h-7 sm:w-8.5 sm:h-8.5 rounded-full object-cover ring-2 ring-white shrink-0"
                     src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=200"
                     alt="Dr. Maruti Rao Pulavarthi"
                   />
                   <div>
-                    <h5 className="text-xs font-black text-slate-900 leading-tight">
+                    <h5 className="text-[10px] sm:text-xs font-black text-slate-900 leading-tight">
                       {HOSPITAL_INFO.chiefDoctor}
                     </h5>
-                    <p className="text-[10px] font-semibold text-slate-800">
+                    <p className="text-[8px] sm:text-[10px] font-semibold text-slate-800">
                       Chief Physio (B.P.T)
                     </p>
                   </div>
@@ -162,7 +164,7 @@ export default function AboutSection() {
               </div>
 
               {/* Card 3: Secondary Video Media Card */}
-              <div className="md:col-span-3 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 min-h-[180px] sm:min-h-[190px] flex flex-col justify-between p-3.5">
+              <div className="col-span-1 md:col-span-3 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 min-h-[160px] sm:min-h-[190px] flex flex-col justify-between p-2.5 sm:p-3.5">
                 <video
                   autoPlay
                   loop
@@ -176,15 +178,15 @@ export default function AboutSection() {
 
                 {/* Top Badge */}
                 <div className="relative z-10 flex justify-end">
-                  <span className="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-white text-[10px] font-bold">
+                  <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-white text-[8px] sm:text-[10px] font-bold">
                     Reg #75/2015
                   </span>
                 </div>
 
                 {/* Bottom Floating White Pill Badge */}
                 <div className="relative z-10">
-                  <div className="px-3 py-1.5 rounded-full bg-white text-slate-900 text-[10px] font-extrabold text-center border border-white">
-                    Non-Surgical Care
+                  <div className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full bg-white text-slate-900 text-[9px] sm:text-[10px] font-extrabold text-center border border-white leading-tight">
+                    Non-Surgical <br className="sm:hidden" /> Care
                   </div>
                 </div>
               </div>

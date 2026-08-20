@@ -1,325 +1,345 @@
 "use client";
 
 import React, { useState } from "react";
-import { DEPARTMENTS, Department } from "@/data/hospitalData";
 import {
-  Activity,
-  Brain,
-  Zap,
-  ShieldCheck,
-  HeartPulse,
-  Users,
-  ArrowRight,
   ArrowUpRight,
   CheckCircle,
   X,
   Stethoscope,
-  Play,
-  Sparkles,
+  Calendar,
+  ChevronRight,
 } from "lucide-react";
 
+interface ServiceItem {
+  id: string;
+  title: string;
+  badge: string;
+  isHighlighted?: boolean;
+  category: string;
+  description: string;
+  image: string;
+  treatments: string[];
+  features: string[];
+  doctorInCharge: string;
+}
+
+const SERVICES_DATA: ServiceItem[] = [
+  {
+    id: "ortho-rehab",
+    title: "Orthopedic & Joint Rehab",
+    badge: "Most Popular",
+    isHighlighted: true,
+    category: "Joint Rehabilitation",
+    description:
+      "Targeted recovery for knee, hip, shoulder, and spine injuries. Evidence-based protocols that restore full range of motion and prevent re-injury.",
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
+    treatments: [
+      "Post-Knee & Hip Mobilization",
+      "Frozen Shoulder Release",
+      "Spine & Disc Realignment",
+      "Full Range-of-Motion Restoration",
+    ],
+    features: [
+      "Targeted Muscle Strengthening",
+      "Gait Retraining & Balance",
+      "Preventative Care Protocols",
+    ],
+    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+  },
+  {
+    id: "sports-injury",
+    title: "Sports Injury Recovery",
+    badge: "Athletes Care",
+    category: "Sports Science",
+    description:
+      "From ACL tears to tennis elbow - we get athletes back in the game stronger than before, with sport-specific conditioning built in.",
+    image:
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
+    treatments: [
+      "ACL Tear & Ligament Rehab",
+      "Tennis & Golfer's Elbow Relief",
+      "Muscle Strain & Tear Recovery",
+      "Kinesiology Taping & Stability",
+    ],
+    features: [
+      "P.G. Diploma Sports Rehab Expertise",
+      "Athletic Conditioning",
+      "Return-to-Sport Benchmarks",
+    ],
+    doctorInCharge: "Dr. Maruti Rao Pulavarthi (P.G. Dip Sports Rehab)",
+  },
+  {
+    id: "spine-decompression",
+    title: "Spine & Disc Decompression",
+    badge: "Non-Surgical",
+    category: "Spine Care",
+    description:
+      "A multi-modal approach to long-standing pain that combines manual therapy, movement re-education, and computerized traction to break the pain cycle.",
+    image:
+      "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=800",
+    treatments: [
+      "Myofascial Trigger Point Therapy",
+      "Spinal Decompression & Traction",
+      "Movement Re-Education",
+      "Desensitization Protocols",
+    ],
+    features: [
+      "Multi-Modal Modalities (IFT/TENS)",
+      "Zero-Side-Effect Pain Relief",
+      "Personalized Exercise Therapy",
+    ],
+    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+  },
+  {
+    id: "stroke-paralysis",
+    title: "Stroke Paralysis Recovery",
+    badge: "Targeted Neuro",
+    category: "Neurology",
+    description:
+      "Structured neuro-rehabilitation following stroke (hemiplegia) and facial weakness - safe, progressive, and motor milestone outcome-focused.",
+    image:
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800",
+    treatments: [
+      "NMES Muscle Re-education",
+      "Facial Bell's Palsy Therapy",
+      "Parallel Bar Gait Retraining",
+      "Motor Pathway Stimulation",
+    ],
+    features: [
+      "Parallel Walking Bar Retraining",
+      "Safe Progressive Load Expansion",
+      "Outcome-Driven Recovery Tracking",
+    ],
+    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+  },
+  {
+    id: "manual-needling",
+    title: "Manual Therapy & Needling",
+    badge: "1-on-1 Care",
+    category: "Specialized Rehab",
+    description:
+      "Hands-on joint mobilization, soft tissue release, and therapeutic dry needling to reduce pain, restore mobility, and accelerate healing.",
+    image:
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
+    treatments: [
+      "Therapeutic Dry Needling",
+      "Joint Mobilization & Manipulation",
+      "Soft Tissue Myofascial Release",
+      "Deep Muscle Trigger Point Release",
+    ],
+    features: [
+      "1-on-1 Manual Manipulations",
+      "Accelerated Muscle Healing",
+      "Targeted Pain Point Inactivation",
+    ],
+    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+  },
+];
+
 export default function ServicesSection() {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [activeDeptId, setActiveDeptId] = useState<string>(DEPARTMENTS[0].id);
-  const [selectedDept, setSelectedDept] = useState<Department | null>(null);
-  const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
-
-  const categories = [
-    "All",
-    "Orthopedics",
-    "Spine Care",
-    "Neurology",
-    "Joint Care",
-    "Sports Science",
-  ];
-
-  const filteredDepts =
-    activeCategory === "All"
-      ? DEPARTMENTS
-      : DEPARTMENTS.filter((d) => d.category === activeCategory);
-
-  const getIcon = (iconName: string) => {
-    switch (iconName) {
-      case "Activity":
-        return <Activity className="w-5 h-5 text-[#588356]" />;
-      case "Brain":
-        return <Brain className="w-5 h-5 text-[#588356]" />;
-      case "Zap":
-        return <Zap className="w-5 h-5 text-[#588356]" />;
-      case "ShieldPulse":
-        return <ShieldCheck className="w-5 h-5 text-[#588356]" />;
-      case "HeartPulse":
-        return <HeartPulse className="w-5 h-5 text-[#588356]" />;
-      default:
-        return <Users className="w-5 h-5 text-[#588356]" />;
-    }
-  };
+  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
 
   return (
-    <section id="departments" className="py-20 bg-[#FAFAFE]">
-      <div className="max-w-7xl mx-auto px-2">
+    <section
+      id="departments"
+      className="py-12 sm:py-16 bg-[#FAFAFE] text-slate-900"
+    >
+      {/* Anchor for #services compatibility */}
+      <div id="services" className="max-w-7xl mx-auto px-2">
         
-        {/* Section Header Matching Reference Image Exactly */}
-        <div className="mb-14 pb-8 border-b border-slate-200">
+        {/* Section Header (Mobile Optimized) */}
+        <div className="mb-8 sm:mb-14 text-center lg:text-left">
           
-          {/* Top Label */}
-          <div className="flex items-center space-x-2 text-[11px] font-bold tracking-widest text-[#588356] uppercase mb-3">
-            <span className="text-[#588356]">✦</span>
-            <span>WHAT WE OFFER</span>
+          {/* Top Tagline */}
+          <div className="flex items-center justify-center lg:justify-start space-x-1.5 text-xs sm:text-sm font-bold tracking-wider text-slate-700 uppercase mb-3 sm:mb-4">
+            <span>Services We Offer</span>
           </div>
 
-          {/* Main 2-Column Banner Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          {/* 2-Column Header Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 items-baseline">
             
-            {/* Left Column: Huge Typographic Headline & Short Subtitle */}
-            <div className="lg:col-span-7 space-y-3">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.08]">
-                ADVANCED REHAB <span className="font-light text-[#588356]">— 5</span>
-                <br />
-                <span className="italic font-serif font-normal text-[#588356] lowercase tracking-normal">specialized</span> DEPARTMENTS
+            {/* Left Big Headline */}
+            <div className="lg:col-span-7">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-[1.1] sm:leading-[1.08]">
+                Certified <br className="hidden lg:block" /> Excellence
               </h2>
-
-              <p className="text-slate-500 text-xs sm:text-sm font-medium leading-relaxed max-w-lg pt-1">
-                Our 5 specialized departments cover non-surgical spine care, orthopedic joint rehab, stroke neuro-recovery, and sports injury science.
-              </p>
             </div>
 
-            {/* Right Column: Italic Callout Quote Box with Left Accent Line */}
-            <div className="lg:col-span-5 border-l-2 border-[#A8D0A6] pl-4 sm:pl-6 py-1">
-              <p className="text-xs sm:text-sm text-slate-600 italic leading-relaxed font-serif">
-                "Venkata Ganapathi Hospital provides targeted non-invasive recovery protocols. Hover or tap on any clinical department below to explore our treatment procedures."
+            {/* Right Subtitle & Links */}
+            <div className="lg:col-span-5 flex flex-col items-center lg:items-start space-y-4 sm:space-y-5 mt-2 lg:mt-0">
+              <p className="text-slate-600 text-xs sm:text-base leading-relaxed font-normal max-w-md lg:max-w-none">
+                From non-surgical joint care to advanced neuro rehabilitation, we&apos;ve got you covered. Choose reliability, choose Venkata Ganapathy Physiotherapy Clinic.
               </p>
-            </div>
 
-          </div>
-
-          {/* Category Filter Pills Track */}
-          <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-black transition-all border ${
-                    isActive
-                      ? "bg-[#588356] text-white border-[#588356]"
-                      : "bg-[#FAFAFE] text-slate-700 border-slate-300 hover:border-[#588356] hover:text-slate-900"
-                  }`}
+              {/* Action Links */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-[11px] sm:text-sm font-bold text-slate-900">
+                <a
+                  href="#contact"
+                  className="hover:text-[#588356] transition-colors inline-flex items-center space-x-1 border border-slate-200 lg:border-transparent px-4 py-2 lg:px-0 lg:py-0 rounded-full"
                 >
-                  {cat}
-                </button>
-              );
-            })}
+                  <span>View All Services</span>
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#588356]" />
+                </a>
+
+                <a
+                  href="#contact"
+                  className="hover:text-[#588356] transition-colors inline-flex items-center space-x-1 border border-slate-200 lg:border-transparent px-4 py-2 lg:px-0 lg:py-0 rounded-full"
+                >
+                  <span>Call For Booking</span>
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#588356]" />
+                </a>
+              </div>
+            </div>
+
           </div>
 
         </div>
 
-        {/* Hover-Expandable Accordion List (Matching Reference Image) */}
-        <div className="divide-y divide-slate-200">
-          {filteredDepts.map((dept, index) => {
-            const isExpanded = activeDeptId === dept.id;
-
-            return (
+        {/* 5-Card Grid (Mobile: Sleek Banners, Desktop: Tall 5-Col Grid) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
+          {SERVICES_DATA.map((service) => (
+            <div
+              key={service.id}
+              onClick={() => setSelectedService(service)}
+              className="group relative h-[160px] sm:h-[220px] lg:h-[420px] cursor-pointer transition-all duration-500"
+            >
+              {/* Smooth L-shaped Cutout Card Photo Container */}
               <div
-                key={dept.id}
-                onMouseEnter={() => setActiveDeptId(dept.id)}
-                onClick={() => setActiveDeptId(dept.id)}
-                className={`py-6 sm:py-8 transition-all duration-300 cursor-pointer ${
-                  isExpanded ? "bg-white/50 px-2 sm:px-4" : "hover:bg-slate-100/50"
-                }`}
+                className="absolute inset-0 rounded-[20px] sm:rounded-[24px] lg:rounded-[32px] overflow-hidden bg-slate-900"
               >
-                {/* Always-Visible Row Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  {/* Left: Number + Uppercase Main Title & Subtitle */}
-                  <div className="flex items-center gap-5 sm:gap-6">
-                    <span
-                      className={`font-serif text-2xl sm:text-3xl font-light shrink-0 transition-colors ${
-                        isExpanded ? "text-[#588356] font-normal" : "text-slate-300"
-                      }`}
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                {/* Background Image */}
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
 
-                    <div>
-                      <h3
-                        className={`text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight transition-colors ${
-                          isExpanded ? "text-slate-900" : "text-slate-800 hover:text-[#588356]"
-                        }`}
-                      >
-                        {dept.name}
-                      </h3>
-                      <p className="text-[10px] sm:text-xs font-bold text-[#588356] uppercase tracking-wider mt-0.5">
-                        {dept.category} DIVISION • LEAD: {dept.doctorInCharge.split(" ")[0]} {dept.doctorInCharge.split(" ")[1]}
-                      </p>
-                    </div>
-                  </div>
+                {/* Subtle Bottom Overlay for Title Contrast Only */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Right: Quick Summary Text + Circular Arrow Icon */}
-                  <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
-                    <span className="hidden md:inline-block text-xs font-medium text-slate-500 max-w-xs text-right truncate">
-                      {dept.treatments.slice(0, 2).join(" • ")}
-                    </span>
-
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-                        isExpanded
-                          ? "bg-[#A8D0A6] text-slate-900 rotate-45 border border-[#A8D0A6]"
-                          : "bg-slate-100 border border-slate-200 text-slate-600 hover:bg-slate-200"
-                      }`}
-                    >
-                      <ArrowUpRight className="w-5 h-5" />
-                    </div>
-                  </div>
+                {/* Bottom Left Title */}
+                <div className="absolute bottom-4 lg:bottom-6 left-4 lg:left-6 right-16 sm:right-20 z-20 pointer-events-none">
+                  <h3 className="text-[13px] sm:text-base lg:text-lg font-extrabold text-white tracking-tight leading-snug group-hover:text-[#A8D0A6] transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-[9px] text-slate-300 font-medium uppercase tracking-wider mt-1 lg:hidden">
+                    {service.category}
+                  </p>
                 </div>
 
-                {/* Expandable Body Content (Visible when active/hovered) */}
-                {isExpanded && (
-                  <div className="mt-6 pt-6 border-t border-slate-100 animate-fadeIn">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                      
-                      {/* Left Image Card (Rounded image container matching reference screenshot) */}
-                      <div className="lg:col-span-5 relative h-56 sm:h-64 overflow-hidden border border-slate-200 bg-slate-100 rounded-2xl sm:rounded-3xl">
-                        <img
-                          src={dept.image}
-                          alt={dept.name}
-                          className="w-full h-full object-cover"
-                        />
-                        <span className="absolute top-3 left-3 px-3 py-1 bg-white text-slate-900 text-[11px] font-extrabold rounded-full border border-slate-200">
-                          {dept.category} SPECIALIST
-                        </span>
-                      </div>
-
-                      {/* Right Details Box */}
-                      <div className="lg:col-span-7 space-y-4">
-                        <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
-                          {dept.fullDesc || dept.shortDesc}
-                        </p>
-
-                        {/* Treatments Pills (Rounded) */}
-                        <div className="flex flex-wrap gap-2 pt-2">
-                          {dept.treatments.map((treatment, idx) => (
-                            <span
-                              key={idx}
-                              className="inline-flex items-center text-xs font-bold text-slate-800 bg-[#EBF5EA] border border-[#A8D0A6]/60 px-3.5 py-1.5 rounded-full"
-                            >
-                              <CheckCircle className="w-3.5 h-3.5 text-[#588356] mr-1.5 shrink-0" />
-                              {treatment}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Action CTA Buttons (Rounded) */}
-                        <div className="flex flex-wrap items-center gap-3 pt-3">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedDept(dept);
-                            }}
-                            className="px-6 py-2.5 bg-[#A8D0A6] hover:bg-[#96C494] text-slate-900 font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 border border-[#A8D0A6] rounded-full"
-                          >
-                            <span>EXPLORE PROTOCOL</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </button>
-
-                          <a
-                            href="#contact"
-                            onClick={(e) => e.stopPropagation()}
-                            className="px-6 py-2.5 bg-[#EBF5EA] hover:bg-[#d8edd6] text-slate-900 font-black text-xs uppercase tracking-wider transition-all border border-[#A8D0A6] rounded-full"
-                          >
-                            Book Specialist
-                          </a>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                )}
+                {/* CSS Magic: SVG Overlay for Flawless 3-Corner Smooth Squircle Cutout */}
+                <div className="absolute bottom-0 right-0 w-[56px] h-[56px] sm:w-[72px] sm:h-[72px] lg:w-[92px] lg:h-[92px] pointer-events-none z-10 text-[#FAFAFE]">
+                  <svg viewBox="0 0 92 92" fill="currentColor" className="w-full h-full">
+                    <path d="M 92 0 A 16 16 0 0 1 76 16 L 40 16 A 24 24 0 0 0 16 40 L 16 76 A 16 16 0 0 1 0 92 L 92 92 Z" />
+                  </svg>
+                </div>
               </div>
-            );
-          })}
+
+              {/* Squircle Arrow Button Nestled Perfectly inside the Cutout Pocket */}
+              <div className="absolute bottom-[4px] right-[4px] sm:bottom-[6px] sm:right-[6px] lg:bottom-[8px] lg:right-[8px] z-20 pointer-events-none">
+                <div className="w-[38px] h-[38px] sm:w-[48px] sm:h-[48px] lg:w-[60px] lg:h-[60px] rounded-[12px] sm:rounded-[16px] lg:rounded-[20px] bg-[#1c0707] text-white flex items-center justify-center font-black transition-all group-hover:bg-[#588356] shadow-sm">
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>
 
-      {/* Department Detail Modal */}
-      {selectedDept && (
-        <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl border border-slate-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative">
+      {/* Interactive Service Detail Modal */}
+      {selectedService && (
+        <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl border border-slate-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative">
+            {/* Close Button */}
             <button
-              onClick={() => setSelectedDept(null)}
-              className="absolute top-5 right-5 p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-100 transition-colors"
+              onClick={() => setSelectedService(null)}
+              className="absolute top-5 right-5 p-2 rounded-full border border-slate-200 text-slate-500 hover:bg-slate-100 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="p-2.5 bg-[#EBF5EA] border border-[#A8D0A6]/60 rounded-xl">
-                {getIcon(selectedDept.iconName)}
-              </div>
-              <div>
-                <span className="text-xs font-bold text-[#588356] uppercase tracking-wider">
-                  {selectedDept.category} Department
-                </span>
-                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-                  {selectedDept.name}
-                </h3>
+            {/* Modal Header */}
+            <div className="mb-6 pr-8">
+              <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold bg-[#588356] text-white uppercase mb-2">
+                {selectedService.category} • {selectedService.badge}
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                {selectedService.title}
+              </h3>
+            </div>
+
+            {/* Featured Image inside Modal */}
+            <div className="relative h-48 sm:h-56 rounded-2xl overflow-hidden mb-6 border border-slate-200">
+              <img
+                src={selectedService.image}
+                alt={selectedService.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/60 text-xs font-semibold text-white">
+                Venkata Ganapathy Physiotherapy Clinical Protocol
               </div>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed mb-6 font-medium">
-              {selectedDept.fullDesc}
+            {/* Description */}
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 font-medium">
+              {selectedService.description}
             </p>
 
-            <div className="space-y-4 mb-6">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
-                Key Clinical Protocols Offered
+            {/* Treatments Grid */}
+            <div className="space-y-3 mb-6">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900">
+                Key Clinical Treatments
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {selectedDept.treatments.map((t, i) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {selectedService.treatments.map((treatment, idx) => (
                   <div
-                    key={i}
+                    key={idx}
                     className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 flex items-center"
                   >
                     <CheckCircle className="w-4 h-4 text-[#588356] mr-2 shrink-0" />
-                    <span>{t}</span>
+                    <span>{treatment}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-4 mb-6">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
-                Advanced Equipment & Modalities
+            {/* Features Grid */}
+            <div className="space-y-3 mb-6">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900">
+                Program Highlights &amp; Modalities
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {selectedDept.features.map((f, i) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {selectedService.features.map((feature, idx) => (
                   <div
-                    key={i}
-                    className="p-3 bg-[#EBF5EA] border border-[#A8D0A6]/60 rounded-xl text-xs font-bold text-slate-900 flex items-center"
+                    key={idx}
+                    className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 flex items-center"
                   >
                     <Stethoscope className="w-4 h-4 text-[#588356] mr-2 shrink-0" />
-                    <span>{f}</span>
+                    <span>{feature}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-[#EBF5EA] border border-[#A8D0A6]/60 text-slate-900 p-5 rounded-2xl flex items-center justify-between">
+            {/* Modal Bottom CTA */}
+            <div className="bg-slate-50 border border-slate-200 text-slate-900 p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <p className="text-[11px] text-[#588356] uppercase tracking-wider font-extrabold">
-                  Head of Division
+                <p className="text-[11px] text-[#588356] uppercase tracking-wider font-black">
+                  Lead Clinical Director
                 </p>
                 <p className="text-sm font-black text-slate-900">
-                  {selectedDept.doctorInCharge}
+                  {selectedService.doctorInCharge}
                 </p>
               </div>
               <a
                 href="#contact"
-                onClick={() => setSelectedDept(null)}
-                className="px-5 py-2.5 bg-[#A8D0A6] hover:bg-[#96C494] rounded-full text-xs font-black text-slate-900 transition-colors"
+                onClick={() => setSelectedService(null)}
+                className="w-full sm:w-auto px-6 py-3 bg-[#588356] hover:bg-[#466944] text-white font-extrabold text-xs uppercase tracking-wider transition-colors rounded-full text-center flex items-center justify-center gap-2"
               >
-                Book Appointment
+                <Calendar className="w-4 h-4" />
+                <span>Book Appointment</span>
               </a>
             </div>
           </div>
@@ -328,6 +348,3 @@ export default function ServicesSection() {
     </section>
   );
 }
-
-
-

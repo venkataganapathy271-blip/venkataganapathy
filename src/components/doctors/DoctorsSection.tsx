@@ -10,6 +10,7 @@ import {
   MessageSquare,
   Building2,
   ArrowRight,
+  ArrowUpRight,
   ShieldCheck,
   Stethoscope,
   HeartHandshake,
@@ -31,7 +32,7 @@ export default function DoctorsSection() {
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800",
     sessionImage: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
     timing: "Monday - Sunday: 10:00 AM - 9:00 PM",
-    bio: "At Venkata Ganapathi Hospital, we empower you to live a pain-free and active life. Dr. Maruthi Rao Pulavarthi (B.P.T, P.G. Diploma in Sports Rehab, Reg. No: APF0170) helps you restore movement, improve joint flexibility, and enhance overall well-being. Whether you are recovering from stroke paralysis, slipped disc, or joint replacement surgery, we are here to guide your journey.",
+    bio: "At Venkata Ganapathy Physiotherapy Clinic, we empower you to live a pain-free and active life. Dr. Maruthi Rao Pulavarthi (B.P.T, P.G. Diploma in Sports Rehab, Reg. No: APF0170) helps you restore movement, improve joint flexibility, and enhance overall well-being. Whether you are recovering from stroke paralysis, slipped disc, or joint replacement surgery, we are here to guide your journey.",
     specializations: [
       "Stroke & Paralysis Recovery (NMES Therapy)",
       "Slipped Disc & Sciatica Non-Surgical Traction",
@@ -50,7 +51,7 @@ export default function DoctorsSection() {
       qualification: "B.P.T",
       regNo: "Reg. No: APF0170",
       expertise: "Founder & Chief Clinical Director with 10+ years expertise in paralysis NMES, slipped disc traction, and post-surgical joint mobilization.",
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+      image: "/MARUTHI_RAO.png",
       accent: "#588356",
     },
     {
@@ -59,7 +60,7 @@ export default function DoctorsSection() {
       role: "Clinical Physio",
       qualification: "B.P.T",
       expertise: "Clinical physiotherapist specializing in 1-on-1 joint mobilization, electrotherapy application, and exercise protocols.",
-      image: "https://images.unsplash.com/photo-1594824813571-24a69c100d37?auto=format&fit=crop&q=80&w=600",
+      image: "/docter_team.jpeg",
       accent: "#588356",
     },
     {
@@ -68,7 +69,7 @@ export default function DoctorsSection() {
       role: "Consultant Doctor",
       qualification: "B.P.T, B.Sc. PSY, PGDHHM, DIPLOMA GEN.",
       expertise: "Consultant physiotherapist bringing a multi-disciplinary approach in physical rehab, chronic pain psychology, and health management.",
-      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+      image: "/docter_team_4.jpeg",
       accent: "#588356",
     },
     {
@@ -78,7 +79,7 @@ export default function DoctorsSection() {
       qualification: "M.P.T (ORTHO)",
       regNo: "Reg. No: 18P301008004",
       expertise: "Specialist Master of Physiotherapy in Orthopedics focusing on complex joint deformities, spine adjustments, and manual therapy.",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600",
+      image: "/docter_team_3.jpeg",
       accent: "#588356",
     },
   ];
@@ -87,82 +88,173 @@ export default function DoctorsSection() {
     <section id="doctors" className="py-10 sm:py-14 bg-[#FAFAFE]">
       <div className="max-w-7xl mx-auto px-2">
         
-        {/* Main 2-Column Doctor Spotlight Layout (Compact Balanced Heights) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch mb-10">
+        {/* Founder Section - Premium L-Shape Editorial Layout */}
+        <div className="relative mb-16 py-6 sm:py-8 lg:min-h-[580px]">
           
-          {/* Left Column: Primary Therapy Image Card */}
-          <div className="lg:col-span-6 relative flex flex-col">
-            <div className="relative w-full h-full min-h-[320px] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200">
+          {/* DESKTOP ONLY: L-Shaped Image Container using overlay masking for smooth corners */}
+          <div 
+            className="hidden lg:block absolute top-6 left-0 w-full h-[calc(100%-48px)] z-0 cursor-pointer group"
+            onClick={() => setShowModal(true)}
+          >
+            {/* Main Image - full rectangle, rounded on all 4 corners */}
+            <div className="absolute top-0 left-[70px] right-0 bottom-0 rounded-[40px] overflow-hidden bg-[#E8ECF0]">
               <img
-                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800"
-                alt="Dr. Maruthi Rao Pulavarthi - Lead Physiotherapy Session"
-                className="w-full h-full object-cover object-center"
+                src="/MARUTHI_RAO.png"
+                alt="Dr. Maruthi Rao Pulavarthi - Founder"
+                className="w-full h-full object-contain object-[93%_bottom] opacity-100 transition-all duration-700 group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
+            </div>
+
+            {/* Overlay 1: Covers bottom-left of image (0 to 58%, from 100px down) */}
+            {/* This creates the L-shape cutout for the text area */}
+            <div 
+              className="absolute top-[100px] left-[70px] bottom-0 bg-[#FAFAFE] pointer-events-none"
+              style={{ right: '42%' }}
+            />
+
+            {/* Overlay 2: Smooth INNER corner (concave curve at top-right of text area) */}
+            {/* A #FAFAFE box with rounded-tr creates the smooth concave curve */}
+            <div 
+              className="absolute bg-[#FAFAFE] pointer-events-none rounded-tr-[32px]"
+              style={{ top: '68px', left: '70px', right: '42%', height: '64px' }}
+            />
+
+            {/* Overlay 3: Top-left strip (covers from left:0 to left:70px fully) */}
+            <div className="absolute top-0 left-0 bottom-0 w-[70px] bg-[#FAFAFE] pointer-events-none" />
+
+            {/* Bottom Left Content inside visible Photo area */}
+            <div className="absolute bottom-6 z-20 pointer-events-none" style={{ left: 'calc(58% + 24px)' }}>
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">
+                Dr. Maruthi Rao
+              </h3>
+              <p className="text-[#A8D0A6] text-xs font-bold mt-1 tracking-wider uppercase">View Clinical Profile</p>
+            </div>
+
+            {/* CSS Magic: SVG Overlay for Flawless 3-Corner Smooth Squircle Cutout (bottom-right) */}
+            <div className="absolute bottom-0 right-0 w-[92px] h-[92px] pointer-events-none z-10 text-[#FAFAFE]">
+              <svg viewBox="0 0 92 92" fill="currentColor" className="w-full h-full">
+                <path d="M 92 0 A 16 16 0 0 1 76 16 L 40 16 A 24 24 0 0 0 16 40 L 16 76 A 16 16 0 0 1 0 92 L 92 92 Z" />
+              </svg>
+            </div>
+
+            {/* Squircle Arrow Button */}
+            <div className="absolute bottom-[8px] right-[8px] z-20 pointer-events-none">
+              <div className="w-[60px] h-[60px] rounded-[20px] bg-[#1c0707] text-white flex items-center justify-center font-black transition-all group-hover:bg-[#588356] shadow-sm">
+                <ArrowUpRight className="w-6 h-6 text-white" />
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Compact Text Info + Secondary Therapy Image */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-4 sm:space-y-5">
+          {/* The Content Grid (on top) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-14 relative z-10 pointer-events-none">
             
-            {/* Top Text Header Area */}
-            <div className="space-y-2.5">
-              <div className="inline-flex items-center space-x-1.5 text-[11px] font-bold tracking-widest text-[#588356] uppercase">
-                <Sparkles className="w-3.5 h-3.5 text-[#588356]" />
-                <span>WELCOME TO VENKATA GANAPATHI</span>
+            {/* Left Column: Quote Icon & Text (Moves below image on mobile) */}
+            <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col pointer-events-auto mt-8 lg:mt-0">
+              
+              {/* Double Quotes Icon (Top Left, strictly inside the 70x100px space left by clip-path on desktop) */}
+              <div className="w-[70px] h-[100px] hidden lg:flex items-start justify-start pt-2">
+                <svg
+                  className="w-12 h-12 text-[#588356]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-snug">
-                Meet Our Expert <br className="hidden sm:inline" />
-                <span className="text-[#588356]">Physiotherapist & Founder</span>
-              </h2>
+              {/* Text starts exactly where the top image extension ends (100px) */}
+              <div className="text-slate-600 text-[13px] sm:text-base leading-relaxed font-medium">
+                <p className="text-[22px] sm:text-2xl lg:text-3xl font-extrabold text-slate-900 lg:text-slate-900 leading-snug tracking-tight mb-5 sm:mb-6 px-1 lg:px-0">
+                  <span className="lg:hidden text-[#588356]">"</span>Our mission has always been to push the boundaries of clinical care and physical recovery innovation.<span className="lg:hidden text-[#588356]">"</span>
+                </p>
+                <div className="space-y-4 bg-white p-5 sm:p-6 rounded-[24px] shadow-sm border border-slate-100 lg:bg-transparent lg:p-0 lg:shadow-none lg:border-none lg:space-y-5">
+                  <p>
+                    We believe that great evidence-based therapy and cutting-edge non-surgical technology have the power to transform lives and restore complete mobility to every patient. Our team is committed to delivering exceptional rehabilitation experiences that not only meet but exceed our patients&apos; expectations.
+                  </p>
+                  <p>
+                    As we continue to grow and evolve, our focus remains on staying ahead of advanced physical rehab trends and embracing new non-invasive challenges. We are passionate about what we do, and our dedication to clinical excellence is reflected in every recovery we guide.
+                  </p>
+                </div>
+              </div>
 
-              <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed max-w-xl">
-                {leadDoctor.bio}
-              </p>
+              {/* Founder Name & Designation */}
+              <div className="pt-2 lg:border-t lg:border-slate-200 inline-block w-fit mt-6 lg:mt-8 px-2 lg:px-0 text-center lg:text-left self-center lg:self-start">
+                <h3 className="text-lg sm:text-xl font-black tracking-wider text-slate-900 uppercase mt-4">
+                  DR. MARUTHI RAO PULAVARTHI
+                </h3>
+                <p className="text-[11px] sm:text-xs font-extrabold text-[#588356] mt-1 uppercase tracking-widest">
+                  Founder &amp; Chief Clinical Director
+                </p>
+              </div>
+
             </div>
 
-            {/* Bottom Therapy Image */}
-            <div className="relative h-44 sm:h-48 lg:h-52 rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 bg-slate-100">
-              <img
-                src={leadDoctor.sessionImage}
-                alt="Patient Rehabilitation Session at Venkata Ganapathi Clinic"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-
-            {/* Clean Action Buttons Bar */}
-            <div className="flex flex-col sm:flex-row items-center gap-2.5 pt-1">
-              <a
-                href="#contact"
-                className="w-full sm:w-auto px-5 py-2.5 bg-[#A8D0A6] hover:bg-[#96C494] text-slate-900 rounded-full text-[11px] font-black text-center transition-all border border-[#A8D0A6] flex items-center justify-center space-x-1.5"
-              >
-                <Calendar className="w-3.5 h-3.5" />
-                <span>Book Consultation with Dr. Maruthi Rao</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-
-              <button
+            {/* MOBILE ONLY: Normal Founder Portrait (Moves to top on mobile) */}
+            <div className="order-1 lg:hidden col-span-1 flex justify-center pointer-events-auto">
+              <div 
+                className="group relative w-full max-w-md aspect-[4/4.8] sm:aspect-[4/5] rounded-[32px] sm:rounded-[40px] rounded-tl-[80px] overflow-hidden bg-slate-900 cursor-pointer transition-all duration-500 border-[6px] border-white"
                 onClick={() => setShowModal(true)}
-                className="w-full sm:w-auto px-4 py-2.5 bg-[#EBF5EA] hover:bg-[#d8edd6] text-slate-900 rounded-full text-[11px] font-extrabold text-center transition-all border border-[#A8D0A6] flex items-center justify-center space-x-1.5"
               >
-                <Stethoscope className="w-3.5 h-3.5 text-[#588356]" />
-                <span>View Specializations & OPD Hours</span>
-              </button>
+                <img
+                  src="/MARUTHI_RAO.png"
+                  alt="Dr. Maruthi Rao Pulavarthi - Founder"
+                  className="w-full h-full object-cover object-top opacity-100 group-hover:scale-105 transition-all duration-700"
+                />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
+                
+                <div className="absolute bottom-6 left-6 right-24 z-20 pointer-events-none">
+                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">
+                    Dr. Maruthi Rao
+                  </h3>
+                  <p className="text-[#A8D0A6] text-xs font-bold mt-1 tracking-wider uppercase">View Clinical Profile</p>
+                </div>
+
+                <div className="absolute bottom-0 right-0 w-[92px] h-[92px] pointer-events-none z-10 text-[#FAFAFE]">
+                  <svg viewBox="0 0 92 92" fill="currentColor" className="w-full h-full">
+                    <path d="M 92 0 A 16 16 0 0 1 76 16 L 40 16 A 24 24 0 0 0 16 40 L 16 76 A 16 16 0 0 1 0 92 L 92 92 Z" />
+                  </svg>
+                </div>
+
+                <div className="absolute bottom-[8px] right-[8px] z-20 pointer-events-none">
+                  <div className="w-[60px] h-[60px] rounded-[20px] bg-[#1c0707] text-white flex items-center justify-center font-black transition-all group-hover:bg-[#588356] shadow-sm">
+                    <ArrowUpRight className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
-
         </div>
 
-        {/* Double-Frame Team Reveal Grid with Smooth Expansion Reveal */}
-        <div className="mt-12 pt-8 border-t border-slate-200">
-          <div className="mb-6">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#588356]">
-              ✦ MEDICAL TEAM & CONSULTANTS
-            </span>
-            <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
-              Our Experienced Physiotherapists & Consultant Doctors
-            </h3>
+        {/* Team Section */}
+        <div className="mt-8 pt-12">
+          
+          {/* 2-Column Header - matching Services section style (Mobile Optimized) */}
+          <div className="mb-8 sm:mb-10 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 items-end text-center lg:text-left">
+            
+            {/* Left: Big Heading */}
+            <div className="lg:col-span-7">
+              <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight leading-[1.1] sm:leading-[1.08]">
+                Our Expert <br className="hidden lg:block" />Clinical Team
+              </h3>
+            </div>
+
+            {/* Right: Description + Link */}
+            <div className="lg:col-span-5 flex flex-col items-center lg:items-start space-y-4 sm:space-y-5 mt-2 lg:mt-0">
+              <p className="text-slate-600 text-xs sm:text-base leading-relaxed max-w-md lg:max-w-none">
+                Experienced physiotherapists and specialist consultant doctors, each dedicated to guiding your complete recovery journey.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1.5 text-[11px] sm:text-sm font-black text-slate-900 hover:text-[#588356] transition-colors border border-slate-200 lg:border-transparent px-4 py-2 lg:px-0 lg:py-0 rounded-full"
+              >
+                <span>Book a Consultation</span>
+                <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#588356]" />
+              </a>
+            </div>
+
           </div>
 
           <TeamRevealGrid members={teamMembers} />

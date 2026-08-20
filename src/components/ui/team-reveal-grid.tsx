@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 export interface TeamRevealMember {
   id?: string;
@@ -27,60 +28,59 @@ export function TeamRevealGrid({
   className = "",
 }: TeamRevealGridProps) {
   return (
-    <div className={`w-full py-4 text-center flex flex-col items-center ${className}`}>
-      {/* Team Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 w-full max-w-7xl justify-center items-start">
+    <div className={`w-full ${className}`}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-5 w-full">
         {members.map((member, index) => (
-          <div key={member.id ?? `${member.name}-${index}`} className="relative flex flex-col items-center">
-            {/* Invisible spacer to reserve static layout height */}
-            <div aria-hidden="true" className="invisible flex flex-col items-center text-center">
-              <div className="rounded-xl p-1 mb-4 w-44 h-44 sm:w-56 sm:h-56 lg:w-64 lg:h-64" />
-              <h3 className="text-base font-bold tracking-tight mb-1">{member.name}</h3>
-              <p className="text-xs font-medium">{member.role}</p>
+          <div
+            key={member.id ?? `${member.name}-${index}`}
+            className="group relative aspect-[3/4] rounded-[20px] lg:rounded-[28px] overflow-hidden bg-slate-900 cursor-pointer"
+          >
+            {/* Background Photo */}
+            <img
+              src={member.image}
+              alt={member.name}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              style={{ objectPosition: member.imagePosition ?? "center top" }}
+            />
+
+            {/* Dark gradient overlay - always present at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-all duration-500" />
+
+            {/* Expertise text - slides up on hover */}
+            <div className="absolute inset-x-0 bottom-[64px] lg:bottom-[88px] px-3 lg:px-5 z-10 pointer-events-none hidden sm:block">
+              <p className="text-[9px] lg:text-[11px] leading-relaxed text-white/90 font-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 ease-out line-clamp-3">
+                {member.expertise}
+              </p>
             </div>
 
-            {/* Hoverable / Focusable Card */}
-            <div
-              tabIndex={0}
-              className="group absolute inset-x-0 top-0 z-10 flex flex-col items-center text-center cursor-pointer outline-none hover:z-30 focus-visible:z-30 transition-all"
-            >
-              {/* Outer Frame (Frame 1) */}
-              <div className="rounded-2xl sm:rounded-3xl border border-slate-200/80 p-2 bg-[#EBF5EA]/50 mb-3 shadow-xs transition-all duration-300 group-hover:border-[#A8D0A6]">
-                {/* Inner Frame (Frame 2) */}
-                <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white overflow-hidden">
-                  <div className="relative w-44 h-44 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-lg sm:rounded-xl overflow-hidden bg-slate-100">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-all duration-500 ease-out grayscale group-hover:grayscale-0"
-                      style={{ objectPosition: member.imagePosition ?? "center top" }}
-                    />
-                  </div>
-
-                  {/* Smooth Grid Rows Expertise Reveal */}
-                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[grid-template-rows]">
-                    <div className="overflow-hidden">
-                      <p className="w-44 sm:w-56 lg:w-64 mx-auto px-3 pt-3 pb-3 text-[11px] sm:text-xs leading-relaxed text-slate-700 font-medium text-center bg-[#FAFAFE] border-t border-slate-200">
-                        {member.expertise}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Doctor Name, Qualification & Role */}
-              <h3 className="text-sm sm:text-base font-black tracking-tight text-slate-900 mb-0.5 leading-snug">
+            {/* Name & Role - bottom left */}
+            <div className="absolute bottom-3 left-3 right-[52px] lg:bottom-5 lg:left-5 lg:right-[80px] z-10 pointer-events-none">
+              <h3 className="text-[11px] sm:text-sm lg:text-base font-black text-white tracking-tight leading-snug">
                 {member.name}
               </h3>
-              <p className="text-xs font-bold text-[#588356]">
+              <p className="text-[9px] lg:text-[11px] font-bold text-[#A8D0A6] mt-0.5 tracking-wide leading-tight">
                 {member.qualification || member.role}
               </p>
               {member.regNo && (
-                <p className="text-[10px] font-semibold text-slate-500 mt-0.5">
+                <p className="text-[8px] lg:text-[10px] font-semibold text-white/50 mt-0.5 hidden sm:block">
                   {member.regNo}
                 </p>
               )}
+            </div>
+
+            {/* SVG Overlay: 3-Corner Smooth Squircle Cutout (bottom-right) */}
+            <div className="absolute bottom-0 right-0 w-[48px] h-[48px] lg:w-[76px] lg:h-[76px] pointer-events-none z-10 text-[#FAFAFE]">
+              <svg viewBox="0 0 76 76" fill="currentColor" className="w-full h-full">
+                <path d="M 76 0 A 14 14 0 0 1 62 14 L 32 14 A 20 20 0 0 0 12 34 L 12 62 A 14 14 0 0 1 0 76 L 76 76 Z" />
+              </svg>
+            </div>
+
+            {/* Arrow Button in pocket */}
+            <div className="absolute bottom-[4px] right-[4px] lg:bottom-[6px] lg:right-[6px] z-20 pointer-events-none">
+              <div className="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] rounded-[10px] lg:rounded-[16px] bg-[#1c0707] text-white flex items-center justify-center transition-all duration-300 group-hover:bg-[#588356]">
+                <ArrowUpRight className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
+              </div>
             </div>
           </div>
         ))}

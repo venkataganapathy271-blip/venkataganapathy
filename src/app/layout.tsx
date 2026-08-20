@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { FloatingCTA } from "@/components/layout/FloatingCTA";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -13,11 +14,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Venkata Ganapathi Physiotherapy Clinic | Dr. Maruti Rao Pulavarthi B.P.T (Hanuman Junction)",
+  title: "Venkata Ganapathy Physiotherapy Clinic | Dr. Maruti Rao Pulavarthi B.P.T (Hanuman Junction)",
   description:
-    "Official website of Venkata Ganapathi Physiotherapy Clinic (Reg. No: 75/2015) in Hanuman Junction. Dr. Maruti Rao Pulavarthi B.P.T offers 10+ years of modern paralysis care, slipped disc, knee replacement rehab, and sciatica relief.",
+    "Official website of Venkata Ganapathy Physiotherapy Clinic (Reg. No: 75/2015) in Hanuman Junction. Dr. Maruti Rao Pulavarthi B.P.T offers 10+ years of modern paralysis care, slipped disc, knee replacement rehab, and sciatica relief.",
   keywords: [
-    "Venkata Ganapathi Physiotherapy Clinic",
+    "Venkata Ganapathy Physiotherapy Clinic",
     "Dr Maruti Rao Pulavarthi BPT",
     "Physiotherapy Hanuman Junction",
     "Paralysis Care Hanuman Junction",
@@ -26,6 +27,9 @@ export const metadata: Metadata = {
     "Sciatica Pain Relief",
   ],
   authors: [{ name: "Dr. Maruti Rao Pulavarthi B.P.T" }],
+  icons: {
+    icon: "/Logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -37,6 +41,7 @@ export default function RootLayout({
     <html lang="en" className={`${geist.variable} scroll-smooth antialiased`}>
       <body className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
         {children}
+        <FloatingCTA />
       </body>
     </html>
   );

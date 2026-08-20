@@ -1,100 +1,182 @@
 "use client";
 
-import React from "react";
-import { FACILITIES } from "@/data/hospitalData";
-import { Sparkles, CheckCircle } from "lucide-react";
-import { ScrollDissolveReveal } from "@/components/ui/scroll-dissolve-reveal";
+import React, { useState } from "react";
+import { X, CheckCircle, ArrowUpRight } from "lucide-react";
+
+interface FacilityItem {
+  id: string;
+  title: string;
+  category: string;
+  badge: string;
+  description: string;
+  image: string;
+  highlights: string[];
+}
+
+const FACILITIES_DATA: FacilityItem[] = [
+  {
+    id: "fac-traction",
+    title: "Computerized Lumbar & Cervical Traction",
+    category: "Decompression Therapy",
+    badge: "Spine & Disc Care",
+    description:
+      "Digital traction system for automated spinal decompression of slipped discs, cervical spondylosis, and sciatica.",
+    image:
+      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=900",
+    highlights: [
+      "Non-Surgical Slipped Disc Relief",
+      "Targeted Sciatica Decompression",
+      "Custom Pull Settings",
+    ],
+  },
+  {
+    id: "fac-electro",
+    title: "Electrotherapy & Ultrasound Modalities",
+    category: "Pain Management",
+    badge: "IFT & TENS Unit",
+    description:
+      "Modern IFT, TENS, Ultrasound, and Electrical Stimulation units for fast pain relief and nerve activation.",
+    image:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=900",
+    highlights: [
+      "Nerve Stimulation for Paralysis",
+      "Deep Tissue Healing",
+      "Zero-Side-Effect Pain Relief",
+    ],
+  },
+  {
+    id: "fac-postop",
+    title: "Post-Operative Mobilization Zone",
+    category: "Joint Rehabilitation",
+    badge: "Mobility Studio",
+    description:
+      "Dedicated exercise area for step-by-step joint mobilization following knee and hip replacement surgeries.",
+    image:
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=900",
+    highlights: [
+      "1-on-1 Doctor Assistance",
+      "Parallel Walking Bars",
+      "Joint Flexion Aids",
+    ],
+  },
+];
 
 export default function FacilitiesSection() {
-  const backImages = [
-    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
-  ];
+  const [activeId, setActiveId] = useState<string>("fac-traction");
+  const [selectedFacility, setSelectedFacility] = useState<FacilityItem | null>(null);
 
   return (
-    <section id="facilities" className="py-16 sm:py-20 bg-[#FAFAFE]">
+    <section
+      id="facilities"
+      className="py-12 sm:py-16 bg-[#FAFAFE] text-slate-900"
+    >
       <div className="max-w-7xl mx-auto px-2">
         
-        {/* Editorial Section Header (2-Column Banner Layout) */}
-        <div className="mb-12 pb-6 border-b border-slate-200">
-          {/* Top Badge */}
-          <div className="flex items-center space-x-2 text-[11px] font-bold tracking-widest text-[#588356] uppercase mb-3">
-            <span className="text-[#588356]">✦</span>
-            <span>WORLD-CLASS INFRASTRUCTURE</span>
+        {/* Header Row — 2-column editorial style */}
+        <div className="mb-10 sm:mb-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+          
+          {/* Left: Eyebrow + Big Heading */}
+          <div className="lg:col-span-7">
+            <span className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3 block">
+              World-Class Infrastructure
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight">
+              Advanced Equipment &amp; Facilities
+            </h2>
           </div>
 
-          {/* Main 2-Column Banner Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            {/* Left Column: Big Typographic Title */}
-            <div className="lg:col-span-7">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                ADVANCED EQUIPMENT <span className="font-light text-[#588356]">— MODALITIES</span>
-                <br />
-                <span className="text-[#588356]">WORLD-CLASS</span> REHABILITATION
-              </h2>
-            </div>
-
-            {/* Right Column: Italic Callout Box with Left Accent Line */}
-            <div className="lg:col-span-5 border-l-4 border-[#A8D0A6] pl-5 sm:pl-6 py-1">
-              <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed font-serif">
-                "Equipped with computerized spinal decompression, FDA-approved electrotherapy, and specialized post-operative knee & hip mobilization zones."
-              </p>
-            </div>
+          {/* Right: Description + CTA */}
+          <div className="lg:col-span-5 space-y-4 lg:pt-9">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Equipped with computerized spinal decompression, FDA-approved electrotherapy, and specialized post-operative knee &amp; hip rehabilitation zones.
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-black text-slate-900 hover:text-[#588356] transition-colors"
+            >
+              <span>Book a Session</span>
+              <ArrowUpRight className="w-4 h-4 text-[#588356]" />
+            </a>
           </div>
+
         </div>
 
-        {/* Facilities Alternating Feature Rows with ScrollDissolveReveal */}
-        <div className="space-y-12">
-          {FACILITIES.map((fac, idx) => {
-            const isEven = idx % 2 === 0;
+        {/* Hover Expandable Card Grid - Strict Black & White Base + No Shadows + No Gradients */}
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-5 mb-12 h-auto lg:h-[450px]">
+          {FACILITIES_DATA.map((fac) => {
+            const isHovered = activeId === fac.id;
+
             return (
               <div
                 key={fac.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-12 border-b border-slate-200 last:border-0 last:pb-0"
+                onMouseEnter={() => setActiveId(fac.id)}
+                onClick={() => setSelectedFacility(fac)}
+                className={`relative rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black border border-slate-200 cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                  isHovered
+                    ? "lg:flex-[2.8] h-[360px] lg:h-full"
+                    : "lg:flex-1 h-[200px] lg:h-full"
+                }`}
               >
-                {/* Image Column with Scroll Dissolve Reveal Effect */}
-                <div className={`lg:col-span-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
-                  <ScrollDissolveReveal
-                    imageFront={fac.image}
-                    imageBack={backImages[idx % backImages.length]}
-                    altFront={`${fac.title} Modality Equipment`}
-                    altBack={`${fac.title} Patient Session`}
-                    category={fac.category}
-                    className="h-64 sm:h-72 lg:h-80 w-full"
-                  />
+                {/* Background Image */}
+                <img
+                  src={fac.image}
+                  alt={fac.title}
+                  className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
+                   isHovered ? "scale-105 opacity-100" : "scale-100 opacity-95"
+                  }`}
+                />
+
+                {/* Light gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                {/* Top Badge Tag (Solid White / Black Border) */}
+                <div className="absolute top-5 left-5 z-10">
+                  <span className="px-3.5 py-1.5 rounded-full bg-white text-slate-900 text-xs font-bold uppercase tracking-wider border border-slate-200">
+                    {fac.badge}
+                  </span>
                 </div>
 
-                {/* Content Column */}
-                <div className={`lg:col-span-6 space-y-4 ${isEven ? "lg:order-2" : "lg:order-1"}`}>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-sm font-mono font-bold text-[#588356] bg-[#EBF5EA] px-2.5 py-1 rounded-lg border border-[#A8D0A6]/50">
-                      0{idx + 1}
+                {/* Top-Right Arrow Icon (Solid White / Black Icon) */}
+                <div className="absolute top-5 right-5 z-10">
+                  <div
+                    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                      isHovered
+                        ? "bg-[#588356] text-white rotate-45"
+                        : "bg-white text-slate-900"
+                    }`}
+                  >
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Bottom Content & Highlights */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7 z-10 space-y-3">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-300 block mb-1">
+                      {fac.category}
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#588356]">
-                      {fac.category} MODALITY
-                    </span>
+                    <h3
+                      className={`font-bold text-white tracking-tight leading-snug transition-all ${
+                        isHovered ? "text-xl sm:text-2xl lg:text-3xl" : "text-base sm:text-lg truncate"
+                      }`}
+                    >
+                      {fac.title}
+                    </h3>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
-                    {fac.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
-                    {fac.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {fac.highlights.map((item, hIdx) => (
-                      <span
-                        key={hIdx}
-                        className="inline-flex items-center text-xs font-bold text-slate-800 bg-[#EBF5EA] border border-[#A8D0A6]/60 px-3.5 py-1.5 rounded-full"
-                      >
-                        <CheckCircle className="w-3.5 h-3.5 text-[#588356] mr-1.5 shrink-0" />
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Highlights Badges (Solid White Pills) */}
+                  {isHovered && (
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      {fac.highlights.map((h, i) => (
+                        <span
+                          key={i}
+                          className="px-3.5 py-1.5 rounded-full bg-white text-slate-900 text-xs font-bold border border-slate-200 inline-block"
+                        >
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -102,8 +184,58 @@ export default function FacilitiesSection() {
         </div>
 
       </div>
+
+      {/* Facility Detail Modal (No Shadow, No Blur) */}
+      {selectedFacility && (
+        <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl border border-slate-200 max-w-xl w-full p-6 sm:p-8 relative">
+            <button
+              onClick={() => setSelectedFacility(null)}
+              className="absolute top-5 right-5 p-2 rounded-full border border-slate-200 text-slate-500 hover:bg-slate-100"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <span className="px-3.5 py-1 rounded-full bg-[#588356] text-white text-xs font-bold uppercase tracking-wider inline-block mb-3">
+              {selectedFacility.category}
+            </span>
+
+            <h3 className="text-2xl font-black text-slate-900 mb-2">
+              {selectedFacility.title}
+            </h3>
+
+            <div className="relative h-48 rounded-2xl overflow-hidden mb-4 border border-slate-200">
+              <img
+                src={selectedFacility.image}
+                alt={selectedFacility.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed mb-4">
+              {selectedFacility.description}
+            </p>
+
+            <div className="space-y-2 mb-6">
+              <p className="text-xs font-extrabold uppercase text-slate-900">Key Highlights:</p>
+              {selectedFacility.highlights.map((h, i) => (
+                <div key={i} className="flex items-center text-xs font-bold text-slate-800">
+                  <CheckCircle className="w-4 h-4 text-[#588356] mr-2 shrink-0" />
+                  <span>{h}</span>
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="#contact"
+              onClick={() => setSelectedFacility(null)}
+              className="w-full py-3 bg-[#588356] hover:bg-[#466944] text-white rounded-full font-black text-xs uppercase tracking-wider text-center block transition-colors"
+            >
+              Book Consultation for {selectedFacility.title}
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
-
-

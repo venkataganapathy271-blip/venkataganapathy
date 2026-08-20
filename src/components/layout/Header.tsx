@@ -1,109 +1,153 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 import { Menu, X, ArrowRight, Activity } from "lucide-react";
 import { HOSPITAL_INFO } from "@/data/hospitalData";
 
-export default function Header() {
+export default function Header({ isSolid = false }: { isSolid?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  const effectiveScrolled = isScrolled || isSolid;
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const currentScrollY = window.scrollY;
+      
+      // Toggle background/pill state
+      setIsScrolled(currentScrollY > 20);
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsVisible(false); // Scrolling down
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);  // Scrolling up
       }
+
+      lastScrollY = currentScrollY;
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home", active: true },
+    { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Services", href: "#departments" },
     { name: "Doctors", href: "#doctors" },
+    { name: "Facilities", href: "#facilities" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "FAQs", href: "#faq" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "pt-0 px-0" : "pt-2 px-2"
-      }`}
+      id="main-navbar"
+      className={cn(
+        "fixed w-full z-50 transition-all duration-700 ease-in-out",
+        !isVisible && "translate-y-[-100%]",
+        isScrolled
+          ? "top-2 px-2 md:px-4"
+          : "top-0 px-0"
+      )}
     >
-      {/* Header with tight px-2 horizontal padding */}
       <div
-        className={`mx-auto flex items-center justify-between transition-all duration-300 ${
-          isScrolled
-            ? "w-full max-w-full h-16 bg-[#FAFAFE] backdrop-blur-xl rounded-none px-2 border-b border-slate-200"
-            : "w-full bg-[#FAFAFE] backdrop-blur-xl rounded-full px-2 py-2 border border-slate-200"
-        }`}
+        className={cn(
+          "mx-auto flex justify-between items-center transition-all duration-700",
+          effectiveScrolled
+            ? "max-w-[85rem] bg-white/95 backdrop-blur-md shadow-lg rounded-full px-6 md:px-8 py-3 md:py-3.5 border border-slate-200/60"
+            : "max-w-7xl px-4 py-5 bg-transparent"
+        )}
       >
-        {/* Logo */}
-        <a href="#home" className="flex items-center space-x-2 transition-all">
-          <div className="w-7 h-7 rounded-full bg-[#A8D0A6] text-slate-900 flex items-center justify-center font-bold">
-            <Activity className="w-3.5 h-3.5 text-slate-900" />
+        <a href="#home" className="transition-all duration-500 flex items-center gap-2.5">
+          <div className={cn(
+            "relative w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 shrink-0 bg-white ring-2",
+            effectiveScrolled ? "ring-transparent shadow-sm" : "ring-white/20 shadow-lg"
+          )}>
+            <img 
+              src="/Logo.png" 
+              alt="Venkata Ganapathy Logo" 
+              className="absolute w-[280%] max-w-none h-auto left-1/2 -translate-x-1/2" 
+              style={{ top: '-18%' }} 
+            />
           </div>
-          <span className="text-base font-black text-slate-900 tracking-tight">
-            {HOSPITAL_INFO.name}
-          </span>
+          <div className="flex flex-col leading-none">
+            <span className={cn(
+              "text-[15px] md:text-[17px] tracking-tight transition-colors duration-500 font-black",
+              effectiveScrolled ? "text-slate-900" : "text-white"
+            )}>
+              Venkata Ganapathy
+            </span>
+            <span className={cn(
+              "text-[8.5px] md:text-[9px] font-extrabold uppercase tracking-[0.2em] transition-colors duration-500 mt-1",
+              effectiveScrolled ? "text-[#588356]" : "text-white/90"
+            )}>
+              Physiotherapy Clinic
+            </span>
+          </div>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center space-x-7 text-xs font-bold text-slate-800">
+        <nav className="hidden md:flex items-center space-x-8 font-bold text-[11px] uppercase tracking-[0.1em]">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`transition-colors ${
-                link.active ? "text-[#588356] font-extrabold" : "hover:text-[#588356]"
-              }`}
+              className={cn(
+                "relative transition-colors duration-300 hover:text-[#588356] after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:w-0 after:h-[2px] after:rounded-full after:bg-[#588356] after:transition-all hover:after:w-full",
+                effectiveScrolled ? "text-slate-700" : "text-white/90"
+              )}
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Right Sage Green Pill Button CTA */}
-        <div className="flex items-center space-x-2">
-          <a
-            href="#contact"
-            className={
-              isScrolled
-                ? "hidden sm:inline-flex items-center justify-center space-x-2 bg-[#A8D0A6] hover:bg-[#96c494] text-[#101827] font-black px-6 h-9 text-[10px] tracking-widest uppercase rounded-full transition-transform hover:scale-105 border border-[#A8D0A6]"
-                : "hidden sm:inline-flex items-center space-x-2 px-4 py-1.5 bg-[#A8D0A6] hover:bg-[#96C494] text-slate-900 text-xs font-bold rounded-full transition-all border border-[#A8D0A6]"
-            }
-          >
+        <div className="flex items-center gap-4 md:gap-6">
+          <a href="#contact" className={cn(
+            "hidden md:inline-flex items-center space-x-2 px-6 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all duration-300",
+            effectiveScrolled
+              ? "bg-slate-900 text-white hover:bg-[#588356] shadow-md"
+              : "bg-white/15 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-slate-900"
+          )}>
             <span>Book Appointment</span>
-            <div className="w-4 h-4 rounded-full bg-slate-900 flex items-center justify-center">
-              <ArrowRight className="w-2.5 h-2.5 text-white" />
-            </div>
+            <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
-          {/* Mobile Menu Toggle */}
           <button
+            className={cn(
+              "md:hidden p-2 transition-colors",
+              effectiveScrolled ? "text-slate-900" : "text-white"
+            )}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 rounded-full text-slate-700 hover:bg-slate-100"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-2 bg-[#FAFAFE] rounded-2xl p-4 border border-slate-200 space-y-2">
+        <div className="fixed inset-0 bg-[#FAFAFE] z-50 flex flex-col items-center justify-center gap-8 animate-in fade-in duration-500">
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute top-8 right-8 p-3 text-slate-500 hover:text-slate-900 transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
+              className="text-[24px] font-black text-slate-800 hover:text-[#588356] transition-colors tracking-tight"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-xs font-bold text-slate-800 py-1.5"
             >
               {link.name}
             </a>
@@ -111,10 +155,10 @@ export default function Header() {
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full mt-2 flex items-center justify-center space-x-2 px-4 py-2 bg-[#A8D0A6] text-slate-900 text-xs font-bold rounded-full"
+            className="mt-6 flex items-center space-x-2 bg-slate-900 text-white px-8 py-3.5 rounded-full font-black uppercase tracking-widest text-[11px] hover:bg-[#588356] transition-all"
           >
             <span>Book Appointment</span>
-            <ArrowRight className="w-3 h-3" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
       )}

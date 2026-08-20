@@ -35,10 +35,9 @@ export default function EnquirySection() {
         
         {/* Editorial Section Header (2-Column Banner Layout) */}
         <div className="mb-12 pb-6 border-b border-slate-200">
-          <div className="flex items-center space-x-2 text-[11px] font-bold tracking-widest text-[#588356] uppercase mb-3">
-            <span className="text-[#588356]">✦</span>
-            <span>GET IN TOUCH</span>
-          </div>
+          <span className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3 block">
+            GET IN TOUCH
+          </span>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-7">
