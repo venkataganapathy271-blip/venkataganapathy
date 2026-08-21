@@ -51,7 +51,8 @@ export default function DoctorsSection() {
       qualification: "B.P.T",
       regNo: "Reg. No: APF0170",
       expertise: "Founder & Chief Clinical Director with 10+ years expertise in paralysis NMES, slipped disc traction, and post-surgical joint mobilization.",
-      image: "/MARUTHI_RAO.png",
+      image: "/docter_team_3_transparent.png",
+      imageClassName: "scale-[1.25] translate-y-4",
       accent: "#588356",
     },
     {
@@ -72,16 +73,6 @@ export default function DoctorsSection() {
       image: "/docter_team_4.jpeg",
       accent: "#588356",
     },
-    {
-      id: "dr-galeesha-sk",
-      name: "Dr. Galeesha SK",
-      role: "Consultant Orthopedic",
-      qualification: "M.P.T (ORTHO)",
-      regNo: "Reg. No: 18P301008004",
-      expertise: "Specialist Master of Physiotherapy in Orthopedics focusing on complex joint deformities, spine adjustments, and manual therapy.",
-      image: "/docter_team_3.jpeg",
-      accent: "#588356",
-    },
   ];
 
   return (
@@ -99,7 +90,7 @@ export default function DoctorsSection() {
             {/* Main Image - full rectangle, rounded on all 4 corners */}
             <div className="absolute top-0 left-[70px] right-0 bottom-0 rounded-[40px] overflow-hidden bg-[#E8ECF0]">
               <img
-                src="/MARUTHI_RAO.png"
+                src="/docter_team_3_transparent.png"
                 alt="Dr. Maruthi Rao Pulavarthi - Founder"
                 className="w-full h-full object-contain object-[93%_bottom] opacity-100 transition-all duration-700 group-hover:scale-105"
               />
@@ -197,7 +188,7 @@ export default function DoctorsSection() {
                 onClick={() => setShowModal(true)}
               >
                 <img
-                  src="/MARUTHI_RAO.png"
+                  src="/docter_team_3_transparent.png"
                   alt="Dr. Maruthi Rao Pulavarthi - Founder"
                   className="w-full h-full object-cover object-top opacity-100 group-hover:scale-105 transition-all duration-700"
                 />

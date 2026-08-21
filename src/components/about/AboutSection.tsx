@@ -147,11 +147,13 @@ export default function AboutSection() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 pt-1">
-                  <img
-                    className="w-7 h-7 sm:w-8.5 sm:h-8.5 rounded-full object-cover ring-2 ring-white shrink-0"
-                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=200"
-                    alt="Dr. Maruti Rao Pulavarthi"
-                  />
+                  <div className="w-7 h-7 sm:w-8.5 sm:h-8.5 rounded-full overflow-hidden ring-2 ring-white shrink-0 bg-[#E8ECF0]">
+                    <img
+                      className="w-full h-full object-cover scale-[1.3] translate-y-1"
+                      src="/docter_team_3_transparent.png"
+                      alt="Dr. Maruti Rao Pulavarthi"
+                    />
+                  </div>
                   <div>
                     <h5 className="text-[10px] sm:text-xs font-black text-slate-900 leading-tight">
                       {HOSPITAL_INFO.chiefDoctor}

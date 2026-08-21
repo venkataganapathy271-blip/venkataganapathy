@@ -13,6 +13,7 @@ export interface TeamRevealMember {
   imagePosition?: string;
   expertise: string;
   accent?: string;
+  imageClassName?: string;
 }
 
 export interface TeamRevealGridProps {
@@ -40,7 +41,7 @@ export function TeamRevealGrid({
               src={member.image}
               alt={member.name}
               loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${member.imageClassName || ""}`}
               style={{ objectPosition: member.imagePosition ?? "center top" }}
             />
 
