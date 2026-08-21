@@ -113,6 +113,10 @@ export default function HeroSection() {
               </video>
             </div>
           ))}
+
+          {/* Subtle gradient overlays for better text readability */}
+          <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-black/40 via-black/5 to-transparent h-1/3" />
+          <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none bg-gradient-to-t from-black/60 via-black/10 to-transparent h-1/2" />
         </div>
 
         {/* Main Hero Left Content */}
