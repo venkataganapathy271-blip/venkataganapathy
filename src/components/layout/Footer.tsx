@@ -57,11 +57,11 @@ export default function Footer() {
               />
             </div>
             <div className="flex flex-col items-start">
-              <span className="text-sm font-extrabold text-[#588356] uppercase tracking-widest leading-tight">
-                {HOSPITAL_INFO.subtitle}
-              </span>
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-0.5">
+              <span className="text-[12px] md:text-sm font-black bg-clip-text text-transparent bg-gradient-to-r from-[#1e293b] to-[#588356] uppercase tracking-widest leading-tight">
                 {HOSPITAL_INFO.name}
+              </span>
+              <span className="text-[10px] font-extrabold text-[#588356] uppercase tracking-widest mt-0.5">
+                {HOSPITAL_INFO.subtitle}
               </span>
             </div>
           </div>

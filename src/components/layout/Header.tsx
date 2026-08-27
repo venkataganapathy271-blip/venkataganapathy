@@ -81,8 +81,10 @@ export default function Header({ isSolid = false }: { isSolid?: boolean }) {
           </div>
           <div className="flex flex-col leading-none">
             <span className={cn(
-              "text-[15px] md:text-[17px] tracking-tight transition-colors duration-500 font-black",
-              effectiveScrolled ? "text-slate-900" : "text-white"
+              "text-[16px] md:text-[18px] tracking-tight transition-colors duration-500 font-black",
+              effectiveScrolled 
+                ? "bg-clip-text text-transparent bg-gradient-to-r from-[#1e293b] to-[#588356]" 
+                : "text-white drop-shadow-md"
             )}>
               Venkata Ganapathy
             </span>

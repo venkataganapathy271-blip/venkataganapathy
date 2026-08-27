@@ -22,7 +22,7 @@ const FACILITIES_DATA: FacilityItem[] = [
     description:
       "Modern IFT, TENS, Ultrasound, and Electrical Stimulation units for fast pain relief and nerve activation.",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=900",
+      "/gallery/facility-electro.jpg",
     highlights: [
       "Nerve Stimulation for Paralysis",
       "Deep Tissue Healing",
@@ -37,7 +37,7 @@ const FACILITIES_DATA: FacilityItem[] = [
     description:
       "Advanced laser therapy for targeted, deep tissue pain relief and accelerated healing of sports injuries.",
     image:
-      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=900",
+      "/gallery/facility-laser.jpg",
     highlights: [
       "Non-Invasive Pain Relief",
       "Accelerated Tissue Repair",
@@ -52,7 +52,7 @@ const FACILITIES_DATA: FacilityItem[] = [
     description:
       "Dedicated exercise area for parallel bar walking, joint range of motion, and step-by-step joint mobilization.",
     image:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=900",
+      "/gallery/facility-exercise.jpg",
     highlights: [
       "Parallel Bar Walking",
       "Joint Range of Motion",
