@@ -8,12 +8,12 @@ export default function AboutSection() {
   const pillars = [
     {
       title: "1-on-1 Dedicated Therapy",
-      desc: "Undivided senior specialist care by Dr. Maruti Rao.",
+      desc: "Undivided senior specialist care by Dr. Maruthi Rao Pulavarthi.",
       icon: <HeartPulse className="w-4 h-4 text-[#588356]" />,
     },
     {
       title: "Evidence-Based Modalities",
-      desc: "FDA-approved Electrotherapy, Traction & NMES.",
+      desc: "Electrotherapy, Laser pain management & NMES.",
       icon: <Target className="w-4 h-4 text-[#588356]" />,
     },
     {
@@ -23,7 +23,7 @@ export default function AboutSection() {
     },
     {
       title: "Personalized Roadmap",
-      desc: "Custom exercise & gait rehabilitation.",
+      desc: "Exercise therapy & neuro rehabilitation.",
       icon: <Compass className="w-4 h-4 text-[#588356]" />,
     },
   ];
@@ -71,7 +71,7 @@ export default function AboutSection() {
                   <span className="text-[#A8D0A6]">Physio Specialists</span>
                 </p>
                 <p className="text-[11px] sm:text-xs text-slate-300 font-medium pt-0.5">
-                  Established 2015 • Reg. No: 75/2015
+                  Establishment 2014
                 </p>
               </div>
 
@@ -106,7 +106,7 @@ export default function AboutSection() {
 
               {/* Subtitle Paragraph */}
               <p className="text-slate-600 leading-relaxed text-xs sm:text-sm max-w-2xl">
-                Founded under the leadership of <strong className="text-slate-900 font-semibold">{HOSPITAL_INFO.chiefDoctor} ({HOSPITAL_INFO.doctorQualification})</strong>, {HOSPITAL_INFO.name} ({HOSPITAL_INFO.regNo}) has served Hanuman Junction for over 10 years. By combining electrotherapy, computerized traction, NMES paralysis re-education, and manual joint mobilization, we help patients overcome severe pain without surgery.
+                Founded under the leadership of <strong className="text-slate-900 font-semibold">{HOSPITAL_INFO.chiefDoctor} ({HOSPITAL_INFO.doctorQualification})</strong>, {HOSPITAL_INFO.name} ({HOSPITAL_INFO.regNo}) has served Hanuman Junction for over 14 years. By combining electrotherapy, exercise therapy, laser pain management, and specialized neuro rehab, we help patients overcome severe pain without surgery.
               </p>
             </div>
 
@@ -151,7 +151,7 @@ export default function AboutSection() {
                     <img
                       className="w-full h-full object-cover scale-[1.3] translate-y-1"
                       src="/docter_team_3_transparent.png"
-                      alt="Dr. Maruti Rao Pulavarthi"
+                      alt="Dr. Maruthi Rao Pulavarthi"
                     />
                   </div>
                   <div>
@@ -159,7 +159,7 @@ export default function AboutSection() {
                       {HOSPITAL_INFO.chiefDoctor}
                     </h5>
                     <p className="text-[8px] sm:text-[10px] font-semibold text-slate-800">
-                      Chief Physio (B.P.T)
+                      Chief Physio B.P.T
                     </p>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function AboutSection() {
                 {/* Top Badge */}
                 <div className="relative z-10 flex justify-end">
                   <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-white text-[8px] sm:text-[10px] font-bold">
-                    Reg #75/2015
+                    Establishment 2014
                   </span>
                 </div>
 

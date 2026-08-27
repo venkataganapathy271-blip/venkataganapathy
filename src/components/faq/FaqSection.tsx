@@ -25,7 +25,7 @@ const FAQS_DATA: FaqItem[] = [
     category: "General",
     question: "Do I need a doctor referral before starting physical therapy at Venkata Ganapathy Physiotherapy Clinic?",
     answer:
-      "No direct referral is mandatory. You can walk in or book an appointment directly with Dr. Maruti Rao Pulavarthi for a comprehensive physical evaluation and customized treatment plan.",
+      "No direct referral is mandatory. You can walk in or book an appointment directly with Dr. Maruthi Rao Pulavarthi for a comprehensive physical evaluation and customized treatment plan.",
   },
   {
     id: "f2",
@@ -46,7 +46,7 @@ const FAQS_DATA: FaqItem[] = [
     category: "Appointments",
     question: "What are the hospital OPD timings in Hanuman Junction?",
     answer:
-      "Venkata Ganapathy Physiotherapy Clinic operates Monday to Sunday from 10:00 AM to 9:00 PM. Prior appointment booking is recommended for minimum waiting time.",
+      "Venkata Ganapathy Physiotherapy Clinic operates Monday to Saturday from 9:00 AM to 8:00 PM. We are closed on Sundays (Holiday). Prior appointment booking is recommended for minimum waiting time.",
   },
   {
     id: "f5",
@@ -225,7 +225,7 @@ export default function FaqSection() {
                 </div>
                 <div className="flex items-start space-x-2.5">
                   <CheckCircle className="w-4 h-4 text-[#A8D0A6] shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">Official Licensed Practice (Govt Reg. No: 75/2015)</span>
+                  <span className="leading-relaxed">Official Licensed Practice (Establishment 2014)</span>
                 </div>
               </div>
             </div>

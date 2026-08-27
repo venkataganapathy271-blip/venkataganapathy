@@ -10,6 +10,12 @@ const FacebookIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const WhatsappIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M12.031 0C5.39 0 .004 5.385.004 12.027c0 2.12.552 4.192 1.599 6.012L.004 24l6.115-1.604c1.748.96 3.729 1.467 5.912 1.467 6.642 0 12.028-5.385 12.028-12.027C24.059 5.386 18.673 0 12.031 0zM12.031 21.84c-1.802 0-3.568-.485-5.116-1.403l-.367-.217-3.805.998.998-3.712-.238-.378c-1.006-1.598-1.536-3.454-1.536-5.352 0-5.546 4.512-10.058 10.064-10.058 5.545 0 10.058 4.512 10.058 10.058s-4.513 10.064-10.058 10.064zm5.526-7.553c-.303-.152-1.796-.886-2.073-.988-.277-.101-.481-.152-.683.152-.203.303-.783.988-.961 1.19-.177.202-.355.228-.658.076-1.62-.81-2.775-1.545-3.83-3.32-.178-.299.172-.284.764-1.458.076-.152.038-.284-.038-.436-.076-.152-.683-1.645-.936-2.253-.247-.594-.497-.513-.683-.523-.178-.009-.38-.01-.582-.01-.202 0-.532.076-.81.38-.278.304-1.063 1.038-1.063 2.53 0 1.494 1.088 2.938 1.24 3.14.152.203 2.14 3.266 5.183 4.577 2.052.887 2.872.937 3.935.785 1.139-.163 2.657-1.086 3.037-2.138.38-1.052.38-1.95.266-2.138-.114-.188-.418-.289-.721-.442z"/>
+  </svg>
+);
+
 const TwitterIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
@@ -93,7 +99,8 @@ export default function Footer() {
 
           <div className="pt-2 flex items-center space-x-3">
             {[
-              { Icon: FacebookIcon, href: "#" },
+              { Icon: FacebookIcon, href: "https://www.facebook.com/share/1BpVQYJbak/", bgClass: "bg-[#1877F2]/10", borderClass: "border-[#1877F2]/30", iconClass: "text-[#1877F2]", hoverClass: "hover:bg-[#1877F2] hover:text-white" },
+              { Icon: WhatsappIcon, href: `https://wa.me/${HOSPITAL_INFO.whatsapp}?text=Hello%20Venkata%20Ganapathi%20Hospital,%20I%20have%20a%20query.`, bgClass: "bg-[#25D366]/10", borderClass: "border-[#25D366]/30", iconClass: "text-[#25D366]", hoverClass: "hover:bg-[#25D366] hover:text-white" },
               { Icon: InstagramIcon, href: "#" },
               { Icon: TwitterIcon, href: "#" },
               { Icon: YoutubeIcon, href: "#" }
@@ -101,9 +108,15 @@ export default function Footer() {
               <a 
                 key={idx} 
                 href={social.href}
-                className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-slate-900 hover:border-slate-400 hover:shadow-md transition-all group"
+                target={social.href !== "#" ? "_blank" : "_self"}
+                rel={social.href !== "#" ? "noopener noreferrer" : ""}
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all group ${
+                  social.bgClass 
+                    ? `${social.bgClass} ${social.borderClass} border ${social.iconClass} ${social.hoverClass} hover:scale-110 hover:shadow-lg` 
+                    : "bg-white border border-slate-200 text-slate-400 hover:text-slate-900 hover:border-slate-400 hover:shadow-md"
+                }`}
               >
-                <social.Icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                <social.Icon className={`w-4 h-4 ${!social.bgClass ? 'group-hover:scale-110' : ''} transition-transform duration-300`} />
               </a>
             ))}
           </div>

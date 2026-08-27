@@ -25,14 +25,14 @@ export default function DoctorsSection() {
   const leadDoctor = {
     name: "Dr. Maruthi Rao Pulavarthi",
     title: "Founder & Chief Physiotherapy Consultant",
-    qualification: "B.P.T, P.G. Diploma in Sports Rehab",
+    qualification: "B.P.T",
     regNo: "Reg. No: APF0170",
-    experience: "10+",
+    experience: "14+",
     patientsCount: "8,500+",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800",
+    image: "/docter_team_3_transparent.png",
     sessionImage: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
-    timing: "Monday - Sunday: 10:00 AM - 9:00 PM",
-    bio: "At Venkata Ganapathy Physiotherapy Clinic, we empower you to live a pain-free and active life. Dr. Maruthi Rao Pulavarthi (B.P.T, P.G. Diploma in Sports Rehab, Reg. No: APF0170) helps you restore movement, improve joint flexibility, and enhance overall well-being. Whether you are recovering from stroke paralysis, slipped disc, or joint replacement surgery, we are here to guide your journey.",
+    timing: "Monday - Saturday: 9:00 AM - 8:00 PM (Sunday Holiday)",
+    bio: "At Venkata Ganapathy Physiotherapy Clinic, we empower you to live a pain-free and active life. Dr. Maruthi Rao Pulavarthi (B.P.T, Reg. No: APF0170) helps you restore movement, improve joint flexibility, and enhance overall well-being. Whether you are recovering from stroke paralysis, slipped disc, or joint replacement surgery, we are here to guide your journey.",
     specializations: [
       "Stroke & Paralysis Recovery (NMES Therapy)",
       "Slipped Disc & Sciatica Non-Surgical Traction",
@@ -50,7 +50,7 @@ export default function DoctorsSection() {
       role: "Founder & Director",
       qualification: "B.P.T",
       regNo: "Reg. No: APF0170",
-      expertise: "Founder & Chief Clinical Director with 10+ years expertise in paralysis NMES, slipped disc traction, and post-surgical joint mobilization.",
+      expertise: "Founder & Chief Clinical Director with 14+ years expertise in paralysis NMES, slipped disc traction, and post-surgical joint mobilization.",
       image: "/docter_team_3_transparent.png",
       imageClassName: "scale-[1.25] translate-y-4",
       accent: "#588356",
@@ -68,9 +68,19 @@ export default function DoctorsSection() {
       id: "dr-danny-christopher",
       name: "Dr. D. Danny Christopher",
       role: "Consultant Doctor",
-      qualification: "B.P.T, B.Sc. PSY, PGDHHM, DIPLOMA GEN.",
+      qualification: "B.P.T, BSC. PSY, PGDHHM, DIPLOMA GEN",
       expertise: "Consultant physiotherapist bringing a multi-disciplinary approach in physical rehab, chronic pain psychology, and health management.",
       image: "/docter_team_4.jpeg",
+      accent: "#588356",
+    },
+    {
+      id: "doc-galeesha-sk",
+      name: "Dr. Galeesha SK",
+      role: "Consultant Orthopedic",
+      qualification: "M.P.T (Ortho)",
+      regNo: "Reg. No: 18P301008004",
+      expertise: "Specialist Master of Physiotherapy in Orthopedics (M.P.T Ortho), focusing on complex joint deformities and manual spine adjustments.",
+      image: "",
       accent: "#588356",
     },
   ];
@@ -117,7 +127,7 @@ export default function DoctorsSection() {
             {/* Bottom Left Content inside visible Photo area */}
             <div className="absolute bottom-6 z-20 pointer-events-none" style={{ left: 'calc(58% + 24px)' }}>
               <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">
-                Dr. Maruthi Rao
+                Dr. Maruthi Rao Pulavarthi
               </h3>
               <p className="text-[#A8D0A6] text-xs font-bold mt-1 tracking-wider uppercase">View Clinical Profile</p>
             </div>
@@ -172,7 +182,7 @@ export default function DoctorsSection() {
               {/* Founder Name & Designation */}
               <div className="pt-2 lg:border-t lg:border-slate-200 inline-block w-fit mt-6 lg:mt-8 px-2 lg:px-0 text-center lg:text-left self-center lg:self-start">
                 <h3 className="text-lg sm:text-xl font-black tracking-wider text-slate-900 uppercase mt-4">
-                  DR. MARUTHI RAO PULAVARTHI
+                  Dr. Maruthi Rao Pulavarthi
                 </h3>
                 <p className="text-[11px] sm:text-xs font-extrabold text-[#588356] mt-1 uppercase tracking-widest">
                   Founder &amp; Chief Clinical Director
@@ -197,7 +207,7 @@ export default function DoctorsSection() {
                 
                 <div className="absolute bottom-6 left-6 right-24 z-20 pointer-events-none">
                   <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">
-                    Dr. Maruthi Rao
+                    Dr. Maruthi Rao Pulavarthi
                   </h3>
                   <p className="text-[#A8D0A6] text-xs font-bold mt-1 tracking-wider uppercase">View Clinical Profile</p>
                 </div>

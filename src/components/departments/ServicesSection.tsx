@@ -45,7 +45,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Gait Retraining & Balance",
       "Preventative Care Protocols",
     ],
-    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
   },
   {
     id: "sports-injury",
@@ -67,7 +67,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Athletic Conditioning",
       "Return-to-Sport Benchmarks",
     ],
-    doctorInCharge: "Dr. Maruti Rao Pulavarthi (P.G. Dip Sports Rehab)",
+    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
   },
   {
     id: "spine-decompression",
@@ -89,7 +89,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Zero-Side-Effect Pain Relief",
       "Personalized Exercise Therapy",
     ],
-    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
   },
   {
     id: "stroke-paralysis",
@@ -111,7 +111,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Safe Progressive Load Expansion",
       "Outcome-Driven Recovery Tracking",
     ],
-    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
   },
   {
     id: "manual-needling",
@@ -133,7 +133,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Accelerated Muscle Healing",
       "Targeted Pain Point Inactivation",
     ],
-    doctorInCharge: "Dr. Maruti Rao Pulavarthi (B.P.T)",
+    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
   },
 ];
 

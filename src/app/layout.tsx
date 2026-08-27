@@ -14,19 +14,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Venkata Ganapathy Physiotherapy Clinic | Dr. Maruti Rao Pulavarthi B.P.T (Hanuman Junction)",
+  title: "Venkata Ganapathy Physiotherapy Clinic | Dr. Maruthi Rao Pulavarthi (Hanuman Junction)",
   description:
-    "Official website of Venkata Ganapathy Physiotherapy Clinic (Reg. No: 75/2015) in Hanuman Junction. Dr. Maruti Rao Pulavarthi B.P.T offers 10+ years of modern paralysis care, slipped disc, knee replacement rehab, and sciatica relief.",
+    "Official website of Venkata Ganapathy Physiotherapy Clinic (Establishment 2014) in Hanuman Junction. Dr. Maruthi Rao Pulavarthi offers 14+ years of modern paralysis care, slipped disc, knee replacement rehab, and sciatica relief.",
   keywords: [
     "Venkata Ganapathy Physiotherapy Clinic",
-    "Dr Maruti Rao Pulavarthi BPT",
+    "Dr Maruthi Rao Pulavarthi BPT",
     "Physiotherapy Hanuman Junction",
     "Paralysis Care Hanuman Junction",
     "Slipped Disc Treatment Hanuman Junction",
     "Knee Replacement Rehab Hanuman Junction",
     "Sciatica Pain Relief",
   ],
-  authors: [{ name: "Dr. Maruti Rao Pulavarthi B.P.T" }],
+  authors: [{ name: "Dr. Maruthi Rao Pulavarthi" }],
   icons: {
     icon: "/Logo.png",
   },

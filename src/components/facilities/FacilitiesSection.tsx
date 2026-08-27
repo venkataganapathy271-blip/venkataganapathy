@@ -15,23 +15,8 @@ interface FacilityItem {
 
 const FACILITIES_DATA: FacilityItem[] = [
   {
-    id: "fac-traction",
-    title: "Computerized Lumbar & Cervical Traction",
-    category: "Decompression Therapy",
-    badge: "Spine & Disc Care",
-    description:
-      "Digital traction system for automated spinal decompression of slipped discs, cervical spondylosis, and sciatica.",
-    image:
-      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=900",
-    highlights: [
-      "Non-Surgical Slipped Disc Relief",
-      "Targeted Sciatica Decompression",
-      "Custom Pull Settings",
-    ],
-  },
-  {
     id: "fac-electro",
-    title: "Electrotherapy & Ultrasound Modalities",
+    title: "01 Electrotherapy",
     category: "Pain Management",
     badge: "IFT & TENS Unit",
     description:
@@ -45,24 +30,39 @@ const FACILITIES_DATA: FacilityItem[] = [
     ],
   },
   {
-    id: "fac-postop",
-    title: "Post-Operative Mobilization Zone",
+    id: "fac-laser",
+    title: "02 Laser Pain Management",
+    category: "Advanced Therapy",
+    badge: "Laser Healing",
+    description:
+      "Advanced laser therapy for targeted, deep tissue pain relief and accelerated healing of sports injuries.",
+    image:
+      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=900",
+    highlights: [
+      "Non-Invasive Pain Relief",
+      "Accelerated Tissue Repair",
+      "Targeted Joint Care",
+    ],
+  },
+  {
+    id: "fac-exercise",
+    title: "03 Exercise Therapy",
     category: "Joint Rehabilitation",
     badge: "Mobility Studio",
     description:
-      "Dedicated exercise area for step-by-step joint mobilization following knee and hip replacement surgeries.",
+      "Dedicated exercise area for parallel bar walking, joint range of motion, and step-by-step joint mobilization.",
     image:
       "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=900",
     highlights: [
+      "Parallel Bar Walking",
+      "Joint Range of Motion",
       "1-on-1 Doctor Assistance",
-      "Parallel Walking Bars",
-      "Joint Flexion Aids",
     ],
   },
 ];
 
 export default function FacilitiesSection() {
-  const [activeId, setActiveId] = useState<string>("fac-traction");
+  const [activeId, setActiveId] = useState<string>("fac-electro");
   const [selectedFacility, setSelectedFacility] = useState<FacilityItem | null>(null);
 
   return (

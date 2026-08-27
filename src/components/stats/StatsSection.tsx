@@ -6,14 +6,14 @@ import { HOSPITAL_STATS } from "@/data/hospitalData";
 export default function StatsSection() {
   const statsList = [
     {
-      value: "10+",
+      value: "14+",
       line1: "Years of Clinical",
       line2: "Experience",
     },
     {
-      value: "75/2015",
-      line1: "Govt Registration",
-      line2: "Reg. No.",
+      value: "2014",
+      line1: "Clinic",
+      line2: "Establishment",
     },
     {
       value: "8,500+",

@@ -43,6 +43,9 @@ const GALLERY_IMAGE_FILES = [
   "WhatsApp Image 2026-08-21 at 3.38.49 AM.jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.50 AM (1).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.50 AM.jpeg",
+  "WhatsApp Image 2026-08-26 at 10.41.33 PM.jpeg",
+  "WhatsApp Image 2026-08-26 at 10.48.51 AM.jpeg",
+  "WhatsApp Image 2026-08-27 at 2.17.57 PM.jpeg",
 ];
 
 const BASE_VIDEOS: GalleryItem[] = [
@@ -102,19 +105,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
 
 const CATEGORIES = ["All", "Facilities", "Equipment", "Therapy", "Video"];
 
-// Bento slot sizes — repeat pattern every 10 items
-const BENTO_PATTERN = [
-  "col-span-2 row-span-2", // large
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-2", // tall
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-1",
-  "col-span-2 row-span-1", // wide
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-1",
-];
+// Removed BENTO_PATTERN for simple layout
 
 function MediaCard({
   item,
@@ -309,15 +300,16 @@ export default function GallerySection() {
 
         {/* Connected Grid Container */}
         <div className="relative bg-[#F3F5F8] border border-[#D1D5DB] rounded-[24px] lg:rounded-[32px] p-2.5 sm:p-4 lg:p-5 shadow-sm z-0">
-          {/* True Bento Grid (2 columns on mobile to support col-span-2 items) */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-[140px] sm:auto-rows-[200px] lg:auto-rows-[240px] gap-2.5 sm:gap-4 lg:gap-5">
-            {displayedItems.map((item, idx) => (
-              <MediaCard
-                key={item.id}
-                item={item}
-                className={BENTO_PATTERN[idx % BENTO_PATTERN.length]}
-                onClick={() => setActiveItem(item)}
-              />
+          {/* Simple Uniform Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5">
+            {displayedItems.map((item) => (
+              <div key={item.id} className="aspect-square">
+                <MediaCard
+                  item={item}
+                  className="w-full h-full"
+                  onClick={() => setActiveItem(item)}
+                />
+              </div>
             ))}
           </div>
           

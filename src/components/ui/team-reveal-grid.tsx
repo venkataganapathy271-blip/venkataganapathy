@@ -36,14 +36,20 @@ export function TeamRevealGrid({
             key={member.id ?? `${member.name}-${index}`}
             className="group relative aspect-[3/4] rounded-[20px] lg:rounded-[28px] overflow-hidden bg-slate-900 cursor-pointer"
           >
-            {/* Background Photo */}
-            <img
-              src={member.image}
-              alt={member.name}
-              loading="lazy"
-              className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${member.imageClassName || ""}`}
-              style={{ objectPosition: member.imagePosition ?? "center top" }}
-            />
+            {/* Background Photo or Fallback */}
+            {member.image ? (
+              <img
+                src={member.image}
+                alt={member.name}
+                loading="lazy"
+                className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${member.imageClassName || ""}`}
+                style={{ objectPosition: member.imagePosition ?? "center top" }}
+              />
+            ) : (
+              <div className="w-full h-full bg-slate-800 flex items-center justify-center">
+                <span className="text-4xl text-slate-600 font-bold">{member.name.charAt(4)}</span>
+              </div>
+            )}
 
             {/* Dark gradient overlay - always present at bottom */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-all duration-500" />
