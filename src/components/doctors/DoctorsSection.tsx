@@ -16,92 +16,50 @@ import {
   HeartHandshake,
   X,
 } from "lucide-react";
-import { HOSPITAL_INFO } from "@/data/hospitalData";
+import type { DoctorDoc, HospitalInfoDoc } from "@/lib/data";
 import { TeamRevealGrid, TeamRevealMember } from "@/components/ui/team-reveal-grid";
 
-export default function DoctorsSection() {
+interface DoctorsSectionProps {
+  doctors: DoctorDoc[];
+  hospitalInfo: HospitalInfoDoc;
+}
+
+export default function DoctorsSection({ doctors, hospitalInfo }: DoctorsSectionProps) {
   const [showModal, setShowModal] = useState(false);
 
-  const leadDoctor = {
-    name: "Dr. Maruthi Rao Pulavarthi",
-    title: "Founder & Chief Physiotherapy Consultant",
-    qualification: "B.P.T",
-    regNo: "Reg. No: APF0170",
-    experience: "14+",
-    patientsCount: "8,500+",
-    image: "/docter_team_3_transparent.png",
-    sessionImage: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
-    timing: "Monday - Saturday: 9:00 AM - 8:00 PM (Sunday Holiday)",
-    bio: "At Venkata Ganapathy Physiotherapy Clinic, we empower you to live a pain-free and active life. Dr. Maruthi Rao Pulavarthi (B.P.T, Reg. No: APF0170) helps you restore movement, improve joint flexibility, and enhance overall well-being. Whether you are recovering from stroke paralysis, slipped disc, or joint replacement surgery, we are here to guide your journey.",
-    specializations: [
-      "Stroke & Paralysis Recovery (NMES Therapy)",
-      "Slipped Disc & Sciatica Non-Surgical Traction",
-      "Post-Knee & Hip Replacement Joint Mobilization",
-      "Sports Muscle Strain & Ligament Conditioning",
-      "Bell's Palsy & Facial Muscle Re-education",
-      "Frozen Shoulder & Cervical Spine Rehab",
-    ],
-  };
+  const leadDoctor = doctors[0];
 
-  const teamMembers: TeamRevealMember[] = [
-    {
-      id: "dr-maruthi-rao",
-      name: "Dr. Maruthi Rao Pulavarthi",
-      role: "Founder & Director",
-      qualification: "B.P.T",
-      regNo: "Reg. No: APF0170",
-      expertise: "Founder & Chief Clinical Director with 14+ years expertise in paralysis NMES, slipped disc traction, and post-surgical joint mobilization.",
-      image: "/docter_team_3_transparent.png",
-      imageClassName: "scale-[1.25] translate-y-4",
-      accent: "#588356",
-    },
-    {
-      id: "konka-jayaswai",
-      name: "Konka Jayaswai",
-      role: "Clinical Physio",
-      qualification: "B.P.T",
-      expertise: "Clinical physiotherapist specializing in 1-on-1 joint mobilization, electrotherapy application, and exercise protocols.",
-      image: "/docter_team.jpeg",
-      accent: "#588356",
-    },
-    {
-      id: "dr-danny-christopher",
-      name: "Dr. D. Danny Christopher",
-      role: "Consultant Doctor",
-      qualification: "B.P.T, BSC. PSY, PGDHHM, DIPLOMA GEN",
-      expertise: "Consultant physiotherapist bringing a multi-disciplinary approach in physical rehab, chronic pain psychology, and health management.",
-      image: "/docter_team_4.jpeg",
-      accent: "#588356",
-    },
-    {
-      id: "doc-galeesha-sk",
-      name: "Dr. Galeesha SK",
-      role: "Consultant Orthopedic",
-      qualification: "M.P.T (Ortho)",
-      regNo: "Reg. No: 18P301008004",
-      expertise: "Specialist Master of Physiotherapy in Orthopedics (M.P.T Ortho), focusing on complex joint deformities and manual spine adjustments.",
-      image: "",
-      accent: "#588356",
-    },
-  ];
+  if (!leadDoctor) return null;
+
+  const teamMembers: TeamRevealMember[] = doctors.map((doc) => ({
+    id: doc.id,
+    name: doc.name,
+    role: doc.role,
+    qualification: doc.qualification,
+    regNo: doc.regNo,
+    expertise: doc.expertise,
+    image: doc.image,
+    imageClassName: doc.imageClassName,
+    accent: doc.accent,
+  }));
 
   return (
     <section id="doctors" className="py-10 sm:py-14 bg-[#FAFAFE]">
       <div className="max-w-7xl mx-auto px-2">
-        
+
         {/* Founder Section - Premium L-Shape Editorial Layout */}
         <div className="relative mb-16 py-6 sm:py-8 lg:min-h-[580px]">
-          
+
           {/* DESKTOP ONLY: L-Shaped Image Container using overlay masking for smooth corners */}
-          <div 
+          <div
             className="hidden lg:block absolute top-6 left-0 w-full h-[calc(100%-48px)] z-0 cursor-pointer group"
             onClick={() => setShowModal(true)}
           >
             {/* Main Image - full rectangle, rounded on all 4 corners */}
             <div className="absolute top-0 left-[70px] right-0 bottom-0 rounded-[40px] overflow-hidden bg-[#E8ECF0]">
               <img
-                src="/docter_team_3_transparent.png"
-                alt="Dr. Maruthi Rao Pulavarthi - Founder"
+                src={leadDoctor.image}
+                alt={`${leadDoctor.name} - Founder`}
                 className="w-full h-full object-contain object-[93%_bottom] opacity-100 transition-all duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
@@ -109,14 +67,14 @@ export default function DoctorsSection() {
 
             {/* Overlay 1: Covers bottom-left of image (0 to 58%, from 100px down) */}
             {/* This creates the L-shape cutout for the text area */}
-            <div 
+            <div
               className="absolute top-[100px] left-[70px] bottom-0 bg-[#FAFAFE] pointer-events-none"
               style={{ right: '42%' }}
             />
 
             {/* Overlay 2: Smooth INNER corner (concave curve at top-right of text area) */}
             {/* A #FAFAFE box with rounded-tr creates the smooth concave curve */}
-            <div 
+            <div
               className="absolute bg-[#FAFAFE] pointer-events-none rounded-tr-[32px]"
               style={{ top: '68px', left: '70px', right: '42%', height: '64px' }}
             />
@@ -127,7 +85,7 @@ export default function DoctorsSection() {
             {/* Bottom Left Content inside visible Photo area */}
             <div className="absolute bottom-6 z-20 pointer-events-none" style={{ left: 'calc(58% + 24px)' }}>
               <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">
-                Dr. Maruthi Rao Pulavarthi
+                {leadDoctor.name}
               </h3>
               <p className="text-[#A8D0A6] text-xs font-bold mt-1 tracking-wider uppercase">View Clinical Profile</p>
             </div>
@@ -149,10 +107,10 @@ export default function DoctorsSection() {
 
           {/* The Content Grid (on top) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-14 relative z-10 pointer-events-none">
-            
+
             {/* Left Column: Quote Icon & Text (Moves below image on mobile) */}
             <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col pointer-events-auto mt-8 lg:mt-0">
-              
+
               {/* Double Quotes Icon (Top Left, strictly inside the 70x100px space left by clip-path on desktop) */}
               <div className="w-[70px] h-[100px] hidden lg:flex items-start justify-start pt-2">
                 <svg
@@ -182,10 +140,10 @@ export default function DoctorsSection() {
               {/* Founder Name & Designation */}
               <div className="pt-2 lg:border-t lg:border-slate-200 inline-block w-fit mt-6 lg:mt-8 px-2 lg:px-0 text-center lg:text-left self-center lg:self-start">
                 <h3 className="text-lg sm:text-xl font-black tracking-wider text-slate-900 uppercase mt-4">
-                  Dr. Maruthi Rao Pulavarthi
+                  {leadDoctor.name}
                 </h3>
                 <p className="text-[11px] sm:text-xs font-extrabold text-[#588356] mt-1 uppercase tracking-widest">
-                  Founder &amp; Chief Clinical Director
+                  {leadDoctor.title}
                 </p>
               </div>
 
@@ -193,21 +151,21 @@ export default function DoctorsSection() {
 
             {/* MOBILE ONLY: Normal Founder Portrait (Moves to top on mobile) */}
             <div className="order-1 lg:hidden col-span-1 flex justify-center pointer-events-auto">
-              <div 
+              <div
                 className="group relative w-full max-w-md aspect-[4/4.8] sm:aspect-[4/5] rounded-[32px] sm:rounded-[40px] rounded-tl-[80px] overflow-hidden bg-slate-900 cursor-pointer transition-all duration-500 border-[6px] border-white"
                 onClick={() => setShowModal(true)}
               >
                 <img
-                  src="/docter_team_3_transparent.png"
-                  alt="Dr. Maruthi Rao Pulavarthi - Founder"
+                  src={leadDoctor.image}
+                  alt={`${leadDoctor.name} - Founder`}
                   className="w-full h-full object-cover object-top opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
-                
+
                 <div className="absolute bottom-6 left-6 right-24 z-20 pointer-events-none">
                   <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">
-                    Dr. Maruthi Rao Pulavarthi
+                    {leadDoctor.name}
                   </h3>
                   <p className="text-[#A8D0A6] text-xs font-bold mt-1 tracking-wider uppercase">View Clinical Profile</p>
                 </div>
@@ -231,10 +189,10 @@ export default function DoctorsSection() {
 
         {/* Team Section */}
         <div className="mt-8 pt-12">
-          
+
           {/* 2-Column Header - matching Services section style (Mobile Optimized) */}
           <div className="mb-8 sm:mb-10 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 items-end text-center lg:text-left">
-            
+
             {/* Left: Big Heading */}
             <div className="lg:col-span-7">
               <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight leading-[1.1] sm:leading-[1.08]">
@@ -319,7 +277,7 @@ export default function DoctorsSection() {
                 </div>
                 <div>
                   <p className="text-[11px] text-slate-500 font-medium">OPD Consultation Hours</p>
-                  <p className="font-extrabold text-slate-900">{leadDoctor.timing}</p>
+                  <p className="font-extrabold text-slate-900">{hospitalInfo.timing}</p>
                 </div>
               </div>
 
@@ -340,7 +298,7 @@ export default function DoctorsSection() {
               </a>
 
               <a
-                href={`https://wa.me/${HOSPITAL_INFO.whatsapp}?text=Hello%20Dr.%20Maruthi%20Rao,%20I%20want%20to%20book%20a%20physiotherapy%20consultation.`}
+                href={`https://wa.me/${hospitalInfo.whatsapp}?text=Hello%20Dr.%20Maruthi%20Rao,%20I%20want%20to%20book%20a%20physiotherapy%20consultation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowModal(false)}

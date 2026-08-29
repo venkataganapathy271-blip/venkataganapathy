@@ -2,16 +2,17 @@
 
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
+import type { HospitalInfoDoc } from "@/lib/data";
 
-export default function ExcellenceSection() {
+export default function ExcellenceSection({ hospitalInfo }: { hospitalInfo: HospitalInfoDoc }) {
   return (
     <section className="py-12 sm:py-16 bg-[#FAFAFE]">
       <div className="max-w-7xl mx-auto px-2">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
-          
+
           {/* Left Column: Text Header + Bottom Landscape Therapy Image */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-6 lg:space-y-5">
-            
+
             {/* Text Header Area (Mobile Optimized) */}
             <div className="space-y-4 sm:space-y-5 text-center lg:text-left flex flex-col items-center lg:items-start">
               <span className="text-[10px] sm:text-[11px] font-black tracking-widest text-slate-500 uppercase">
@@ -38,12 +39,12 @@ export default function ExcellenceSection() {
             {/* Bottom Left Image Card — same squircle style */}
             <div className="group relative h-48 sm:h-56 lg:h-60 rounded-[24px] lg:rounded-[32px] overflow-hidden bg-slate-900 cursor-pointer">
               <img
-                src="/Floor-hip-flexors-.webp"
+                src={hospitalInfo.excellenceImage1}
                 alt="Personalized Shoulder & Arm Therapy Session"
                 className="w-full h-full object-cover object-[center_60%] transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-              
+
               <div className="absolute bottom-4 left-4 lg:bottom-5 lg:left-5 right-16 lg:right-20 z-10 pointer-events-none">
                 <h3 className="text-[13px] sm:text-lg font-black text-white leading-snug">
                   Shoulder &amp; Arm Therapy
@@ -69,7 +70,7 @@ export default function ExcellenceSection() {
           <div className="lg:col-span-6">
             <div className="group relative h-[320px] sm:h-[420px] lg:h-full lg:min-h-[420px] rounded-[24px] lg:rounded-[32px] overflow-hidden bg-slate-900 cursor-pointer">
               <img
-                src="/Hip-circles.webp"
+                src={hospitalInfo.excellenceImage2}
                 alt="Expert Joint Mobilization & Leg Stretch Therapy"
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />

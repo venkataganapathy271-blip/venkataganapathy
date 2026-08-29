@@ -2,101 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { X, Play, Volume2, VolumeX, Maximize2 } from "lucide-react";
-
-type MediaType = "image" | "video";
-
-interface GalleryItem {
-  id: string;
-  title: string;
-  category: "Facilities" | "Equipment" | "Therapy" | "Video";
-  mediaType: MediaType;
-  src: string;
-  description: string;
-}
-
-const GALLERY_IMAGE_FILES = [
-  "WhatsApp Image 2026-08-19 at 12.23.02 PM.jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.03 PM (1).jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.03 PM.jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.04 PM (1).jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.04 PM.jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.05 PM (1).jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.06 PM (1).jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.06 PM.jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.45 AM (1).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.45 AM.jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.46 AM (1).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.46 AM (2).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.46 AM (3).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.46 AM.jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.47 AM (1).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.47 AM (3).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.47 AM.jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.48 AM (1).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.48 AM (2).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.48 AM.jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.49 AM (2).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.49 AM (3).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.49 AM.jpeg",
-  "WhatsApp Image 2026-08-27 at 7.01.39 PM.jpeg",
-  "WhatsApp Image 2026-08-26 at 10.48.51 AM.jpeg",
-  "WhatsApp Image 2026-08-27 at 2.17.57 PM.jpeg",
-];
-
-const BASE_VIDEOS: GalleryItem[] = [
-  {
-    id: "v1",
-    title: "Core Strengthening & Yoga",
-    category: "Therapy",
-    mediaType: "video",
-    src: "/5991800-uhd_3840_2160_25fps.mp4",
-    description: "Guided group sessions focusing on core strength, flexibility, and overall well-being.",
-  },
-  {
-    id: "v2",
-    title: "Exercise Therapy Session",
-    category: "Therapy",
-    mediaType: "video",
-    src: "/6023232-uhd_3840_2160_25fps.mp4",
-    description: "Guided exercise therapy session focused on mobility, strength, and recovery.",
-  },
-  {
-    id: "v3",
-    title: "Supported Stretching Therapy",
-    category: "Therapy",
-    mediaType: "video",
-    src: "/6023241-uhd_3840_2160_25fps.mp4",
-    description: "Supervised stretching using specialized equipment to improve spinal flexibility and relieve tension.",
-  },
-  {
-    id: "v4",
-    title: "Strength Training & Conditioning",
-    category: "Therapy",
-    mediaType: "video",
-    src: "/6326960-hd_2048_1054_25fps.mp4",
-    description: "Targeted weight training exercises under professional supervision to rebuild muscle strength.",
-  }
-];
-
-const IMAGE_ITEMS: GalleryItem[] = GALLERY_IMAGE_FILES.map((filename, i) => ({
-  id: `img-${i}`,
-  title: `Clinic Gallery ${i + 1}`,
-  category: (i % 3 === 0 ? "Facilities" : (i % 3 === 1 ? "Equipment" : "Therapy")) as "Facilities" | "Equipment" | "Therapy",
-  mediaType: "image" as MediaType,
-  src: `/gallery/${filename}`,
-  description: "Venkata Ganapathy Physiotherapy Clinic in Hanuman Junction.",
-}));
-
-const GALLERY_ITEMS: GalleryItem[] = [
-  BASE_VIDEOS[0],
-  ...IMAGE_ITEMS.slice(0, 4),
-  BASE_VIDEOS[1],
-  ...IMAGE_ITEMS.slice(4, 9),
-  BASE_VIDEOS[2],
-  ...IMAGE_ITEMS.slice(9, 16),
-  BASE_VIDEOS[3],
-  ...IMAGE_ITEMS.slice(16),
-];
+import type { GalleryItemDoc } from "@/lib/data";
 
 const CATEGORIES = ["All", "Facilities", "Equipment", "Therapy", "Video"];
 
@@ -107,7 +13,7 @@ function MediaCard({
   className,
   onClick,
 }: {
-  item: GalleryItem;
+  item: GalleryItemDoc;
   className?: string;
   onClick: () => void;
 }) {
@@ -235,17 +141,17 @@ function MediaCard({
   );
 }
 
-export default function GallerySection() {
+export default function GallerySection({ galleryItems }: { galleryItems: GalleryItemDoc[] }) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);
+  const [activeItem, setActiveItem] = useState<GalleryItemDoc | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   const filteredItems =
     activeCategory === "All"
-      ? GALLERY_ITEMS
+      ? galleryItems
       : activeCategory === "Video"
-      ? GALLERY_ITEMS.filter((item) => item.mediaType === "video")
-      : GALLERY_ITEMS.filter((item) => item.category === activeCategory);
+      ? galleryItems.filter((item) => item.mediaType === "video")
+      : galleryItems.filter((item) => item.category === activeCategory);
 
   const displayedItems = showAll ? filteredItems : filteredItems.slice(0, 10);
 

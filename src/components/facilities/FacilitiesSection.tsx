@@ -2,68 +2,11 @@
 
 import React, { useState } from "react";
 import { X, CheckCircle, ArrowUpRight } from "lucide-react";
+import type { FacilityDoc } from "@/lib/data";
 
-interface FacilityItem {
-  id: string;
-  title: string;
-  category: string;
-  badge: string;
-  description: string;
-  image: string;
-  highlights: string[];
-}
-
-const FACILITIES_DATA: FacilityItem[] = [
-  {
-    id: "fac-electro",
-    title: "01 Electrotherapy",
-    category: "Pain Management",
-    badge: "IFT & TENS Unit",
-    description:
-      "Modern IFT, TENS, Ultrasound, and Electrical Stimulation units for fast pain relief and nerve activation.",
-    image:
-      "/gallery/facility-electro.jpg",
-    highlights: [
-      "Nerve Stimulation for Paralysis",
-      "Deep Tissue Healing",
-      "Zero-Side-Effect Pain Relief",
-    ],
-  },
-  {
-    id: "fac-laser",
-    title: "02 Laser Pain Management",
-    category: "Advanced Therapy",
-    badge: "Laser Healing",
-    description:
-      "Advanced laser therapy for targeted, deep tissue pain relief and accelerated healing of sports injuries.",
-    image:
-      "/gallery/Laser Pain Management.jpeg",
-    highlights: [
-      "Non-Invasive Pain Relief",
-      "Accelerated Tissue Repair",
-      "Targeted Joint Care",
-    ],
-  },
-  {
-    id: "fac-exercise",
-    title: "03 Exercise Therapy",
-    category: "Joint Rehabilitation",
-    badge: "Mobility Studio",
-    description:
-      "Dedicated exercise area for parallel bar walking, joint range of motion, and step-by-step joint mobilization.",
-    image:
-      "/gallery/facility-exercise.jpg",
-    highlights: [
-      "Parallel Bar Walking",
-      "Joint Range of Motion",
-      "1-on-1 Doctor Assistance",
-    ],
-  },
-];
-
-export default function FacilitiesSection() {
-  const [activeId, setActiveId] = useState<string>("fac-electro");
-  const [selectedFacility, setSelectedFacility] = useState<FacilityItem | null>(null);
+export default function FacilitiesSection({ facilities }: { facilities: FacilityDoc[] }) {
+  const [activeId, setActiveId] = useState<string>(facilities[0]?.id ?? "");
+  const [selectedFacility, setSelectedFacility] = useState<FacilityDoc | null>(null);
 
   return (
     <section
@@ -71,10 +14,10 @@ export default function FacilitiesSection() {
       className="py-12 sm:py-16 bg-[#FAFAFE] text-slate-900"
     >
       <div className="max-w-7xl mx-auto px-2">
-        
+
         {/* Header Row — 2-column editorial style */}
         <div className="mb-10 sm:mb-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
-          
+
           {/* Left: Eyebrow + Big Heading */}
           <div className="lg:col-span-7">
             <span className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3 block">
@@ -103,7 +46,7 @@ export default function FacilitiesSection() {
 
         {/* Hover Expandable Card Grid - Strict Black & White Base + No Shadows + No Gradients */}
         <div className="flex flex-col lg:flex-row gap-4 sm:gap-5 mb-12 h-auto lg:h-[450px]">
-          {FACILITIES_DATA.map((fac) => {
+          {facilities.map((fac) => {
             const isHovered = activeId === fac.id;
 
             return (
@@ -111,19 +54,17 @@ export default function FacilitiesSection() {
                 key={fac.id}
                 onMouseEnter={() => setActiveId(fac.id)}
                 onClick={() => setSelectedFacility(fac)}
-                className={`relative rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black border border-slate-200 cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                  isHovered
+                className={`relative rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black border border-slate-200 cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isHovered
                     ? "lg:flex-[2.8] h-[360px] lg:h-full"
                     : "lg:flex-1 h-[200px] lg:h-full"
-                }`}
+                  }`}
               >
                 {/* Background Image */}
                 <img
                   src={fac.image}
                   alt={fac.title}
-                  className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
-                   isHovered ? "scale-105 opacity-100" : "scale-100 opacity-95"
-                  }`}
+                  className={`w-full h-full object-cover transition-transform duration-700 ease-out ${isHovered ? "scale-105 opacity-100" : "scale-100 opacity-95"
+                    }`}
                 />
 
                 {/* Light gradient overlay for text readability */}
@@ -139,11 +80,10 @@ export default function FacilitiesSection() {
                 {/* Top-Right Arrow Icon (Solid White / Black Icon) */}
                 <div className="absolute top-5 right-5 z-10">
                   <div
-                    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                      isHovered
+                    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${isHovered
                         ? "bg-[#588356] text-white rotate-45"
                         : "bg-white text-slate-900"
-                    }`}
+                      }`}
                   >
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
@@ -156,9 +96,8 @@ export default function FacilitiesSection() {
                       {fac.category}
                     </span>
                     <h3
-                      className={`font-bold text-white tracking-tight leading-snug transition-all ${
-                        isHovered ? "text-xl sm:text-2xl lg:text-3xl" : "text-base sm:text-lg truncate"
-                      }`}
+                      className={`font-bold text-white tracking-tight leading-snug transition-all ${isHovered ? "text-xl sm:text-2xl lg:text-3xl" : "text-base sm:text-lg truncate"
+                        }`}
                     >
                       {fac.title}
                     </h3>

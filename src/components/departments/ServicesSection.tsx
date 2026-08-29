@@ -9,136 +9,10 @@ import {
   Calendar,
   ChevronRight,
 } from "lucide-react";
+import type { ServiceDoc } from "@/lib/data";
 
-interface ServiceItem {
-  id: string;
-  title: string;
-  badge: string;
-  isHighlighted?: boolean;
-  category: string;
-  description: string;
-  image: string;
-  treatments: string[];
-  features: string[];
-  doctorInCharge: string;
-}
-
-const SERVICES_DATA: ServiceItem[] = [
-  {
-    id: "ortho-rehab",
-    title: "Orthopedic & Joint Rehab",
-    badge: "Most Popular",
-    isHighlighted: true,
-    category: "Joint Rehabilitation",
-    description:
-      "Targeted recovery for knee, hip, shoulder, and spine injuries. Evidence-based protocols that restore full range of motion and prevent re-injury.",
-    image:
-      "/services_images/Orthopedic & Joint Rehab.jpg",
-    treatments: [
-      "Post-Knee & Hip Mobilization",
-      "Frozen Shoulder Release",
-      "Spine & Disc Realignment",
-      "Full Range-of-Motion Restoration",
-    ],
-    features: [
-      "Targeted Muscle Strengthening",
-      "Gait Retraining & Balance",
-      "Preventative Care Protocols",
-    ],
-    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
-  },
-  {
-    id: "sports-injury",
-    title: "Sports Injury Recovery",
-    badge: "Athletes Care",
-    category: "Sports Science",
-    description:
-      "From ACL tears to tennis elbow - we get athletes back in the game stronger than before, with sport-specific conditioning built in.",
-    image:
-      "/services_images/Sports Injury Recovery.jpg",
-    treatments: [
-      "ACL Tear & Ligament Rehab",
-      "Tennis & Golfer's Elbow Relief",
-      "Muscle Strain & Tear Recovery",
-      "Kinesiology Taping & Stability",
-    ],
-    features: [
-      "P.G. Diploma Sports Rehab Expertise",
-      "Athletic Conditioning",
-      "Return-to-Sport Benchmarks",
-    ],
-    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
-  },
-  {
-    id: "spine-decompression",
-    title: "Spine & Disc Decompression",
-    badge: "Non-Surgical",
-    category: "Spine Care",
-    description:
-      "A multi-modal approach to long-standing pain that combines manual therapy, movement re-education, and computerized traction to break the pain cycle.",
-    image:
-      "/services_images/Spine & Disc Decompression.jpg",
-    treatments: [
-      "Myofascial Trigger Point Therapy",
-      "Spinal Decompression & Traction",
-      "Movement Re-Education",
-      "Desensitization Protocols",
-    ],
-    features: [
-      "Multi-Modal Modalities (IFT/TENS)",
-      "Zero-Side-Effect Pain Relief",
-      "Personalized Exercise Therapy",
-    ],
-    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
-  },
-  {
-    id: "stroke-paralysis",
-    title: "Stroke Paralysis Recovery",
-    badge: "Targeted Neuro",
-    category: "Neurology",
-    description:
-      "Structured neuro-rehabilitation following stroke (hemiplegia) and facial weakness - safe, progressive, and motor milestone outcome-focused.",
-    image:
-      "/services_images/Stroke Paralysis Recovery.jpg",
-    treatments: [
-      "NMES Muscle Re-education",
-      "Facial Bell's Palsy Therapy",
-      "Parallel Bar Gait Retraining",
-      "Motor Pathway Stimulation",
-    ],
-    features: [
-      "Parallel Walking Bar Retraining",
-      "Safe Progressive Load Expansion",
-      "Outcome-Driven Recovery Tracking",
-    ],
-    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
-  },
-  {
-    id: "manual-needling",
-    title: "Manual Therapy & Needling",
-    badge: "1-on-1 Care",
-    category: "Specialized Rehab",
-    description:
-      "Hands-on joint mobilization, soft tissue release, and therapeutic dry needling to reduce pain, restore mobility, and accelerate healing.",
-    image:
-      "/services_images/Manual Therapy & Needling.jpg",
-    treatments: [
-      "Therapeutic Dry Needling",
-      "Joint Mobilization & Manipulation",
-      "Soft Tissue Myofascial Release",
-      "Deep Muscle Trigger Point Release",
-    ],
-    features: [
-      "1-on-1 Manual Manipulations",
-      "Accelerated Muscle Healing",
-      "Targeted Pain Point Inactivation",
-    ],
-    doctorInCharge: "Dr. Maruthi Rao Pulavarthi",
-  },
-];
-
-export default function ServicesSection() {
-  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+export default function ServicesSection({ services }: { services: ServiceDoc[] }) {
+  const [selectedService, setSelectedService] = useState<ServiceDoc | null>(null);
 
   return (
     <section
@@ -147,10 +21,10 @@ export default function ServicesSection() {
     >
       {/* Anchor for #services compatibility */}
       <div id="services" className="max-w-7xl mx-auto px-2">
-        
+
         {/* Section Header (Mobile Optimized) */}
         <div className="mb-8 sm:mb-14 text-center lg:text-left">
-          
+
           {/* Top Tagline */}
           <div className="flex items-center justify-center lg:justify-start space-x-1.5 text-xs sm:text-sm font-bold tracking-wider text-slate-700 uppercase mb-3 sm:mb-4">
             <span>Services We Offer</span>
@@ -158,7 +32,7 @@ export default function ServicesSection() {
 
           {/* 2-Column Header Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 items-baseline">
-            
+
             {/* Left Big Headline */}
             <div className="lg:col-span-7">
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-[1.1] sm:leading-[1.08]">
@@ -198,7 +72,7 @@ export default function ServicesSection() {
 
         {/* 5-Card Grid (Mobile: Sleek Banners, Desktop: Tall 5-Col Grid) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
-          {SERVICES_DATA.map((service) => (
+          {services.map((service) => (
             <div
               key={service.id}
               onClick={() => setSelectedService(service)}

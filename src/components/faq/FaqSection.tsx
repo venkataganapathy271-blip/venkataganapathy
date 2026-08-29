@@ -10,61 +10,16 @@ import {
   MessageSquare,
   ArrowUpRight
 } from "lucide-react";
-import { HOSPITAL_INFO } from "@/data/hospitalData";
+import type { FaqDoc, HospitalInfoDoc } from "@/lib/data";
 
-interface FaqItem {
-  id: string;
-  category: "Treatments" | "Appointments" | "General";
-  question: string;
-  answer: string;
-}
-
-const FAQS_DATA: FaqItem[] = [
-  {
-    id: "f1",
-    category: "General",
-    question: "Do I need a doctor referral before starting physical therapy at Venkata Ganapathy Physiotherapy Clinic?",
-    answer:
-      "No direct referral is mandatory. You can walk in or book an appointment directly with Dr. Maruthi Rao Pulavarthi for a comprehensive physical evaluation and customized treatment plan.",
-  },
-  {
-    id: "f2",
-    category: "Treatments",
-    question: "Is non-surgical computer traction effective for slipped disc and sciatica?",
-    answer:
-      "Yes! Our computerized lumbar & cervical traction decompresses pinched spinal nerves, relieves disc pressure, and reduces sciatica leg numbness without invasive surgery.",
-  },
-  {
-    id: "f3",
-    category: "Treatments",
-    question: "How long does stroke paralysis recovery usually take?",
-    answer:
-      "Recovery varies by severity. With our daily Neuromuscular Electrical Stimulation (NMES) and parallel walking bar gait retraining, most stroke patients show significant motor improvement within 4 to 12 weeks.",
-  },
-  {
-    id: "f4",
-    category: "Appointments",
-    question: "What are the hospital OPD timings in Hanuman Junction?",
-    answer:
-      "Venkata Ganapathy Physiotherapy Clinic operates Monday to Saturday from 9:00 AM to 8:00 PM. We are closed on Sundays (Holiday). Prior appointment booking is recommended for minimum waiting time.",
-  },
-  {
-    id: "f5",
-    category: "General",
-    question: "Are home physiotherapy services available for paralysis patients?",
-    answer:
-      "Yes, for severe paralysis or non-ambulatory post-operative cases, home visit consultations can be scheduled based on location and doctor availability.",
-  },
-];
-
-export default function FaqSection() {
+export default function FaqSection({ faqs, hospitalInfo }: { faqs: FaqDoc[]; hospitalInfo: HospitalInfoDoc }) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [openId, setOpenId] = useState<string>("f2");
+  const [openId, setOpenId] = useState<string>(faqs[1]?.id ?? faqs[0]?.id ?? "");
 
   const filteredFaqs =
     activeCategory === "All"
-      ? FAQS_DATA
-      : FAQS_DATA.filter((f) => f.category === activeCategory);
+      ? faqs
+      : faqs.filter((f) => f.category === activeCategory);
 
   const toggleFaq = (id: string) => {
     setOpenId(openId === id ? "" : id);
@@ -73,7 +28,7 @@ export default function FaqSection() {
   return (
     <section id="faq" className="py-12 sm:py-16 bg-[#FAFAFE]">
       <div className="max-w-7xl mx-auto px-2">
-        
+
         {/* Header - Editorial Style (Mobile Optimized) */}
         <div className="mb-8 sm:mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200 pb-6 lg:pb-8 text-center lg:text-left">
           <div className="flex flex-col items-center lg:items-start lg:mb-0">
@@ -94,11 +49,10 @@ export default function FaqSection() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`shrink-0 px-5 py-2 lg:py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all duration-300 border ${
-                  activeCategory === cat
+                className={`shrink-0 px-5 py-2 lg:py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all duration-300 border ${activeCategory === cat
                     ? "bg-[#588356] text-white border-[#588356] shadow-sm"
                     : "bg-transparent text-slate-600 border-slate-200 hover:border-[#588356] hover:text-[#588356]"
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -108,7 +62,7 @@ export default function FaqSection() {
 
         {/* 2-Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Column: Clean Accordion */}
           <div className="lg:col-span-7 flex flex-col space-y-4">
             {filteredFaqs.map((faq, idx) => {
@@ -116,11 +70,10 @@ export default function FaqSection() {
               return (
                 <div
                   key={faq.id}
-                  className={`bg-transparent rounded-[20px] transition-all duration-300 overflow-hidden ${
-                    isOpen
+                  className={`bg-transparent rounded-[20px] transition-all duration-300 overflow-hidden ${isOpen
                       ? "border border-[#A8D0A6] shadow-sm"
                       : "border border-slate-200 hover:border-[#A8D0A6]/50"
-                  }`}
+                    }`}
                 >
                   <button
                     onClick={() => toggleFaq(faq.id)}
@@ -138,11 +91,10 @@ export default function FaqSection() {
                     </div>
 
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                        isOpen
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen
                           ? "bg-[#588356] text-white rotate-180"
                           : "bg-[#FAFAFE] text-slate-400 border border-slate-200"
-                      }`}
+                        }`}
                     >
                       <ChevronDown className="w-4 h-4 stroke-[2.5]" />
                     </div>
@@ -162,16 +114,16 @@ export default function FaqSection() {
 
           {/* Right Column: Information Cards */}
           <div className="lg:col-span-5 space-y-5">
-            
+
             {/* Card 1: Emergency & Quick Contact (Editorial Box) */}
             <div className="bg-[#E8ECF0] rounded-[24px] p-6 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-white rounded-bl-full opacity-50 pointer-events-none transition-transform duration-500 group-hover:scale-110" />
-              
+
               <div className="relative z-10 space-y-5">
                 <div className="w-11 h-11 bg-white text-[#588356] rounded-xl flex items-center justify-center shadow-sm">
                   <PhoneCall className="w-5 h-5 stroke-[2]" />
                 </div>
-                
+
                 <div>
                   <span className="text-[10px] font-extrabold uppercase tracking-wider block text-[#588356] mb-1">
                     OPD &amp; REHAB ASSISTANCE
@@ -187,7 +139,7 @@ export default function FaqSection() {
 
                 <div className="space-y-2 pt-1">
                   <a
-                    href={`tel:${HOSPITAL_INFO.primaryPhone}`}
+                    href={`tel:${hospitalInfo.primaryPhone}`}
                     className="w-full py-3 px-5 bg-[#588356] hover:bg-[#4a6e49] text-white rounded-full font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-between shadow-sm"
                   >
                     <span>Call Hotline</span>
@@ -195,7 +147,7 @@ export default function FaqSection() {
                   </a>
 
                   <a
-                    href={`https://wa.me/${HOSPITAL_INFO.whatsapp}?text=Hello%20Venkata%20Ganapathi%20Hospital,%20I%20have%20a%20query%20regarding%20physiotherapy.`}
+                    href={`https://wa.me/${hospitalInfo.whatsapp}?text=Hello%20Venkata%20Ganapathi%20Hospital,%20I%20have%20a%20query%20regarding%20physiotherapy.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3 px-5 bg-white hover:bg-slate-50 text-slate-900 rounded-full font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-between shadow-sm border border-slate-200"

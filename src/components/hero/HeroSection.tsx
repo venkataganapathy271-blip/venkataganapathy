@@ -2,42 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
-import { HOSPITAL_INFO } from "@/data/hospitalData";
+import type { HeroSlideDoc, HospitalInfoDoc } from "@/lib/data";
 
-interface HeroSlide {
-  video: string;
-  poster: string;
-  line1: string;
-  line2: string;
+interface HeroSectionProps {
+  slides: HeroSlideDoc[];
+  hospitalInfo: HospitalInfoDoc;
 }
 
-export default function HeroSection() {
-  const slides: HeroSlide[] = [
-    {
-      video: "/5991800-uhd_3840_2160_25fps.mp4",
-      poster: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1920",
-      line1: "Relieve Pain, Restore Mobility",
-      line2: "Body Balance",
-    },
-    {
-      video: "/6023232-uhd_3840_2160_25fps.mp4",
-      poster: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1920",
-      line1: "Advanced Stroke & Paralysis Care",
-      line2: "Motor Independence",
-    },
-    {
-      video: "/6023241-uhd_3840_2160_25fps.mp4",
-      poster: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1920",
-      line1: "Post-Knee & Joint Replacement",
-      line2: "Mobility Restoration",
-    },
-    {
-      video: "/6326960-hd_2048_1054_25fps.mp4",
-      poster: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1920",
-      line1: "Sports Injury & Spine Decompression",
-      line2: "Active Movement",
-    },
-  ];
+export default function HeroSection({ slides, hospitalInfo }: HeroSectionProps) {
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [loadedVideos, setLoadedVideos] = useState<Record<number, boolean>>({});
@@ -80,15 +52,14 @@ export default function HeroSection() {
   return (
     <section id="home" className="w-full h-screen max-h-screen bg-[#FAFAFE] p-2">
       <div className="relative w-full h-full bg-slate-900 flex flex-col justify-between overflow-hidden pt-20 pb-3 text-white rounded-xl sm:rounded-2xl shadow-sm">
-        
+
         {/* Background Video Carousel with Smooth 1s Opacity Dissolve */}
         <div className="absolute inset-0 z-0 bg-[#FAFAFE]">
           {slides.map((slide, idx) => (
-            <div 
+            <div
               key={slide.video}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                currentSlideIndex === idx ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${currentSlideIndex === idx ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
             >
               {/* Fallback Image (Loads instantly) */}
               <img
@@ -105,9 +76,8 @@ export default function HeroSection() {
                 playsInline
                 poster={slide.poster}
                 onLoadedData={() => handleVideoLoaded(idx)}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out pointer-events-none z-10 ${
-                  loadedVideos[idx] ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out pointer-events-none z-10 ${loadedVideos[idx] ? "opacity-100" : "opacity-0"
+                  }`}
               >
                 <source src={slide.video} type="video/mp4" />
               </video>
@@ -125,11 +95,10 @@ export default function HeroSection() {
             {slides.map((slide, idx) => (
               <div
                 key={idx}
-                className={`transition-all duration-1000 ease-in-out ${
-                  currentSlideIndex === idx
+                className={`transition-all duration-1000 ease-in-out ${currentSlideIndex === idx
                     ? "opacity-100 translate-y-0 relative z-20"
                     : "opacity-0 -translate-y-2 absolute inset-0 z-0 pointer-events-none"
-                }`}
+                  }`}
               >
                 {/* 2-Line Main Headline */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.5] text-white">
@@ -146,7 +115,7 @@ export default function HeroSection() {
         {/* Bottom Overlaid Area */}
         <div className="relative z-20 max-w-7xl mx-auto px-2 w-full shrink-0 pb-2 md:pb-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
-            
+
             {/* 1. Left: Action Buttons */}
             <div className="lg:col-span-4 flex flex-wrap items-center gap-3">
               {/* Primary White Pill Button with Sage Green Accent */}
@@ -175,7 +144,7 @@ export default function HeroSection() {
             {/* 2. Center: Targeted Care Paragraph Text */}
             <div className="lg:col-span-4">
               <p className="text-slate-100 text-[11px] sm:text-xs font-normal leading-relaxed">
-                Targeted care focused on relieving pain, improving movement, and restoring everyday comfort through guided, personalized hands-on treatment by <strong className="text-white font-semibold">{HOSPITAL_INFO.chiefDoctor} ({HOSPITAL_INFO.doctorQualification})</strong>.
+                Targeted care focused on relieving pain, improving movement, and restoring everyday comfort through guided, personalized hands-on treatment by <strong className="text-white font-semibold">{hospitalInfo.chiefDoctor} ({hospitalInfo.doctorQualification})</strong>.
               </p>
             </div>
 

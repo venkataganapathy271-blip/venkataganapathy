@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { TESTIMONIALS } from "@/data/hospitalData";
+import type { TestimonialDoc } from "@/lib/data";
 import { Star, CheckCircle } from "lucide-react";
 import { DiagonalCarousel } from "@/components/ui/diagonal-carousel";
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ testimonials }: { testimonials: TestimonialDoc[] }) {
   const [slideSize, setSlideSize] = useState(400);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function TestimonialsSection() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const carouselItems = TESTIMONIALS.map((t) => ({
+  const carouselItems = testimonials.map((t) => ({
     id: t.id,
     src: t.avatar,
     title: t.condition,
@@ -33,10 +33,10 @@ export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="py-16 sm:py-20 bg-[#FAFAFE] overflow-hidden">
       <div className="max-w-7xl mx-auto px-2">
-        
+
         {/* Editorial Section Header (Mobile Optimized) */}
         <div className="mb-8 sm:mb-10 pb-6 border-b border-slate-200">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end text-center lg:text-left">
             <div className="lg:col-span-7 flex flex-col items-center lg:items-start">
               <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-slate-500 mb-2 sm:mb-3 block">

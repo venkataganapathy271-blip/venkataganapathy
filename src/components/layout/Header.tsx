@@ -3,9 +3,15 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X, ArrowRight, Activity } from "lucide-react";
-import { HOSPITAL_INFO } from "@/data/hospitalData";
+import type { HospitalInfoDoc, SiteSettingsDoc } from "@/lib/data";
 
-export default function Header({ isSolid = false }: { isSolid?: boolean }) {
+interface HeaderProps {
+  hospitalInfo: HospitalInfoDoc;
+  siteSettings: SiteSettingsDoc;
+  isSolid?: boolean;
+}
+
+export default function Header({ hospitalInfo, siteSettings, isSolid = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -17,7 +23,7 @@ export default function Header({ isSolid = false }: { isSolid?: boolean }) {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Toggle background/pill state
       setIsScrolled(currentScrollY > 20);
 
@@ -37,16 +43,7 @@ export default function Header({ isSolid = false }: { isSolid?: boolean }) {
     };
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#departments" },
-    { name: "Doctors", href: "#doctors" },
-    { name: "Facilities", href: "#facilities" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "FAQs", href: "#faq" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const navLinks = siteSettings.navLinks;
 
   return (
     <header
@@ -72,27 +69,27 @@ export default function Header({ isSolid = false }: { isSolid?: boolean }) {
             "relative w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 shrink-0 bg-white ring-2",
             effectiveScrolled ? "ring-transparent shadow-sm" : "ring-white/20 shadow-lg"
           )}>
-            <img 
-              src="/Logo.png" 
-              alt="Venkata Ganapathy Logo" 
-              className="absolute w-[280%] max-w-none h-auto left-1/2 -translate-x-1/2" 
-              style={{ top: '-18%' }} 
+            <img
+              src={hospitalInfo.logo}
+              alt={`${hospitalInfo.name} Logo`}
+              className="absolute w-[280%] max-w-none h-auto left-1/2 -translate-x-1/2"
+              style={{ top: '-18%' }}
             />
           </div>
           <div className="flex flex-col leading-none">
             <span className={cn(
               "text-[16px] md:text-[18px] tracking-tight transition-colors duration-500 font-black",
-              effectiveScrolled 
-                ? "bg-clip-text text-transparent bg-gradient-to-r from-[#1e293b] to-[#588356]" 
+              effectiveScrolled
+                ? "bg-clip-text text-transparent bg-gradient-to-r from-[#1e293b] to-[#588356]"
                 : "text-white drop-shadow-md"
             )}>
-              Venkata Ganapathy
+              {hospitalInfo.name}
             </span>
             <span className={cn(
               "text-[8.5px] md:text-[9px] font-extrabold uppercase tracking-[0.2em] transition-colors duration-500 mt-1",
               effectiveScrolled ? "text-[#588356]" : "text-white/90"
             )}>
-              Physiotherapy Clinic
+              {hospitalInfo.subtitle}
             </span>
           </div>
         </a>

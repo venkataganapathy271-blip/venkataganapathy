@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, MessageSquare } from "lucide-react";
-import { HOSPITAL_INFO } from "@/data/hospitalData";
+import type { HospitalInfoDoc, SiteSettingsDoc } from "@/lib/data";
 
-export default function EnquirySection() {
+export default function EnquirySection({ hospitalInfo, siteSettings }: { hospitalInfo: HospitalInfoDoc; siteSettings: SiteSettingsDoc }) {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -17,22 +17,31 @@ export default function EnquirySection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
 
     setIsSubmitting(true);
-    // Simulating instant enquiry storing & Brevo email gateway dispatch
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error("Failed to submit");
       setIsSubmitted(true);
-    }, 1200);
+    } catch (err) {
+      console.error("[EnquirySection submit]", err);
+      alert("Something went wrong while submitting your enquiry. Please try again or call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="py-16 sm:py-20 bg-[#FAFAFE]">
       <div className="max-w-7xl mx-auto px-2">
-        
+
         {/* Editorial Section Header (2-Column Banner Layout) */}
         <div className="mb-12 pb-6 border-b border-slate-200">
           <span className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3 block">
@@ -57,10 +66,10 @@ export default function EnquirySection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          
+
           {/* Left Column: Contact Cards & Info */}
           <div className="lg:col-span-5 space-y-6">
-            
+
             {/* Call Card */}
             <div className="bg-[#FAFAFE] text-slate-900 rounded-2xl sm:rounded-3xl p-6 border border-slate-200 space-y-4">
               <div className="flex items-center space-x-3">
@@ -70,17 +79,17 @@ export default function EnquirySection() {
                 <div>
                   <p className="text-[11px] text-slate-600 font-extrabold uppercase tracking-wider">Emergency Hotline (24/7)</p>
                   <a
-                    href={`tel:${HOSPITAL_INFO.emergencyPhone}`}
+                    href={`tel:${hospitalInfo.emergencyPhone}`}
                     className="text-xl font-black text-[#588356] hover:underline"
                   >
-                    {HOSPITAL_INFO.emergencyPhone}
+                    {hospitalInfo.emergencyPhone}
                   </a>
                 </div>
               </div>
 
               <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-700">
                 <span className="font-medium">General Reception:</span>
-                <span className="font-extrabold text-slate-900">{HOSPITAL_INFO.secondaryPhone}</span>
+                <span className="font-extrabold text-slate-900">{hospitalInfo.secondaryPhone}</span>
               </div>
             </div>
 
@@ -93,7 +102,7 @@ export default function EnquirySection() {
                 <div>
                   <h3 className="text-xs font-black uppercase tracking-wider text-slate-900">Hospital Location</h3>
                   <p className="text-xs text-slate-600 mt-1 leading-relaxed font-medium">
-                    {HOSPITAL_INFO.address}
+                    {hospitalInfo.address}
                   </p>
                 </div>
               </div>
@@ -105,7 +114,7 @@ export default function EnquirySection() {
                 <div>
                   <h3 className="text-xs font-black uppercase tracking-wider text-slate-900">Consultation Timings</h3>
                   <p className="text-xs text-slate-600 mt-1 leading-relaxed font-medium">
-                    {HOSPITAL_INFO.timing}
+                    {hospitalInfo.timing}
                   </p>
                 </div>
               </div>
@@ -116,8 +125,8 @@ export default function EnquirySection() {
                 </div>
                 <div>
                   <h3 className="text-xs font-black uppercase tracking-wider text-slate-900">Email Address</h3>
-                  <a href={`mailto:${HOSPITAL_INFO.email}`} className="text-xs text-[#588356] font-bold hover:underline mt-1 block">
-                    {HOSPITAL_INFO.email}
+                  <a href={`mailto:${hospitalInfo.email}`} className="text-xs text-[#588356] font-bold hover:underline mt-1 block">
+                    {hospitalInfo.email}
                   </a>
                 </div>
               </div>
@@ -125,7 +134,7 @@ export default function EnquirySection() {
 
             {/* WhatsApp Quick Action */}
             <a
-              href={`https://wa.me/${HOSPITAL_INFO.whatsapp}?text=Hello%20Venkata%20Ganapathi%20Physiotherapy%20Hospital,%20I%20want%20to%20book%20an%20appointment.`}
+              href={`https://wa.me/${hospitalInfo.whatsapp}?text=Hello%20Venkata%20Ganapathi%20Physiotherapy%20Hospital,%20I%20want%20to%20book%20an%20appointment.`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3.5 px-6 bg-[#A8D0A6] hover:bg-[#96C494] text-slate-900 font-black text-xs uppercase tracking-wider rounded-full flex items-center justify-center space-x-2 transition-all border border-[#A8D0A6]"
@@ -220,12 +229,9 @@ export default function EnquirySection() {
                         onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                         className="w-full bg-white border border-slate-200 rounded-2xl px-4 py-2.5 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-[#588356] transition-colors font-medium"
                       >
-                        <option value="orthopedic-rehab">Orthopedic Rehabilitation</option>
-                        <option value="spine-joint">Spine & Sciatica Care</option>
-                        <option value="neuro-rehab">Neurological & Stroke Rehab</option>
-                        <option value="sports-injury">Sports Injury Clinic</option>
-                        <option value="post-surgery">Post-Surgical Care</option>
-                        <option value="pediatric-geriatric">Pediatric & Geriatric Therapy</option>
+                        {siteSettings.enquiryDepartments.map((dept) => (
+                          <option key={dept.value} value={dept.value}>{dept.label}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
