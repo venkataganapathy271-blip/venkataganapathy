@@ -37,7 +37,7 @@ const FACILITIES_DATA: FacilityItem[] = [
     description:
       "Advanced laser therapy for targeted, deep tissue pain relief and accelerated healing of sports injuries.",
     image:
-      "/gallery/facility-laser.jpg",
+      "/gallery/Laser Pain Management.jpeg",
     highlights: [
       "Non-Invasive Pain Relief",
       "Accelerated Tissue Repair",

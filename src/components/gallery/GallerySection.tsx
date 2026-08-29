@@ -21,7 +21,6 @@ const GALLERY_IMAGE_FILES = [
   "WhatsApp Image 2026-08-19 at 12.23.04 PM (1).jpeg",
   "WhatsApp Image 2026-08-19 at 12.23.04 PM.jpeg",
   "WhatsApp Image 2026-08-19 at 12.23.05 PM (1).jpeg",
-  "WhatsApp Image 2026-08-19 at 12.23.05 PM.jpeg",
   "WhatsApp Image 2026-08-19 at 12.23.06 PM (1).jpeg",
   "WhatsApp Image 2026-08-19 at 12.23.06 PM.jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.45 AM (1).jpeg",
@@ -31,19 +30,15 @@ const GALLERY_IMAGE_FILES = [
   "WhatsApp Image 2026-08-21 at 3.38.46 AM (3).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.46 AM.jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.47 AM (1).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.47 AM (2).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.47 AM (3).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.47 AM.jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.48 AM (1).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.48 AM (2).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.48 AM.jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.49 AM (1).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.49 AM (2).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.49 AM (3).jpeg",
   "WhatsApp Image 2026-08-21 at 3.38.49 AM.jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.50 AM (1).jpeg",
-  "WhatsApp Image 2026-08-21 at 3.38.50 AM.jpeg",
-  "WhatsApp Image 2026-08-26 at 10.41.33 PM.jpeg",
+  "WhatsApp Image 2026-08-27 at 7.01.39 PM.jpeg",
   "WhatsApp Image 2026-08-26 at 10.48.51 AM.jpeg",
   "WhatsApp Image 2026-08-27 at 2.17.57 PM.jpeg",
 ];
@@ -51,35 +46,35 @@ const GALLERY_IMAGE_FILES = [
 const BASE_VIDEOS: GalleryItem[] = [
   {
     id: "v1",
-    title: "Computerized Lumbar & Cervical Traction Unit",
-    category: "Equipment",
+    title: "Core Strengthening & Yoga",
+    category: "Therapy",
     mediaType: "video",
     src: "/5991800-uhd_3840_2160_25fps.mp4",
-    description: "Automated digital decompression system for non-surgical slipped disc treatment.",
+    description: "Guided group sessions focusing on core strength, flexibility, and overall well-being.",
   },
   {
     id: "v2",
-    title: "Electrotherapy in Action",
-    category: "Video",
+    title: "Exercise Therapy Session",
+    category: "Therapy",
     mediaType: "video",
     src: "/6023232-uhd_3840_2160_25fps.mp4",
-    description: "FDA-approved electrotherapy unit for pain relief and nerve activation.",
+    description: "Guided exercise therapy session focused on mobility, strength, and recovery.",
   },
   {
     id: "v3",
-    title: "Gait Retraining & Stroke Recovery",
-    category: "Video",
+    title: "Supported Stretching Therapy",
+    category: "Therapy",
     mediaType: "video",
     src: "/6023241-uhd_3840_2160_25fps.mp4",
-    description: "Post-stroke gait retraining using parallel walking bars.",
+    description: "Supervised stretching using specialized equipment to improve spinal flexibility and relieve tension.",
   },
   {
     id: "v4",
-    title: "Rehabilitation Overview",
-    category: "Video",
+    title: "Strength Training & Conditioning",
+    category: "Therapy",
     mediaType: "video",
     src: "/6326960-hd_2048_1054_25fps.mp4",
-    description: "A complete overview of our state-of-the-art rehabilitation facilities.",
+    description: "Targeted weight training exercises under professional supervision to rebuild muscle strength.",
   }
 ];
 
@@ -248,6 +243,8 @@ export default function GallerySection() {
   const filteredItems =
     activeCategory === "All"
       ? GALLERY_ITEMS
+      : activeCategory === "Video"
+      ? GALLERY_ITEMS.filter((item) => item.mediaType === "video")
       : GALLERY_ITEMS.filter((item) => item.category === activeCategory);
 
   const displayedItems = showAll ? filteredItems : filteredItems.slice(0, 10);

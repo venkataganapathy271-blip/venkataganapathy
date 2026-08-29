@@ -33,7 +33,7 @@ const SERVICES_DATA: ServiceItem[] = [
     description:
       "Targeted recovery for knee, hip, shoulder, and spine injuries. Evidence-based protocols that restore full range of motion and prevent re-injury.",
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
+      "/services_images/Orthopedic & Joint Rehab.jpg",
     treatments: [
       "Post-Knee & Hip Mobilization",
       "Frozen Shoulder Release",
@@ -55,7 +55,7 @@ const SERVICES_DATA: ServiceItem[] = [
     description:
       "From ACL tears to tennis elbow - we get athletes back in the game stronger than before, with sport-specific conditioning built in.",
     image:
-      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
+      "/services_images/Sports Injury Recovery.jpg",
     treatments: [
       "ACL Tear & Ligament Rehab",
       "Tennis & Golfer's Elbow Relief",
@@ -77,7 +77,7 @@ const SERVICES_DATA: ServiceItem[] = [
     description:
       "A multi-modal approach to long-standing pain that combines manual therapy, movement re-education, and computerized traction to break the pain cycle.",
     image:
-      "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=800",
+      "/services_images/Spine & Disc Decompression.jpg",
     treatments: [
       "Myofascial Trigger Point Therapy",
       "Spinal Decompression & Traction",
@@ -99,7 +99,7 @@ const SERVICES_DATA: ServiceItem[] = [
     description:
       "Structured neuro-rehabilitation following stroke (hemiplegia) and facial weakness - safe, progressive, and motor milestone outcome-focused.",
     image:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800",
+      "/services_images/Stroke Paralysis Recovery.jpg",
     treatments: [
       "NMES Muscle Re-education",
       "Facial Bell's Palsy Therapy",
@@ -121,7 +121,7 @@ const SERVICES_DATA: ServiceItem[] = [
     description:
       "Hands-on joint mobilization, soft tissue release, and therapeutic dry needling to reduce pain, restore mobility, and accelerate healing.",
     image:
-      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
+      "/services_images/Manual Therapy & Needling.jpg",
     treatments: [
       "Therapeutic Dry Needling",
       "Joint Mobilization & Manipulation",
