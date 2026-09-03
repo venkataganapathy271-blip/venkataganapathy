@@ -12,7 +12,7 @@ import type {
 /* Canonical site URL — override per environment via NEXT_PUBLIC_SITE_URL */
 /* ------------------------------------------------------------------ */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.hanumanjunctionphysioclinic.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://venkataganapathyphysiotherapyclinic.com"
 ).replace(/\/+$/, "");
 
 export function absoluteUrl(path = "/"): string {
