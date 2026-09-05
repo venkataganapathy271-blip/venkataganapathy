@@ -334,11 +334,11 @@ function DocumentsTable({
                             <td className="px-4 py-3 text-slate-500 max-w-md">
                                 {def.key === "enquiries" ? (
                                     <div className="flex flex-col gap-1 text-xs">
-                                        {doc.phone && <span>Phone: {String(doc.phone)}</span>}
-                                        {doc.email && <span>Email: {String(doc.email)}</span>}
-                                        {doc.department && <span>Dept: {String(doc.department)}</span>}
-                                        {doc.preferredDate && <span>Date: {String(doc.preferredDate)}</span>}
-                                        {doc.message && <span className="truncate max-w-[250px]" title={String(doc.message)}>Message: {String(doc.message)}</span>}
+                                        {doc.phone ? <span>Phone: {String(doc.phone)}</span> : null}
+                                        {doc.email ? <span>Email: {String(doc.email)}</span> : null}
+                                        {doc.department ? <span>Dept: {String(doc.department)}</span> : null}
+                                        {doc.preferredDate ? <span>Date: {String(doc.preferredDate)}</span> : null}
+                                        {doc.message ? <span className="truncate max-w-[250px]" title={String(doc.message)}>Message: {String(doc.message)}</span> : null}
                                     </div>
                                 ) : (
                                     def.subtitleField ? String(doc[def.subtitleField] ?? "") : ""
