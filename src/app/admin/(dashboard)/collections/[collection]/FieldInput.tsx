@@ -338,18 +338,35 @@ function MediaInput({
         setError(null);
         setProgress(10);
         try {
+            // 1. Get signature to bypass Vercel's 4.5MB payload limit
+            const subfolder = labelToSubfolder(label);
+            const signRes = await fetch(`/api/admin/upload?subfolder=${encodeURIComponent(subfolder)}`);
+            const signData = await signRes.json();
+            if (!signRes.ok) throw new Error(signData.error || "Failed to get upload signature");
+            
+            setProgress(30);
+
+            // 2. Upload directly to Cloudinary
             const formData = new FormData();
             formData.append("file", file);
-            formData.append("subfolder", labelToSubfolder(label));
+            formData.append("api_key", signData.apiKey);
+            formData.append("timestamp", String(signData.timestamp));
+            formData.append("signature", signData.signature);
+            formData.append("folder", signData.folder);
 
-            const res = await fetch("/api/admin/upload", {
-                method: "POST",
-                body: formData,
-            });
-            setProgress(70);
-            const json = await res.json();
-            if (!res.ok) throw new Error(json.error || "Upload failed");
-            onChange(json.url);
+            const uploadRes = await fetch(
+                `https://api.cloudinary.com/v1_1/${signData.cloudName}/auto/upload`,
+                {
+                    method: "POST",
+                    body: formData,
+                }
+            );
+            
+            setProgress(80);
+            const uploadData = await uploadRes.json();
+            if (!uploadRes.ok) throw new Error(uploadData.error?.message || "Upload failed");
+            
+            onChange(uploadData.secure_url);
             setProgress(100);
         } catch (e) {
             setError(e instanceof Error ? e.message : "Upload failed");
