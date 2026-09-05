@@ -5,7 +5,7 @@ import { Phone, MessageCircle, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import type { HospitalInfoDoc } from "@/lib/data";
 
-const WHATSAPP_MSG = "Hello Venkata Ganapathy Physiotherapy Clinic, I have a query regarding physiotherapy.";
+const WHATSAPP_MSG = "Hello Venkata Ganapathi Physiotherapy Clinic, I have a query regarding physiotherapy.";
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>

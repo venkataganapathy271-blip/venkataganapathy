@@ -181,7 +181,7 @@ async function main() {
   /* ============ 3. Seed Hospital Info ============ */
   console.log("\n=== Seeding Hospital Info ===");
   await db.collection("hospitalinfos").insertOne({
-    name: "Venkata Ganapathy",
+    name: "Venkata Ganapathi",
     subtitle: "Physiotherapy Clinic",
     tagline: "14+ Years of Modern Physiotherapy Excellence in Hanuman Junction",
     regNo: "Establishment 2014",
@@ -565,7 +565,7 @@ async function main() {
         category: i % 3 === 0 ? "Facilities" : i % 3 === 1 ? "Equipment" : "Therapy",
         mediaType: "image",
         src: galleryUrls[i],
-        description: "Venkata Ganapathy Physiotherapy Clinic in Hanuman Junction.",
+        description: "Venkata Ganapathi Physiotherapy Clinic in Hanuman Junction.",
         order: order++,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -580,7 +580,7 @@ async function main() {
     {
       id: "f1",
       category: "General",
-      question: "Do I need a doctor referral before starting physical therapy at Venkata Ganapathy Physiotherapy Clinic?",
+      question: "Do I need a doctor referral before starting physical therapy at Venkata Ganapathi Physiotherapy Clinic?",
       answer:
         "No direct referral is mandatory. You can walk in or book an appointment directly with Dr. Maruthi Rao Pulavarthi for a comprehensive physical evaluation and customized treatment plan.",
       order: 1,
@@ -612,7 +612,7 @@ async function main() {
       category: "Appointments",
       question: "What are the hospital OPD timings in Hanuman Junction?",
       answer:
-        "Venkata Ganapathy Physiotherapy Clinic operates Monday to Saturday from 9:00 AM to 8:00 PM. We are closed on Sundays (Holiday). Prior appointment booking is recommended for minimum waiting time.",
+        "Venkata Ganapathi Physiotherapy Clinic operates Monday to Saturday from 9:00 AM to 8:00 PM. We are closed on Sundays (Holiday). Prior appointment booking is recommended for minimum waiting time.",
       order: 4,
       createdAt: new Date(),
       updatedAt: new Date(),

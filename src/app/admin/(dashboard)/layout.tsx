@@ -7,7 +7,7 @@ import AdminShell from "./AdminShell";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Admin — Venkata Ganapathy Physiotherapy Clinic",
+    title: "Admin — Venkata Ganapathi Physiotherapy Clinic",
     robots: { index: false, follow: false },
 };
 

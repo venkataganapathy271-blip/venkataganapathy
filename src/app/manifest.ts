@@ -13,7 +13,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
   }
 
   return {
-    name: "Venkata Ganapathy Physiotherapy Clinic — Hanuman Junction",
+    name: "Venkata Ganapathi Physiotherapy Clinic — Hanuman Junction",
     short_name: "VG Physio Clinic",
     description:
       "Physiotherapy clinic in Hanuman Junction since 2014. Paralysis care, slipped disc decompression, sports injury rehab & post-surgical recovery by Dr. Maruthi Rao Pulavarthi.",

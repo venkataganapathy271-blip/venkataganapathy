@@ -43,7 +43,7 @@ export default function ServicesSection({ services }: { services: ServiceDoc[] }
             {/* Right Subtitle & Links */}
             <div className="lg:col-span-5 flex flex-col items-center lg:items-start space-y-4 sm:space-y-5 mt-2 lg:mt-0">
               <p className="text-slate-600 text-xs sm:text-base leading-relaxed font-normal max-w-md lg:max-w-none">
-                From non-surgical joint care to advanced neuro rehabilitation, we&apos;ve got you covered. Choose reliability, choose Venkata Ganapathy Physiotherapy Clinic.
+                From non-surgical joint care to advanced neuro rehabilitation, we&apos;ve got you covered. Choose reliability, choose Venkata Ganapathi Physiotherapy Clinic.
               </p>
 
               {/* Action Links */}
@@ -152,7 +152,7 @@ export default function ServicesSection({ services }: { services: ServiceDoc[] }
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/60 text-xs font-semibold text-white">
-                Venkata Ganapathy Physiotherapy Clinical Protocol
+                Venkata Ganapathi Physiotherapy Clinical Protocol
               </div>
             </div>
 

@@ -52,7 +52,7 @@ export default function Footer({ hospitalInfo, siteSettings }: { hospitalInfo: H
             <div className="relative w-10 h-10 rounded-full bg-white ring-2 ring-slate-200/50 shadow-sm shrink-0 flex items-center justify-center overflow-hidden">
               <img
                 src={hospitalInfo.logo}
-                alt="Venkata Ganapathy Logo"
+                alt="Venkata Ganapathi Logo"
                 className="absolute w-[280%] max-w-none h-auto left-1/2 -translate-x-1/2"
                 style={{ top: '-18%' }}
               />

@@ -47,7 +47,7 @@ export default function LoginForm({ logo }: { logo: string }) {
                         )}
                         <h1 className="text-xl font-bold text-slate-900">Admin Panel</h1>
                         <p className="text-sm text-slate-500 mt-1">
-                            Venkata Ganapathy Physiotherapy Clinic
+                            Venkata Ganapathi Physiotherapy Clinic
                         </p>
                     </div>
 

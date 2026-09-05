@@ -8,7 +8,7 @@ import LoginForm from "./LoginForm";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Admin Login — Venkata Ganapathy Physiotherapy Clinic",
+    title: "Admin Login — Venkata Ganapathi Physiotherapy Clinic",
     robots: { index: false, follow: false },
 };
 

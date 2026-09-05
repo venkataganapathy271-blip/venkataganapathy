@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  let name = "Venkata Ganapathy Physiotherapy Clinic";
+  let name = "Venkata Ganapathi Physiotherapy Clinic";
   let tagline =
     "14+ Years of Modern Physiotherapy Excellence in Hanuman Junction";
   let logo: string | undefined;
@@ -63,7 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "neuro physiotherapy Vijayawada",
       "shoulder pain physiotherapy Hanuman Junction",
       // Brand keywords
-      "Venkata Ganapathy Physiotherapy Clinic",
+      "Venkata Ganapathi Physiotherapy Clinic",
       "Dr Maruthi Rao Pulavarthi physiotherapist",
       "Dr Maruthi Rao Pulavarthi BPT",
       "VG physio clinic Hanuman Junction",

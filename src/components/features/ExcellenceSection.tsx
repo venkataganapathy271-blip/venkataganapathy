@@ -24,7 +24,7 @@ export default function ExcellenceSection({ hospitalInfo }: { hospitalInfo: Hosp
               </h2>
 
               <p className="text-slate-600 text-xs sm:text-base leading-relaxed max-w-md lg:max-w-xl">
-                At Venkata Ganapathy Physiotherapy Clinic, we blend advanced clinical science with compassionate care to help you regain complete mobility, alleviate chronic pain, and restore your quality of life. Our dedicated team is committed to guiding you toward a stronger, healthier tomorrow.
+                At Venkata Ganapathi Physiotherapy Clinic, we blend advanced clinical science with compassionate care to help you regain complete mobility, alleviate chronic pain, and restore your quality of life. Our dedicated team is committed to guiding you toward a stronger, healthier tomorrow.
               </p>
 
               <a

@@ -162,7 +162,7 @@ export interface LegalPageDoc {
 /* ---------- Default fallbacks (used ONLY if DB is empty, e.g. before seeding) ---------- */
 
 export const DEFAULT_HOSPITAL_INFO: HospitalInfoDoc = {
-  name: "Venkata Ganapathy",
+  name: "Venkata Ganapathi",
   subtitle: "Physiotherapy Clinic",
   tagline: "14+ Years of Modern Physiotherapy Excellence in Hanuman Junction",
   regNo: "Establishment 2014",
@@ -239,12 +239,12 @@ export const DEFAULT_LEGAL_PAGES: LegalPageDoc[] = [
     slug: "privacy-policy",
     title: "Privacy Policy",
     description:
-      "How Venkata Ganapathy Physiotherapy Clinic collects, uses, stores and protects your personal data under the Digital Personal Data Protection Act, 2023.",
+      "How Venkata Ganapathi Physiotherapy Clinic collects, uses, stores and protects your personal data under the Digital Personal Data Protection Act, 2023.",
     order: 1,
     sections: [
       {
         heading: "1. Introduction & Who We Are",
-        body: "Venkata Ganapathy Physiotherapy Clinic ('the Clinic', 'we', 'us') operates at Opposite Dr. Dutta Ramachandra Rao (Rambabu Garu) Hospital, K.S. Talkies Road, Vijayawada Road, Hanuman Junction - 521105, Andhra Pradesh. Under the Digital Personal Data Protection Act, 2023 ('DPDP Act'), the Clinic acts as a Data Fiduciary — we determine the purpose and means of processing your personal data. This policy explains what data we collect about you (the 'Data Principal'), why we collect it, how long we keep it, the safeguards we apply, and the rights you have under the law. By visiting our clinic, using our website, or submitting an enquiry, you consent to the practices described here.",
+        body: "Venkata Ganapathi Physiotherapy Clinic ('the Clinic', 'we', 'us') operates at Opposite Dr. Dutta Ramachandra Rao (Rambabu Garu) Hospital, K.S. Talkies Road, Vijayawada Road, Hanuman Junction - 521105, Andhra Pradesh. Under the Digital Personal Data Protection Act, 2023 ('DPDP Act'), the Clinic acts as a Data Fiduciary — we determine the purpose and means of processing your personal data. This policy explains what data we collect about you (the 'Data Principal'), why we collect it, how long we keep it, the safeguards we apply, and the rights you have under the law. By visiting our clinic, using our website, or submitting an enquiry, you consent to the practices described here.",
       },
       {
         heading: "2. Personal Data We Collect",
@@ -292,7 +292,7 @@ export const DEFAULT_LEGAL_PAGES: LegalPageDoc[] = [
       },
       {
         heading: "13. Grievance Officer & Contact",
-        body: "For any privacy concern, data request or grievance:\nVenkata Ganapathy Physiotherapy Clinic\nOpposite Dr. Dutta Ramachandra Rao (Rambabu Garu) Hospital, K.S. Talkies Road, Vijayawada Road, Hanuman Junction - 521105, Andhra Pradesh\nPhone: +91 94418 29648\nEmail: care@venkataganapathiphysio.com\nTimings: Monday – Saturday, 9:00 AM – 8:00 PM (Sunday closed)\nLast updated: August 2026",
+        body: "For any privacy concern, data request or grievance:\nVenkata Ganapathi Physiotherapy Clinic\nOpposite Dr. Dutta Ramachandra Rao (Rambabu Garu) Hospital, K.S. Talkies Road, Vijayawada Road, Hanuman Junction - 521105, Andhra Pradesh\nPhone: +91 94418 29648\nEmail: care@venkataganapathiphysio.com\nTimings: Monday – Saturday, 9:00 AM – 8:00 PM (Sunday closed)\nLast updated: August 2026",
       },
     ],
   },
@@ -300,12 +300,12 @@ export const DEFAULT_LEGAL_PAGES: LegalPageDoc[] = [
     slug: "terms-conditions",
     title: "Terms & Conditions",
     description:
-      "Terms governing the use of the Venkata Ganapathy Physiotherapy Clinic website and the physiotherapy services offered at our Hanuman Junction clinic.",
+      "Terms governing the use of the Venkata Ganapathi Physiotherapy Clinic website and the physiotherapy services offered at our Hanuman Junction clinic.",
     order: 2,
     sections: [
       {
         heading: "1. Acceptance of Terms",
-        body: "These Terms & Conditions ('Terms') govern your use of the website of Venkata Ganapathy Physiotherapy Clinic ('the Clinic') and the physiotherapy services offered at our clinic in Hanuman Junction, Andhra Pradesh. By accessing this website, submitting an enquiry, or availing any of our services, you agree to be bound by these Terms. If you do not agree, please do not use the website or our services.",
+        body: "These Terms & Conditions ('Terms') govern your use of the website of Venkata Ganapathi Physiotherapy Clinic ('the Clinic') and the physiotherapy services offered at our clinic in Hanuman Junction, Andhra Pradesh. By accessing this website, submitting an enquiry, or availing any of our services, you agree to be bound by these Terms. If you do not agree, please do not use the website or our services.",
       },
       {
         heading: "2. Nature of Services",
@@ -345,7 +345,7 @@ export const DEFAULT_LEGAL_PAGES: LegalPageDoc[] = [
       },
       {
         heading: "11. Changes to These Terms",
-        body: "We may revise these Terms from time to time. The current version will always be available on this page. Continued use of the website or our services after revision constitutes acceptance of the updated Terms.\nContact: Venkata Ganapathy Physiotherapy Clinic, Hanuman Junction — Phone: +91 94418 29648 — Email: care@venkataganapathiphysio.com",
+        body: "We may revise these Terms from time to time. The current version will always be available on this page. Continued use of the website or our services after revision constitutes acceptance of the updated Terms.\nContact: Venkata Ganapathi Physiotherapy Clinic, Hanuman Junction — Phone: +91 94418 29648 — Email: care@venkataganapathiphysio.com",
       },
     ],
   },
@@ -358,7 +358,7 @@ export const DEFAULT_LEGAL_PAGES: LegalPageDoc[] = [
     sections: [
       {
         heading: "1. Our Commitment",
-        body: "At Venkata Ganapathy Physiotherapy Clinic, every patient is entitled to respectful, safe and quality care. This charter, aligned with the NABH (National Accreditation Board for Hospitals & Healthcare Providers) patient rights framework and applicable Indian healthcare regulations, sets out the rights you can expect from us and the responsibilities that help us care for you better.",
+        body: "At Venkata Ganapathi Physiotherapy Clinic, every patient is entitled to respectful, safe and quality care. This charter, aligned with the NABH (National Accreditation Board for Hospitals & Healthcare Providers) patient rights framework and applicable Indian healthcare regulations, sets out the rights you can expect from us and the responsibilities that help us care for you better.",
       },
       {
         heading: "2. Right to Information & Transparency",
@@ -402,7 +402,7 @@ export const DEFAULT_LEGAL_PAGES: LegalPageDoc[] = [
       },
       {
         heading: "12. Feedback & Continuous Improvement",
-        body: "Your feedback — appreciations and complaints alike — helps us improve. Please share your experience with us during your visit, over the phone, or through our website enquiry form. Every piece of feedback is reviewed by the clinic management as part of our quality commitment.\nContact: Venkata Ganapathy Physiotherapy Clinic, Hanuman Junction — Phone: +91 94418 29648 — Email: care@venkataganapathiphysio.com",
+        body: "Your feedback — appreciations and complaints alike — helps us improve. Please share your experience with us during your visit, over the phone, or through our website enquiry form. Every piece of feedback is reviewed by the clinic management as part of our quality commitment.\nContact: Venkata Ganapathi Physiotherapy Clinic, Hanuman Junction — Phone: +91 94418 29648 — Email: care@venkataganapathiphysio.com",
       },
     ],
   },
