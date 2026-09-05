@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Activity, Phone, Mail, MapPin, ShieldCheck, ArrowUp, ChevronRight } from "lucide-react";
 import type { HospitalInfoDoc, SiteSettingsDoc } from "@/lib/data";
 
@@ -36,6 +37,12 @@ const YoutubeIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Footer({ hospitalInfo, siteSettings }: { hospitalInfo: HospitalInfoDoc; siteSettings: SiteSettingsDoc }) {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  const getHref = (href: string) => {
+    return href.startsWith("#") && !isHomePage ? `/${href}` : href;
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -128,10 +135,10 @@ export default function Footer({ hospitalInfo, siteSettings }: { hospitalInfo: H
           <ul className="space-y-3.5 font-bold text-sm">
             {siteSettings.footerQuickLinks.map((item, idx) => (
               <li key={idx}>
-                <a href={item.href} className="text-slate-600 hover:text-slate-950 transition-colors flex items-center group">
+                <Link href={getHref(item.href)} className="text-slate-600 hover:text-slate-950 transition-colors flex items-center group">
                   <ChevronRight className="w-3 h-3 mr-2 text-slate-300 group-hover:text-slate-900 transition-colors stroke-[3]" />
                   <span>{item.label}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

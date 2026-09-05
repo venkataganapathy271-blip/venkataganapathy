@@ -292,6 +292,7 @@ function DocumentsTable({
     onEdit: (d: Doc) => void;
     onDelete: (d: Doc) => void;
 }) {
+    const hasOrderField = def.fields.some(f => f.name === "order");
     if (docs.length === 0) {
         return (
             <div className="bg-white rounded-xl border border-slate-200 p-10 text-center text-sm text-slate-500">
@@ -308,7 +309,7 @@ function DocumentsTable({
                         <th className="px-4 py-3 font-semibold">Preview</th>
                         <th className="px-4 py-3 font-semibold">Title</th>
                         <th className="px-4 py-3 font-semibold">Details</th>
-                        <th className="px-4 py-3 font-semibold">Order</th>
+                        {hasOrderField && <th className="px-4 py-3 font-semibold">Order</th>}
                         <th className="px-4 py-3 font-semibold text-right">Actions</th>
                     </tr>
                 </thead>
@@ -330,12 +331,24 @@ function DocumentsTable({
                             <td className="px-4 py-3 font-medium text-slate-900 max-w-xs truncate">
                                 {String(doc[def.titleField] ?? "—")}
                             </td>
-                            <td className="px-4 py-3 text-slate-500 max-w-xs truncate">
-                                {def.subtitleField ? String(doc[def.subtitleField] ?? "") : ""}
+                            <td className="px-4 py-3 text-slate-500 max-w-md">
+                                {def.key === "enquiries" ? (
+                                    <div className="flex flex-col gap-1 text-xs">
+                                        {doc.phone && <span>Phone: {String(doc.phone)}</span>}
+                                        {doc.email && <span>Email: {String(doc.email)}</span>}
+                                        {doc.department && <span>Dept: {String(doc.department)}</span>}
+                                        {doc.preferredDate && <span>Date: {String(doc.preferredDate)}</span>}
+                                        {doc.message && <span className="truncate max-w-[250px]" title={String(doc.message)}>Message: {String(doc.message)}</span>}
+                                    </div>
+                                ) : (
+                                    def.subtitleField ? String(doc[def.subtitleField] ?? "") : ""
+                                )}
                             </td>
-                            <td className="px-4 py-3 text-slate-500">
-                                {typeof doc.order === "number" ? doc.order : "—"}
-                            </td>
+                            {hasOrderField && (
+                                <td className="px-4 py-3 text-slate-500">
+                                    {typeof doc.order === "number" ? doc.order : "—"}
+                                </td>
+                            )}
                             <td className="px-4 py-3 text-right whitespace-nowrap">
                                 <button
                                     onClick={() => onEdit(doc)}

@@ -16,6 +16,7 @@ export const MANAGED_COLLECTIONS = [
   "aboutPillars",
   "enquiries",
   "siteSettings",
+  "legalPages",
 ] as const satisfies readonly CollectionKey[];
 
 /** Collections that hold a single document (upserted, never listed/deleted) */

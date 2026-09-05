@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Menu, X, ArrowRight, Activity } from "lucide-react";
 import type { HospitalInfoDoc, SiteSettingsDoc } from "@/lib/data";
@@ -15,8 +17,15 @@ export default function Header({ hospitalInfo, siteSettings, isSolid = false }: 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
-  const effectiveScrolled = isScrolled || isSolid;
+  const getHref = (href: string) => {
+    return href.startsWith("#") && !isHomePage ? `/${href}` : href;
+  };
+
+  const effectiveScrolled = isScrolled || isSolid || !isHomePage;
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -64,7 +73,7 @@ export default function Header({ hospitalInfo, siteSettings, isSolid = false }: 
             : "max-w-7xl px-4 py-5 bg-transparent"
         )}
       >
-        <a href="#home" className="transition-all duration-500 flex items-center gap-2.5">
+        <Link href={getHref("#home")} className="transition-all duration-500 flex items-center gap-2.5">
           <div className={cn(
             "relative w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 shrink-0 bg-white ring-2",
             effectiveScrolled ? "ring-transparent shadow-sm" : "ring-white/20 shadow-lg"
@@ -92,25 +101,25 @@ export default function Header({ hospitalInfo, siteSettings, isSolid = false }: 
               {hospitalInfo.subtitle}
             </span>
           </div>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center space-x-8 font-bold text-[11px] uppercase tracking-[0.1em]">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              href={getHref(link.href)}
               className={cn(
                 "relative transition-colors duration-300 hover:text-[#588356] after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:w-0 after:h-[2px] after:rounded-full after:bg-[#588356] after:transition-all hover:after:w-full",
                 effectiveScrolled ? "text-slate-700" : "text-white/90"
               )}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-4 md:gap-6">
-          <a href="#contact" className={cn(
+          <Link href={getHref("#contact")} className={cn(
             "hidden md:inline-flex items-center space-x-2 px-6 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all duration-300",
             effectiveScrolled
               ? "bg-slate-900 text-white hover:bg-[#588356] shadow-md"
@@ -118,7 +127,7 @@ export default function Header({ hospitalInfo, siteSettings, isSolid = false }: 
           )}>
             <span>Book Appointment</span>
             <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
 
           <button
             className={cn(
@@ -142,23 +151,23 @@ export default function Header({ hospitalInfo, siteSettings, isSolid = false }: 
             <X className="w-6 h-6" />
           </button>
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              href={getHref(link.href)}
               className="text-[24px] font-black text-slate-800 hover:text-[#588356] transition-colors tracking-tight"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href={getHref("#contact")}
             onClick={() => setMobileMenuOpen(false)}
             className="mt-6 flex items-center space-x-2 bg-slate-900 text-white px-8 py-3.5 rounded-full font-black uppercase tracking-widest text-[11px] hover:bg-[#588356] transition-all"
           >
             <span>Book Appointment</span>
             <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
       )}
     </header>
