@@ -21,6 +21,14 @@ function MediaCard({
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [hovered, setHovered] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldLoad(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handlePlayPause = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -46,21 +54,25 @@ function MediaCard({
       onClick={onClick}
     >
       {/* Media */}
-      {item.mediaType === "video" ? (
+      {shouldLoad && item.mediaType === "video" ? (
         <video
           ref={videoRef}
           src={item.src}
           muted
           loop
           playsInline
+          preload="none"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
-      ) : (
+      ) : shouldLoad ? (
         <img
           src={item.src}
           alt={item.title}
+          loading="lazy"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
+      ) : (
+        <div className="w-full h-full bg-slate-800 animate-pulse" />
       )}
 
       {/* Always-on subtle vignette */}
@@ -254,12 +266,14 @@ export default function GallerySection({ galleryItems }: { galleryItems: Gallery
                   src={activeItem.src}
                   controls
                   autoPlay
+                  preload="none"
                   className="w-full h-full object-contain"
                 />
               ) : (
                 <img
                   src={activeItem.src}
                   alt={activeItem.title}
+                  loading="lazy"
                   className="w-full h-full object-contain"
                 />
               )}

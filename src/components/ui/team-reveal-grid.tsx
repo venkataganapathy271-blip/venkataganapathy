@@ -22,11 +22,13 @@ export interface TeamRevealGridProps {
   description?: string;
   members: readonly TeamRevealMember[];
   className?: string;
+  onMemberClick?: (id: string) => void;
 }
 
 export function TeamRevealGrid({
   members,
   className = "",
+  onMemberClick,
 }: TeamRevealGridProps) {
   return (
     <div className={`w-full ${className}`}>
@@ -35,6 +37,7 @@ export function TeamRevealGrid({
           <div
             key={member.id ?? `${member.name}-${index}`}
             className="group relative aspect-[3/4] rounded-[20px] lg:rounded-[28px] overflow-hidden bg-slate-900 cursor-pointer"
+            onClick={() => onMemberClick?.(member.id!)}
           >
             {/* Background Photo or Fallback */}
             {member.image ? (

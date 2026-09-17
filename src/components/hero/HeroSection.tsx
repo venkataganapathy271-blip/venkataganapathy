@@ -13,6 +13,15 @@ export default function HeroSection({ slides, hospitalInfo }: HeroSectionProps) 
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [loadedVideos, setLoadedVideos] = useState<Record<number, boolean>>({});
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    // Defer video loading to ensure the website loads instantly
+    const timer = setTimeout(() => {
+      setShouldLoadVideo(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleVideoLoaded = (idx: number) => {
     setLoadedVideos((prev) => ({ ...prev, [idx]: true }));
@@ -65,22 +74,27 @@ export default function HeroSection({ slides, hospitalInfo }: HeroSectionProps) 
               <img
                 src={slide.poster}
                 alt="Hospital Background"
+                fetchPriority={idx === 0 ? "high" : "auto"}
+                loading={idx === 0 ? "eager" : "lazy"}
                 className="absolute inset-0 w-full h-full object-cover z-0"
               />
 
               {/* Video (Fades in over the image only after it has loaded data) */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster={slide.poster}
-                onLoadedData={() => handleVideoLoaded(idx)}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out pointer-events-none z-10 ${loadedVideos[idx] ? "opacity-100" : "opacity-0"
-                  }`}
-              >
-                <source src={slide.video} type="video/mp4" />
-              </video>
+              {shouldLoadVideo && (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  poster={slide.poster}
+                  onLoadedData={() => handleVideoLoaded(idx)}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out pointer-events-none z-10 ${loadedVideos[idx] ? "opacity-100" : "opacity-0"
+                    }`}
+                >
+                  <source src={slide.video} type="video/mp4" />
+                </video>
+              )}
             </div>
           ))}
 

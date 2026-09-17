@@ -19,6 +19,15 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({ hospitalInfo, pillars }: AboutSectionProps) {
+  const [shouldLoadVideo, setShouldLoadVideo] = React.useState(false);
+
+  React.useEffect(() => {
+    // Defer video loading to ensure the website loads instantly
+    const timer = setTimeout(() => {
+      setShouldLoadVideo(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section id="about" className="py-10 sm:py-14 bg-[#FAFAFE]">
@@ -32,15 +41,18 @@ export default function AboutSection({ hospitalInfo, pillars }: AboutSectionProp
             <div className="relative w-full h-[340px] sm:h-[420px] lg:h-full lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 bg-slate-950 flex flex-col justify-between p-4 sm:p-5">
 
               {/* Live Background Video */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-              >
-                <source src={hospitalInfo.aboutVideoMain} type="video/mp4" />
-              </video>
+              {shouldLoadVideo && (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                >
+                  <source src={hospitalInfo.aboutVideoMain} type="video/mp4" />
+                </video>
+              )}
               <div className="absolute inset-0 bg-slate-950/40" />
 
               {/* Top Badges Overlay */}
@@ -162,15 +174,18 @@ export default function AboutSection({ hospitalInfo, pillars }: AboutSectionProp
 
               {/* Card 3: Secondary Video Media Card */}
               <div className="col-span-1 md:col-span-3 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 min-h-[160px] sm:min-h-[190px] flex flex-col justify-between p-2.5 sm:p-3.5">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                >
-                  <source src={hospitalInfo.aboutVideoSecondary} type="video/mp4" />
-                </video>
+                {shouldLoadVideo && (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="none"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                  >
+                    <source src={hospitalInfo.aboutVideoSecondary} type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-slate-950/40" />
 
                 {/* Top Badge */}

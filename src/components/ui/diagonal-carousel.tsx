@@ -79,6 +79,35 @@ export function DiagonalCarousel({
   const safeSlideSize = Math.max(120, slideSize);
   const safeInactiveScale = clamp(inactiveScale, 0.35, 1);
 
+  // Touch swipe handlers
+  const [touchStart, setTouchStart] = React.useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = React.useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndEvent = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && (loop || currentIndex < maxIndex)) {
+      selectSlide(currentIndex + 1);
+    }
+    if (isRightSwipe && (loop || currentIndex > 0)) {
+      selectSlide(currentIndex - 1);
+    }
+  };
+
   const selectSlide = React.useCallback(
     (nextIndex: number) => {
       if (!items.length) {
@@ -130,6 +159,9 @@ export function DiagonalCarousel({
       aria-label="Diagonal image carousel"
       tabIndex={tabIndex ?? 0}
       onKeyDown={handleKeyDown}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEndEvent}
       className={cn("relative isolate h-[520px] sm:h-[540px] w-full overflow-hidden", className)}
       {...props}
     >
@@ -240,7 +272,10 @@ export function DiagonalCarousel({
           </button>
 
           {showDots && (
-            <div className="flex items-center justify-center gap-2 px-1">
+            <div 
+              className="flex items-center justify-start gap-2 px-1 max-w-[140px] sm:max-w-md overflow-x-auto hide-scrollbar"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
               {items.map((item, index) => (
                 <button
                   key={`${item.title}-${index}`}
@@ -248,7 +283,7 @@ export function DiagonalCarousel({
                   aria-label={`Show slide ${index + 1}: ${item.title}`}
                   aria-current={currentIndex === index ? "true" : undefined}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-300 cursor-pointer",
+                    "h-2 rounded-full transition-all duration-300 cursor-pointer shrink-0",
                     currentIndex === index ? "w-6 bg-[#588356]" : "w-2 bg-slate-300 hover:bg-slate-400"
                   )}
                   onClick={() => selectSlide(index)}
