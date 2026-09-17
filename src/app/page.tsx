@@ -20,6 +20,7 @@ import {
   buildVideosJsonLd,
   buildWebsiteJsonLd,
   buildServicesItemListJsonLd,
+  buildServiceProductJsonLd,
 } from "@/lib/seo";
 import {
   getHospitalInfo,
@@ -73,7 +74,11 @@ export default async function Home() {
       <JsonLd data={buildFaqJsonLd(faqs)} />
       <JsonLd data={buildGalleryJsonLd(galleryItems, hospitalInfo)} />
       {buildVideosJsonLd(hospitalInfo, heroSlides).map((video, i) => (
-        <JsonLd key={i} data={video} />
+        <JsonLd key={`vid-${i}`} data={video} />
+      ))}
+      {/* E-commerce Style Product Snippets for Services */}
+      {buildServiceProductJsonLd(services, hospitalInfo, testimonials).map((product, i) => (
+        <JsonLd key={`prod-${i}`} data={product} />
       ))}
       {/* Top Header */}
       <Header hospitalInfo={hospitalInfo} siteSettings={siteSettings} />

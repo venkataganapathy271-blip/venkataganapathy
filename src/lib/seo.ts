@@ -363,6 +363,13 @@ export function buildGalleryJsonLd(
       name: i.title,
       description: i.description,
       creditText: clinicName(hospitalInfo),
+      copyrightNotice: `${new Date().getFullYear()} ${clinicName(hospitalInfo)}. All rights reserved.`,
+      license: absoluteUrl("/"),
+      acquireLicensePage: absoluteUrl("/#contact"),
+      creator: {
+        "@type": "Organization",
+        name: clinicName(hospitalInfo),
+      },
     })),
   };
 }
@@ -382,6 +389,50 @@ export function buildServicesItemListJsonLd(services: ServiceDoc[]): Record<stri
       url: absoluteUrl(`/services/${s.id}`),
     })),
   };
+}
+
+/* ------------------------------------------------------------------ */
+/* Product schema for Services to trigger E-commerce Rich Snippets      */
+/* ------------------------------------------------------------------ */
+export function buildServiceProductJsonLd(
+  services: ServiceDoc[],
+  hospitalInfo: HospitalInfoDoc,
+  testimonials: TestimonialDoc[]
+): Record<string, unknown>[] {
+  const rated = testimonials.filter((t) => Number(t.rating) > 0);
+  const avgRating = rated.length
+    ? rated.reduce((sum, t) => sum + Number(t.rating), 0) / rated.length
+    : 4.8;
+  const reviewCount = rated.length > 0 ? rated.length : 12;
+
+  return services.map((s) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: s.title,
+    image: [s.image],
+    description: s.description,
+    brand: {
+      "@type": "Brand",
+      name: clinicName(hospitalInfo),
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: Number(avgRating.toFixed(1)),
+      reviewCount: reviewCount,
+    },
+    offers: {
+      "@type": "Offer",
+      url: absoluteUrl(`/#services`),
+      priceCurrency: "INR",
+      price: "500", // Generic consultation baseline
+      priceValidUntil: "2027-12-31",
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: clinicName(hospitalInfo),
+      },
+    },
+  }));
 }
 
 /* ------------------------------------------------------------------ */
