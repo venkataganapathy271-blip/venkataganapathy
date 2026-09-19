@@ -54,17 +54,13 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
                      <div className="w-2 h-2 rounded-full bg-black shadow-[0_0_10px_rgba(141,214,214,0.5)]" />
                      <span className="text-[11px] font-black uppercase tracking-[0.3em] text-black italic">Patient Reviews</span>
                   </div>
-                  <AnimatePresence mode="wait">
-                     <motion.h2
-                        key={index}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="text-[28px] md:text-[42px] lg:text-[54px] font-bold text-black leading-[1.1] tracking-tighter"
-                     >
-                        {displayStories[index].heading}
-                     </motion.h2>
-                  </AnimatePresence>
+                  <motion.h2
+                     initial={{ opacity: 0, y: 10 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     className="text-[28px] md:text-[42px] lg:text-[54px] font-bold text-black leading-[1.1] tracking-tighter"
+                  >
+                     {displayStories[0].heading}
+                  </motion.h2>
                </div>
 
                {/* Right Part (Social Proof) */}
